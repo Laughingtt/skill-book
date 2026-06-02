@@ -1,50 +1,210 @@
-# Skill Book
+<div align="center">
 
-AI 技能知识库浏览器 — 探索、搜索和管理你的技能目录。
+# 📖 Skill Book
+
+**AI 技能知识库 — 发现、搜索、管理你的 AI Skill 目录**
+
+[![Vue 3](https://img.shields.io/badge/Vue-3.5-4FC08D?logo=vue.js&logoColor=white)](https://vuejs.org/)
+[![Vite](https://img.shields.io/badge/Vite-6.x-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+[快速开始](#快速开始) · [为什么需要 Skill Book](#为什么需要-skill-book) · [功能特性](#功能特性) · [技能目录](#技能目录) · [贡献指南](#贡献指南)
+
+</div>
+
+---
+
+## 为什么需要 Skill Book
+
+AI 编程工具（Claude Code、Cursor、Copilot 等）通过 **Skill**（技能）来扩展能力——一个 Skill 就是一套结构化的提示词和工作流，让 AI 在特定领域表现得更专业、更可控。
+
+但 Skill 越来越多，问题也随之而来：
+
+| 痛点 | Skill Book 如何解决 |
+|---|---|
+| 🔍 **找不到** — Skill 散落在各处，想用的时候想不起来 | 统一收录 + 模糊搜索，输入关键词即刻定位 |
+| 🏷️ **分不清** — 几十个 Skill 堆在一起，不知道哪个适合当前场景 | 分类筛选 + 标签过滤，按领域和用途精准筛选 |
+| 📖 **不会用** — 找到了 Skill 但不清楚用法和适用场景 | 详情页完整渲染 Markdown，用法、场景、示例一目了然 |
+| ➕ **难管理** — 自己创建的 Skill 没地方统一维护 | 内置 CRUD，用户自建 Skill 持久化到 localStorage |
+
+**Skill Book 的核心价值：让 AI Skill 从"收藏夹里的链接"变成"随时可查、即查即用的知识库"。**
+
+---
+
+## 功能特性
+
+- **🔍 模糊搜索** — 基于 fuse.js，支持按名称、描述、标签、分类搜索，300ms 防抖
+- **📂 分类筛选** — 自动从 frontmatter 提取分类，单选切换
+- **🏷️ 标签过滤** — 多标签 AND 逻辑筛选，精准定位
+- **📄 Markdown 渲染** — 详情页完整渲染 Skill 内容，支持代码高亮
+- **✏️ 自建 Skill** — 内置表单创建/编辑/删除，数据持久化到 localStorage
+- **📱 响应式布局** — 桌面端优先，适配移动端
+- **⚡ 零后端** — 纯静态 SPA，构建产物可直接部署到任意静态托管
+- **🎨 Apple 设计语言** — 参照 Apple HIG 风格，Crimson Pro + DM Sans 字体，burnt terracotta 强调色
+
+---
 
 ## 快速开始
 
+### 环境要求
+
+- Node.js ≥ 18
+- npm ≥ 9
+
+### 安装与运行
+
 ```bash
+# 克隆仓库
+git clone https://github.com/Laughingtt/skill-book.git
+cd skill-book
+
+# 安装依赖
 npm install
-npm run dev        # 启动开发服务器
-npm run build      # 生产构建
+
+# 启动开发服务器
+npm run dev
+
+# 生产构建（自动生成 skills index）
+npm run build
+
+# 本地预览构建产物
+npm run preview
 ```
+
+开发服务器启动后访问 http://localhost:5173
+
+### 常用命令
+
+| 命令 | 说明 |
+|---|---|
+| `npm run dev` | 启动 Vite 开发服务器 |
+| `npm run build:skills` | 从 `public/skills/*.md` 重新生成 `index.json` |
+| `npm run build` | 完整生产构建（含 build:skills 预处理） |
+| `npm run preview` | 本地预览生产构建 |
+| `npm run test` | 运行测试 |
+| `npm run test:watch` | 监听模式运行测试 |
+
+---
 
 ## 项目结构
 
 ```
-public/skills/       # 技能 Markdown 文件（含 YAML frontmatter）
-scripts/             # 构建脚本（生成 index.json）
-src/
-  assets/styles/     # 设计 Token（CSS 变量 + Tailwind）
-  components/        # Vue 组件
-  composables/       # useSkills / useSearch / useFilters
-  router/            # Vue Router 配置
-  utils/             # 浏览器端 frontmatter 解析器
-  views/             # 页面视图
+skill-book/
+├── public/
+│   └── skills/              # Skill Markdown 文件（含 YAML frontmatter）
+│       ├── index.json        # 构建时自动生成的索引
+│       ├── vue-skill.md
+│       └── ...
+├── scripts/
+│   └── build-skills.js       # 构建脚本：扫描 .md → 生成 index.json
+├── src/
+│   ├── assets/styles/
+│   │   └── tokens.css        # 设计 Token（CSS 自定义属性 + 暗色模式）
+│   ├── components/
+│   │   ├── GlobalNav.vue     # 顶部全局导航
+│   │   ├── SubNav.vue        # 二级导航（搜索栏）
+│   │   ├── SearchBar.vue     # 搜索输入框
+│   │   ├── CategorySidebar.vue  # 左侧分类筛选
+│   │   ├── TagCloud.vue      # 标签云筛选
+│   │   ├── SkillCard.vue     # 技能卡片
+│   │   ├── SkillFormModal.vue   # 创建/编辑技能表单
+│   │   ├── MarkdownRenderer.vue # Markdown 渲染器
+│   │   └── FooterBar.vue     # 页脚
+│   ├── composables/
+│   │   ├── useSkills.js      # 技能数据管理（单例，CRUD + localStorage）
+│   │   ├── useSearch.js      # fuse.js 搜索封装
+│   │   └── useFilters.js     # 分类 + 标签筛选
+│   ├── router/
+│   │   └── index.js          # Vue Router（Hash 模式）
+│   ├── utils/
+│   │   └── frontmatter.js    # 浏览器端 frontmatter 解析器
+│   ├── views/
+│   │   ├── HomeView.vue      # 首页：浏览、搜索、筛选
+│   │   └── SkillDetailView.vue  # 详情页：Markdown 内容渲染
+│   ├── App.vue
+│   └── main.js
+├── docs/                     # 设计文档与 PRD
+├── index.html
+├── package.json
+└── vite.config.js
 ```
+
+---
+
+## 架构设计
+
+### 数据流水线
+
+```
+构建时:  public/skills/*.md  →  gray-matter 解析  →  public/skills/index.json
+运行时:  index.json 加载  →  useSkills() 持有数据  →  useSearch() 建索引  →  useFilters() 筛选
+详情页:  /skills/{slug}.md  →  浏览器端 frontmatter 解析  →  markdown-it 渲染
+```
+
+**为什么用构建时索引？** 首页只需轻量元数据（name/slug/category/tags/description），无需加载全部 Markdown 内容。搜索索引基于小 JSON 负载，响应迅速。详情页按需加载完整 `.md` 文件。
+
+### 路由
+
+| 路径 | 视图 | 说明 |
+|---|---|---|
+| `#/` | HomeView | 浏览、搜索、筛选、创建技能 |
+| `#/skill/:slug` | SkillDetailView | 技能详情 + Markdown 渲染 |
+| `#/skill/:slug/edit` | SkillEditView | 编辑技能（懒加载） |
+
+使用 Hash 路由（`createWebHashHistory`），兼容任意静态文件托管，无需服务端配置。
+
+---
 
 ## 添加技能
 
-在 `public/skills/` 下创建 `.md` 文件，格式如下：
+### 1. 创建 Markdown 文件
+
+在 `public/skills/` 下新建 `.md` 文件，包含 YAML frontmatter：
 
 ```yaml
 ---
 slug: my-skill
-name: 技能名称
-category: 分类
-tags: [标签1, 标签2]
-description: 简短描述
-install: "npx skills add ..."
-source: "https://..."
+name: My Skill
+category: 编码
+tags: [vue, frontend, component]
+description: 简短描述这个技能做什么
+install: "npx skills add my-skill"
+source: "https://github.com/..."
 ---
+
+# My Skill
+
+## 描述
+详细说明...
+
+## 用法
+使用方式...
+
+## 使用场景
+适用场景...
+
+## 示例
+代码示例...
 ```
 
-运行 `npm run build:skills` 重新生成索引。
+### 2. 重新生成索引
+
+```bash
+npm run build:skills
+```
+
+新技能会自动出现在首页，分类也会自动加入侧边栏。
+
+### 3. 通过界面创建
+
+也可以在应用首页点击「+」按钮，通过表单直接创建技能（保存到 localStorage）。
+
+---
 
 ## 技能目录
 
-> 点击技能名称查看源文件（Markdown）。
+> 点击技能名称查看源文件。共收录 **51** 个技能，覆盖编码、设计、测试、部署、营销等领域。
 
 | 技能名称 | 描述 |
 |---|---|
@@ -99,6 +259,94 @@ source: "https://..."
 | [Webapp Testing](public/skills/webapp-testing.md) | Anthropic官方Web应用测试技能，通过Playwright在真实浏览器中测试本地应用 |
 | [NotebookLM Skill / Zread](public/skills/zread-notebooklm.md) | 在终端批量分析文档或深入理解GitHub仓库的CLI工具 |
 
+---
+
 ## 技术栈
 
-Vue 3 · Vue Router · Vite · Tailwind CSS 4 · markdown-it · fuse.js
+| 技术 | 用途 |
+|---|---|
+| [Vue 3](https://vuejs.org/) | 前端框架（Composition API + `<script setup>`） |
+| [Vue Router 4](https://router.vuejs.org/) | 客户端路由（Hash 模式） |
+| [Vite 6](https://vitejs.dev/) | 构建工具与开发服务器 |
+| [Tailwind CSS 4](https://tailwindcss.com/) | 原子化 CSS（设计 Token 集成） |
+| [markdown-it](https://github.com/markdown-it/markdown-it) | Markdown 渲染引擎 |
+| [fuse.js](https://www.fusejs.io/) | 模糊搜索引擎 |
+| [gray-matter](https://github.com/jonschlinkert/gray-matter) | YAML frontmatter 解析（构建时） |
+| [Vitest](https://vitest.dev/) | 单元测试框架 |
+
+---
+
+## 部署
+
+Skill Book 是纯静态 SPA，构建产物可直接部署到任意静态托管平台：
+
+```bash
+npm run build    # 产出 dist/ 目录
+```
+
+### Vercel（推荐）
+
+```bash
+npx vercel
+```
+
+或连接 GitHub 仓库后自动部署，框架预设选择 `Vite`。
+
+### GitHub Pages
+
+1. 设置 `vite.config.js` 中 `base` 为仓库名（如 `/skill-book/`）
+2. 推送 `dist/` 到 `gh-pages` 分支，或使用 GitHub Actions 自动部署
+
+### 其他平台
+
+Netlify、Cloudflare Pages、S3 静态托管等均可，只需将 `dist/` 作为发布目录。
+
+---
+
+## 贡献指南
+
+欢迎贡献！你可以通过以下方式参与：
+
+### 提交新 Skill
+
+1. Fork 本仓库
+2. 在 `public/skills/` 下创建 `.md` 文件（遵循 [Skill 格式](#添加技能)）
+3. 运行 `npm run build:skills` 更新索引
+4. 提交 Pull Request
+
+### 报告问题
+
+- [提交 Issue](https://github.com/Laughingtt/skill-book/issues) 描述问题或建议
+
+### 开发贡献
+
+1. Fork 并克隆仓库
+2. 创建功能分支：`git checkout -b feature/my-feature`
+3. 提交更改：`git commit -m 'feat: add some feature'`
+4. 推送分支：`git push origin feature/my-feature`
+5. 提交 Pull Request
+
+请确保提交前通过 `npm run build` 和 `npm run test`。
+
+---
+
+## 路线图
+
+- [x] 技能浏览与卡片网格
+- [x] 模糊搜索（fuse.js）
+- [x] 分类 + 标签筛选
+- [x] 技能详情页（Markdown 渲染）
+- [x] 用户自建 Skill（localStorage CRUD）
+- [x] 响应式布局
+- [ ] 收藏/书签系统
+- [ ] 学习进度追踪
+- [ ] 暗色模式
+- [ ] URL 同步筛选状态
+- [ ] PWA / 离线支持
+- [ ] Skill 评分与评论
+
+---
+
+## License
+
+[MIT](LICENSE) © 2024-present
