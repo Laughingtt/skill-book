@@ -4,6 +4,7 @@ name: Code Refactor
 category: 代码维护与质量
 tags: [refactor, legacy, code-smell, extract-method, safe-transform]
 description: 遗留代码重构技能，基于Fowler和Feathers的著作，分析优先、安全增量变换
+scenarios: [code-maintenance, legacy-migration, code-smell-fix]
 install: "claude plugins install https://github.com/elifiner/refactoring"
 source: "https://github.com/elifiner/refactoring"
 ---

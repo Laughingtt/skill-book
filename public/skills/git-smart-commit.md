@@ -4,6 +4,10 @@ name: Git Smart Commit
 category: 代码维护与质量
 tags: [git, commit, conventional-commits, atomic, layer]
 description: 规范化智能提交技能，按架构分层自动拆分为符合Conventional Commits规范的多个原子提交
+scenarios: [git-workflow, code-review, commit-hygiene]
+commands:
+  - name: "智能提交"
+    cmd: "git add -A && claude /commit"
 install: "复制 SKILL.md 到 .claude/skills/git-smart-commit/ 或通过 openskills 安装"
 source: "https://github.com/alirezarezvani/claude-code-tresor"
 ---

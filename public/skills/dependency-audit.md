@@ -4,6 +4,7 @@ name: Dependency Audit
 category: 代码维护与质量
 tags: [dependency, security, vulnerability, audit, npm-audit, pip-audit]
 description: 依赖安全检测技能，扫描漏洞、未使用包、过时版本和供应链风险
+scenarios: [security-audit, dependency-management, vulnerability-scan]
 install: "npx antigravity-awesome-skills 或复制 SKILL.md 到 .claude/skills/dependency-audit/"
 source: "https://github.com/sickn33/antigravity-awesome-skills"
 ---

@@ -4,6 +4,10 @@ name: Playwright MCP
 category: 编码开发与工程规范
 tags: [testing, browser, e2e, automation, mcp]
 description: 通过MCP协议集成Playwright，让AI自动调用进行浏览器操作和端到端自动化测试
+scenarios: [e2e-testing, browser-automation, ci-testing]
+commands:
+  - name: "启动浏览器测试"
+    cmd: "claude /verify"
 install: "claude mcp add playwright npx @playwright/mcp@latest"
 source: "https://github.com/microsoft/playwright-mcp"
 ---

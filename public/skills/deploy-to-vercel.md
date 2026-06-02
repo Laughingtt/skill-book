@@ -4,6 +4,10 @@ name: Deploy to Vercel
 category: 云服务与基础设施
 tags: [deploy, vercel, hosting, ci, production, cloud]
 description: Vercel官方部署技能，一键将应用部署到Vercel平台的自动化部署流程
+scenarios: [deployment, ci-cd, production-release]
+commands:
+  - name: "部署到Vercel"
+    cmd: "vercel --prod"
 install: "npx skills add https://github.com/vercel-labs/agent-skills --skill deploy-to-vercel"
 source: "https://www.skills.sh/vercel-labs/agent-skills/deploy-to-vercel"
 ---

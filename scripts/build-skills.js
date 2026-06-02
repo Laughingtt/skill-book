@@ -26,6 +26,8 @@ for (const file of files) {
     category: data.category || '',
     tags: data.tags || [],
     description: data.description || '',
+    scenarios: data.scenarios || [],
+    ...(data.commands && { commands: data.commands.map(c => c.cmd) }),
   })
 }
 

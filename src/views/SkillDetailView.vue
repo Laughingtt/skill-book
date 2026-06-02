@@ -18,6 +18,7 @@ const rawMd = ref('')
 const loading = ref(true)
 const error = ref(null)
 const showDeleteConfirm = ref(false)
+const showQuickStart = ref(false)
 const { skills, updateSkillFromMd, deleteSkill } = useSkills()
 const { query: searchQuery } = useSearch()
 const { isBookmarked, toggleBookmark } = useBookmarks()
@@ -27,6 +28,33 @@ const { trackView } = useUsageTracker()
 const editing = ref(false)
 const editContent = ref('')
 const saving = ref(false)
+const copiedCmd = ref(null)
+
+// Related skills: same category + overlapping tags
+const relatedSkills = computed(() => {
+  if (!skill.value) return []
+  const current = skill.value
+  return skills.value
+    .filter(s => s.slug !== current.slug)
+    .map(s => ({
+      ...s,
+      overlap: (s.category === current.category ? 1 : 0) +
+        (s.tags || []).filter(t => (current.tags || []).includes(t)).length
+    }))
+    .filter(s => s.overlap > 0)
+    .sort((a, b) => b.overlap - a.overlap)
+    .slice(0, 5)
+})
+
+// Quick start content
+const quickStartContent = computed(() => {
+  if (!skill.value) return ''
+  if (skill.value.quickstart) return skill.value.quickstart
+  if (skill.value.install) {
+    return `1. 安装: \` ${skill.value.install}\`\n2. 开始使用此skill`
+  }
+  return ''
+})
 
 // Preview body only (strip frontmatter from editContent for preview)
 const previewBody = computed(() => {
@@ -120,6 +148,16 @@ function handleDelete() {
   deleteSkill(slug)
   showDeleteConfirm.value = false
   router.push('/')
+}
+
+async function copyCommand(cmd) {
+  try {
+    await navigator.clipboard.writeText(cmd)
+    copiedCmd.value = cmd
+    setTimeout(() => { copiedCmd.value = null }, 2000)
+  } catch {
+    copiedCmd.value = null
+  }
 }
 
 function startContentEdit() {
@@ -216,6 +254,15 @@ async function saveContentEdit() {
           </template>
         </p>
 
+        <!-- Scenarios / When to Use -->
+        <div v-if="skill.scenarios?.length" style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px;">
+          <span
+            v-for="scenario in skill.scenarios"
+            :key="scenario"
+            class="scenario-pill"
+          >{{ scenario }}</span>
+        </div>
+
         <!-- Status Selector -->
         <div class="status-selector">
           <button
@@ -294,6 +341,50 @@ async function saveContentEdit() {
                 <MarkdownRenderer v-if="editContent" :source="editContent" />
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Start Section (collapsible) -->
+    <section v-if="!editing && quickStartContent" style="background: #f3f1ec;">
+      <div class="max-w-[720px] mx-auto px-[22px] py-8">
+        <button @click="showQuickStart = !showQuickStart" class="quickstart-toggle">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline :points="showQuickStart ? '6 9 12 15 18 9' : '9 18 15 12 9 6'" />
+          </svg>
+          快速开始
+        </button>
+        <div v-if="showQuickStart" class="quickstart-content">
+          <MarkdownRenderer :source="quickStartContent" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Command Cards Section -->
+    <section v-if="!editing && skill.commands?.length" style="background: #ffffff;">
+      <div class="max-w-[720px] mx-auto px-[22px] py-8">
+        <h4 class="cmd-section-title">常用命令</h4>
+        <div class="cmd-cards">
+          <div v-for="(cmd, i) in skill.commands" :key="i" class="cmd-card">
+            <span class="cmd-card__label">{{ cmd.name || `命令 ${i+1}` }}</span>
+            <code class="cmd-card__code">{{ cmd.cmd }}</code>
+            <button @click="copyCommand(cmd.cmd)" class="cmd-card__copy" :class="{ 'cmd-card__copy--done': copiedCmd === cmd.cmd }">
+              {{ copiedCmd === cmd.cmd ? '✓' : '复制' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Skills -->
+    <section v-if="!editing && relatedSkills.length" style="background: #faf9f6;">
+      <div class="max-w-[720px] mx-auto px-[22px] py-10">
+        <h4 class="related-title">相关技能</h4>
+        <div class="related-grid">
+          <div v-for="s in relatedSkills" :key="s.slug" class="related-card" @click="router.push({ name: 'skill-detail', params: { slug: s.slug } })">
+            <span class="related-card__category">{{ s.category }}</span>
+            <span class="related-card__name">{{ s.name }}</span>
           </div>
         </div>
       </div>
@@ -558,5 +649,163 @@ async function saveContentEdit() {
 .bookmark-btn--active svg {
   fill: #c4553a;
   stroke: #c4553a;
+}
+
+/* Scenario pills */
+.scenario-pill {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: rgba(196, 85, 58, 0.08);
+  color: #c4553a;
+}
+
+/* Quick Start */
+.quickstart-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #8a8a87;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s ease;
+}
+
+.quickstart-toggle:hover {
+  color: #c4553a;
+}
+
+.quickstart-content {
+  margin-top: 12px;
+  padding: 16px 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  border-left: 3px solid #c4553a;
+}
+
+/* Command Cards */
+.cmd-section-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #8a8a87;
+  margin: 0 0 12px;
+}
+
+.cmd-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cmd-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: #0a0a0a;
+  border-left: 3px solid #c4553a;
+  border-radius: 0;
+}
+
+.cmd-card__label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: #8a8a87;
+  white-space: nowrap;
+}
+
+.cmd-card__code {
+  font-family: 'DM Mono', Menlo, monospace;
+  font-size: 13px;
+  color: #faf9f6;
+  flex: 1;
+  overflow-x: auto;
+}
+
+.cmd-card__copy {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 3px 8px;
+  background: rgba(250, 249, 246, 0.1);
+  color: #faf9f6;
+  border: 1px solid rgba(250, 249, 246, 0.15);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.cmd-card__copy:hover {
+  background: rgba(250, 249, 246, 0.2);
+}
+
+.cmd-card__copy--done {
+  color: #4caf7d;
+  border-color: #4caf7d;
+}
+
+/* Related Skills */
+.related-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #8a8a87;
+  margin: 0 0 12px;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+}
+
+.related-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 14px;
+  background: #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.related-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.related-card__category {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c4553a;
+}
+
+.related-card__name {
+  font-family: 'Crimson Pro', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0a0a0a;
 }
 </style>

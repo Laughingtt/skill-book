@@ -3,7 +3,13 @@ name: Vue3 组件开发
 slug: vue-skill
 category: 编码开发与工程规范
 tags: [vue, frontend, component]
+scenarios: [frontend-development, component-design, spa-building]
 description: 使用 Vue3 Composition API 构建可复用组件的完整技能指南
+commands:
+  - name: "创建Vue项目"
+    cmd: "npm create vite@latest my-app -- --template vue"
+  - name: "开发模式启动"
+    cmd: "cd my-app && npm run dev"
 ---
 
 # Vue3 组件开发

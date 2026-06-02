@@ -10,7 +10,8 @@
       "collaboration",
       "multi-agent"
     ],
-    "description": "AI角色团队协同开发，一次配齐架构师、数据库优化师、前端、代码审查和测试等专家角色"
+    "description": "AI角色团队协同开发，一次配齐架构师、数据库优化师、前端、代码审查和测试等专家角色",
+    "scenarios": []
   },
   {
     "name": "Agent Browser MCP",
@@ -25,7 +26,8 @@
       "screenshot",
       "rust"
     ],
-    "description": "MCP服务器提供浏览器自动化能力，使用语义元素定位器而非CSS选择器"
+    "description": "MCP服务器提供浏览器自动化能力，使用语义元素定位器而非CSS选择器",
+    "scenarios": []
   },
   {
     "name": "Agent Browser",
@@ -40,7 +42,8 @@
       "extraction",
       "testing"
     ],
-    "description": "AI Agent浏览器自动化CLI，支持网页导航、表单填写、按钮点击、截图和数据提取"
+    "description": "AI Agent浏览器自动化CLI，支持网页导航、表单填写、按钮点击、截图和数据提取",
+    "scenarios": []
   },
   {
     "name": "Agent Skills（谷歌工程纪律包）",
@@ -54,7 +57,8 @@
       "security",
       "ship"
     ],
-    "description": "轻量灵活约束AI行为的工程纪律技能包，覆盖开发全流程"
+    "description": "轻量灵活约束AI行为的工程纪律技能包，覆盖开发全流程",
+    "scenarios": []
   },
   {
     "name": "AI Prompt Optimizer",
@@ -67,7 +71,8 @@
       "quality",
       "improvement"
     ],
-    "description": "写不好Prompt时让AI帮你优化的提示词优化工具"
+    "description": "写不好Prompt时让AI帮你优化的提示词优化工具",
+    "scenarios": []
   },
   {
     "name": "AionUI",
@@ -79,7 +84,8 @@
       "component",
       "generation"
     ],
-    "description": "AI驱动的用户界面组件生成"
+    "description": "AI驱动的用户界面组件生成",
+    "scenarios": []
   },
   {
     "name": "Animation Generation",
@@ -93,7 +99,8 @@
       "lottie",
       "css"
     ],
-    "description": "AI辅助生成动画效果，支持CSS动画、Lottie动画和SVG动画"
+    "description": "AI辅助生成动画效果，支持CSS动画、Lottie动画和SVG动画",
+    "scenarios": []
   },
   {
     "name": "API Docs Generator",
@@ -107,7 +114,8 @@
       "endpoint",
       "sdk"
     ],
-    "description": "自动生成API文档技能，包含OpenAPI/Swagger规范、端点文档、SDK使用示例"
+    "description": "自动生成API文档技能，包含OpenAPI/Swagger规范、端点文档、SDK使用示例",
+    "scenarios": []
   },
   {
     "name": "Awesome Design MD / Design MD Collection",
@@ -122,7 +130,8 @@
       "vercel",
       "design-system"
     ],
-    "description": "收集顶级网站的DESIGN.md设计规范文件，58+品牌风格，每个附带可视化预览HTML"
+    "description": "收集顶级网站的DESIGN.md设计规范文件，58+品牌风格，每个附带可视化预览HTML",
+    "scenarios": []
   },
   {
     "name": "Baoyu Skill",
@@ -135,7 +144,8 @@
       "generation",
       "concept"
     ],
-    "description": "快速生成不同艺术风格的概念图"
+    "description": "快速生成不同艺术风格的概念图",
+    "scenarios": []
   },
   {
     "name": "Caveman Review",
@@ -148,7 +158,8 @@
       "token-optimization",
       "caveman"
     ],
-    "description": "压缩通信模式代码审查，减少~75%token用量同时保持完整技术准确性"
+    "description": "压缩通信模式代码审查，减少~75%token用量同时保持完整技术准确性",
+    "scenarios": []
   },
   {
     "name": "CC Connect",
@@ -160,7 +171,8 @@
       "platform",
       "service"
     ],
-    "description": "特定平台或服务之间的连接器工具"
+    "description": "特定平台或服务之间的连接器工具",
+    "scenarios": []
   },
   {
     "name": "Claude Design",
@@ -172,7 +184,8 @@
       "output",
       "visual"
     ],
-    "description": "在Claude中直接获得更好的设计输出"
+    "description": "在Claude中直接获得更好的设计输出",
+    "scenarios": []
   },
   {
     "name": "Code Refactor",
@@ -185,7 +198,12 @@
       "extract-method",
       "safe-transform"
     ],
-    "description": "遗留代码重构技能，基于Fowler和Feathers的著作，分析优先、安全增量变换"
+    "description": "遗留代码重构技能，基于Fowler和Feathers的著作，分析优先、安全增量变换",
+    "scenarios": [
+      "code-maintenance",
+      "legacy-migration",
+      "code-smell-fix"
+    ]
   },
   {
     "name": "Software Copyright / Patent Disclosure Skill",
@@ -198,7 +216,8 @@
       "software-registration",
       "disclosure"
     ],
-    "description": "软件著作权申请与专利信息披露辅助技能"
+    "description": "软件著作权申请与专利信息披露辅助技能",
+    "scenarios": []
   },
   {
     "name": "Dependency Audit",
@@ -212,7 +231,12 @@
       "npm-audit",
       "pip-audit"
     ],
-    "description": "依赖安全检测技能，扫描漏洞、未使用包、过时版本和供应链风险"
+    "description": "依赖安全检测技能，扫描漏洞、未使用包、过时版本和供应链风险",
+    "scenarios": [
+      "security-audit",
+      "dependency-management",
+      "vulnerability-scan"
+    ]
   },
   {
     "name": "Deploy to Vercel",
@@ -226,7 +250,15 @@
       "production",
       "cloud"
     ],
-    "description": "Vercel官方部署技能，一键将应用部署到Vercel平台的自动化部署流程"
+    "description": "Vercel官方部署技能，一键将应用部署到Vercel平台的自动化部署流程",
+    "scenarios": [
+      "deployment",
+      "ci-cd",
+      "production-release"
+    ],
+    "commands": [
+      "vercel --prod"
+    ]
   },
   {
     "name": "UI 设计系统",
@@ -237,7 +269,8 @@
       "system",
       "component"
     ],
-    "description": "构建一致性 UI 设计系统的核心原则、Token 体系与组件规范"
+    "description": "构建一致性 UI 设计系统的核心原则、Token 体系与组件规范",
+    "scenarios": []
   },
   {
     "name": "Design Spells",
@@ -250,7 +283,8 @@
       "ux",
       "detail"
     ],
-    "description": "微交互灵感图鉴，收录APP中的微动效（如加载动画、输入反馈）"
+    "description": "微交互灵感图鉴，收录APP中的微动效（如加载动画、输入反馈）",
+    "scenarios": []
   },
   {
     "name": "Floracat Diagram",
@@ -264,7 +298,8 @@
       "chart",
       "flowchart"
     ],
-    "description": "AI辅助生成Mermaid、PlantUML等格式的图表和流程图"
+    "description": "AI辅助生成Mermaid、PlantUML等格式的图表和流程图",
+    "scenarios": []
   },
   {
     "name": "Frontend Design",
@@ -278,7 +313,8 @@
       "shadcn",
       "page-generation"
     ],
-    "description": "快速生成符合设计规范的前端页面，支持React/Tailwind/shadcn/ui"
+    "description": "快速生成符合设计规范的前端页面，支持React/Tailwind/shadcn/ui",
+    "scenarios": []
   },
   {
     "name": "Git Smart Commit",
@@ -291,7 +327,15 @@
       "atomic",
       "layer"
     ],
-    "description": "规范化智能提交技能，按架构分层自动拆分为符合Conventional Commits规范的多个原子提交"
+    "description": "规范化智能提交技能，按架构分层自动拆分为符合Conventional Commits规范的多个原子提交",
+    "scenarios": [
+      "git-workflow",
+      "code-review",
+      "commit-hygiene"
+    ],
+    "commands": [
+      "git add -A && claude /commit"
+    ]
   },
   {
     "name": "GPT Imager",
@@ -304,7 +348,8 @@
       "illustration",
       "asset"
     ],
-    "description": "为文章、视频或报告生成配图和图片素材"
+    "description": "为文章、视频或报告生成配图和图片素材",
+    "scenarios": []
   },
   {
     "name": "GStack",
@@ -319,7 +364,8 @@
       "security",
       "owasp"
     ],
-    "description": "基于23项专业技能串联从设计到部署的完整研发链路，内置CEO战略审查、架构评审、OWASP安全扫描"
+    "description": "基于23项专业技能串联从设计到部署的完整研发链路，内置CEO战略审查、架构评审、OWASP安全扫描",
+    "scenarios": []
   },
   {
     "name": "guizang-ppt-skill",
@@ -332,7 +378,8 @@
       "封面生成",
       "AI Agent"
     ],
-    "description": "一个适配 Claude Code / Codex 等 AI Agent 环境的网页 PPT 技能，用于生成单文件 HTML 横向翻页 PPT、PPT 配图和多平台封面。内置两套视觉风格，支持快速创建美观的演示文稿。"
+    "description": "一个适配 Claude Code / Codex 等 AI Agent 环境的网页 PPT 技能，用于生成单文件 HTML 横向翻页 PPT、PPT 配图和多平台封面。内置两套视觉风格，支持快速创建美观的演示文稿。",
+    "scenarios": []
   },
   {
     "name": "PPT Master / HTML PPT Skill",
@@ -345,7 +392,8 @@
       "slide",
       "demo"
     ],
-    "description": "快速制作PPT演示文稿，支持HTML格式或PPTX格式输出"
+    "description": "快速制作PPT演示文稿，支持HTML格式或PPTX格式输出",
+    "scenarios": []
   },
   {
     "name": "Humanizer-ZH",
@@ -358,7 +406,8 @@
       "copywriting",
       "humanize"
     ],
-    "description": "让AI写的文案更像人话，减少机器翻译感的中文文案自然化处理工具"
+    "description": "让AI写的文案更像人话，减少机器翻译感的中文文案自然化处理工具",
+    "scenarios": []
   },
   {
     "name": "hyperframes",
@@ -369,7 +418,8 @@
       "HTML转视频",
       "AI代理"
     ],
-    "description": "HyperFrames 是一个开源框架，能将 HTML、CSS、媒体和可寻址动画转换为确定性的 MP4 视频。它既可以通过 AI 编码代理的技能一键生成视频，也支持 CLI 本地使用，适合快速创作产品介绍、宣传片等视频内容。"
+    "description": "HyperFrames 是一个开源框架，能将 HTML、CSS、媒体和可寻址动画转换为确定性的 MP4 视频。它既可以通过 AI 编码代理的技能一键生成视频，也支持 CLI 本地使用，适合快速创作产品介绍、宣传片等视频内容。",
+    "scenarios": []
   },
   {
     "name": "Impeccable",
@@ -385,7 +435,8 @@
       "impeccable",
       "visual"
     ],
-    "description": "前端视觉品质全方位技能包，覆盖打磨、审计、动画、适配、优化、色彩化等20+子技能"
+    "description": "前端视觉品质全方位技能包，覆盖打磨、审计、动画、适配、优化、色彩化等20+子技能",
+    "scenarios": []
   },
   {
     "name": "Karpathy's Guidelines",
@@ -399,7 +450,8 @@
       "goal-driven",
       "karpathy"
     ],
-    "description": "Andrej Karpathy的4条AI编程行为规则：先思考、简洁优先、手术式改动、目标驱动执行"
+    "description": "Andrej Karpathy的4条AI编程行为规则：先思考、简洁优先、手术式改动、目标驱动执行",
+    "scenarios": []
   },
   {
     "name": "Markdown to HTML",
@@ -412,7 +464,8 @@
       "rendering",
       "styling"
     ],
-    "description": "将Markdown文档转换为精美排版的HTML页面，支持多种样式主题"
+    "description": "将Markdown文档转换为精美排版的HTML页面，支持多种样式主题",
+    "scenarios": []
   },
   {
     "name": "Marketing Skills",
@@ -427,7 +480,8 @@
       "cro",
       "pricing"
     ],
-    "description": "Corey Haines营销技能包，18个子技能覆盖SEO审计、文案写作、内容策略、邮件序列、CRO优化等"
+    "description": "Corey Haines营销技能包，18个子技能覆盖SEO审计、文案写作、内容策略、邮件序列、CRO优化等",
+    "scenarios": []
   },
   {
     "name": "MattPocock Skills",
@@ -442,7 +496,8 @@
       "caveman",
       "handoff"
     ],
-    "description": "前端大神Matt Pocock的28个实战Skills，专治\"氛围编程\"四大通病，遵循TDD/DDD等工程原则"
+    "description": "前端大神Matt Pocock的28个实战Skills，专治\"氛围编程\"四大通病，遵循TDD/DDD等工程原则",
+    "scenarios": []
   },
   {
     "name": "BB Browser / OpenClaw",
@@ -456,7 +511,8 @@
       "scraping",
       "screenshot"
     ],
-    "description": "提供独立浏览器实例，支持托管浏览器和扩展中继两种模式的浏览器自动化工具"
+    "description": "提供独立浏览器实例，支持托管浏览器和扩展中继两种模式的浏览器自动化工具",
+    "scenarios": []
   },
   {
     "name": "OpenCLI / 9Router",
@@ -469,7 +525,8 @@
       "terminal",
       "model"
     ],
-    "description": "终端环境下的AI调用或API路由管理工具"
+    "description": "终端环境下的AI调用或API路由管理工具",
+    "scenarios": []
   },
   {
     "name": "OpenSpec",
@@ -481,7 +538,8 @@
       "cli-tool",
       "project-management"
     ],
-    "description": "OpenSpec 是一个基于规范的 AI 原生工作流工具，帮助开发者用自然语言描述变更，自动生成提案、规范文档、设计说明和任务清单，并引导 AI 逐步实现与归档。它适用于从个人项目到企业级应用的迭代开发，让开发流程更轻量、灵活。"
+    "description": "OpenSpec 是一个基于规范的 AI 原生工作流工具，帮助开发者用自然语言描述变更，自动生成提案、规范文档、设计说明和任务清单，并引导 AI 逐步实现与归档。它适用于从个人项目到企业级应用的迭代开发，让开发流程更轻量、灵活。",
+    "scenarios": []
   },
   {
     "name": "Playwright MCP",
@@ -494,7 +552,15 @@
       "automation",
       "mcp"
     ],
-    "description": "通过MCP协议集成Playwright，让AI自动调用进行浏览器操作和端到端自动化测试"
+    "description": "通过MCP协议集成Playwright，让AI自动调用进行浏览器操作和端到端自动化测试",
+    "scenarios": [
+      "e2e-testing",
+      "browser-automation",
+      "ci-testing"
+    ],
+    "commands": [
+      "claude /verify"
+    ]
   },
   {
     "name": "React Bits",
@@ -507,7 +573,8 @@
       "interaction",
       "opensource"
     ],
-    "description": "开源React动画组件库，提供70+种动画组件，npm install后直接复制代码使用"
+    "description": "开源React动画组件库，提供70+种动画组件，npm install后直接复制代码使用",
+    "scenarios": []
   },
   {
     "name": "Remotion Best Practices",
@@ -521,7 +588,8 @@
       "rendering",
       "programmatic"
     ],
-    "description": "Remotion官方最佳实践，深度掌握动画、时间轴、音频、字幕和3D的正确编码方式"
+    "description": "Remotion官方最佳实践，深度掌握动画、时间轴、音频、字幕和3D的正确编码方式",
+    "scenarios": []
   },
   {
     "name": "shadcn/ui Skill",
@@ -535,7 +603,8 @@
       "tailwind",
       "react"
     ],
-    "description": "shadcn/ui官方技能，管理组件的添加、搜索、修复、样式调整与组合，提供项目上下文与用法示例"
+    "description": "shadcn/ui官方技能，管理组件的添加、搜索、修复、样式调整与组合，提供项目上下文与用法示例",
+    "scenarios": []
   },
   {
     "name": "Skill Creator/ Find-Skill",
@@ -548,7 +617,8 @@
       "management",
       "marketplace"
     ],
-    "description": "自己创建新技能或寻找现成技能的技能管理与搜索工具"
+    "description": "自己创建新技能或寻找现成技能的技能管理与搜索工具",
+    "scenarios": []
   },
   {
     "name": "Skill Creator (Official)",
@@ -563,7 +633,8 @@
       "anthropic",
       "official"
     ],
-    "description": "Anthropic官方技能创建器，交互式创建、修改和优化Agent Skills，支持性能评估与触发精度调优"
+    "description": "Anthropic官方技能创建器，交互式创建、修改和优化Agent Skills，支持性能评估与触发精度调优",
+    "scenarios": []
   },
   {
     "name": "Sleek Design Mobile Apps",
@@ -577,7 +648,8 @@
       "screens",
       "sleek"
     ],
-    "description": "Sleek移动应用设计技能，AI辅助设计移动端界面、创建屏幕和构建UI"
+    "description": "Sleek移动应用设计技能，AI辅助设计移动端界面、创建屏幕和构建UI",
+    "scenarios": []
   },
   {
     "name": "Superpowers",
@@ -591,7 +663,8 @@
       "debugging",
       "review"
     ],
-    "description": "通过流程化引导规范AI编程，提升代码交付质量的技能包"
+    "description": "通过流程化引导规范AI编程，提升代码交付质量的技能包",
+    "scenarios": []
   },
   {
     "name": "UI/UX Pro Max",
@@ -606,7 +679,8 @@
       "presentation",
       "chartjs"
     ],
-    "description": "内置161种产品类型对应的专业调色板和设计策略，支持banner设计和HTML演示文稿"
+    "description": "内置161种产品类型对应的专业调色板和设计策略，支持banner设计和HTML演示文稿",
+    "scenarios": []
   },
   {
     "name": "Vercel Composition Patterns",
@@ -619,7 +693,8 @@
       "patterns",
       "vercel"
     ],
-    "description": "Vercel官方React组合模式技能，用复合组件替代boolean prop泛滥的架构方案"
+    "description": "Vercel官方React组合模式技能，用复合组件替代boolean prop泛滥的架构方案",
+    "scenarios": []
   },
   {
     "name": "Vercel React Best Practices",
@@ -632,7 +707,8 @@
       "performance",
       "vercel"
     ],
-    "description": "Vercel官方React最佳实践，57条性能规则覆盖React/Next.js核心优化策略"
+    "description": "Vercel官方React最佳实践，57条性能规则覆盖React/Next.js核心优化策略",
+    "scenarios": []
   },
   {
     "name": "Vue3 组件开发",
@@ -643,7 +719,16 @@
       "frontend",
       "component"
     ],
-    "description": "使用 Vue3 Composition API 构建可复用组件的完整技能指南"
+    "description": "使用 Vue3 Composition API 构建可复用组件的完整技能指南",
+    "scenarios": [
+      "frontend-development",
+      "component-design",
+      "spa-building"
+    ],
+    "commands": [
+      "npm create vite@latest my-app -- --template vue",
+      "cd my-app && npm run dev"
+    ]
   },
   {
     "name": "Webapp Testing",
@@ -658,7 +743,8 @@
       "visual",
       "webapp"
     ],
-    "description": "Anthropic官方Web应用测试技能，通过Playwright在真实浏览器中测试本地应用"
+    "description": "Anthropic官方Web应用测试技能，通过Playwright在真实浏览器中测试本地应用",
+    "scenarios": []
   },
   {
     "name": "NotebookLM Skill / Zread",
@@ -672,6 +758,7 @@
       "codebase",
       "llms-txt"
     ],
-    "description": "在终端批量分析文档或深入理解GitHub仓库的CLI工具"
+    "description": "在终端批量分析文档或深入理解GitHub仓库的CLI工具",
+    "scenarios": []
   }
 ]

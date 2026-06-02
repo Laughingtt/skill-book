@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { useSkills } from '../composables/useSkills'
 import { useSearch, setSearchSkills } from '../composables/useSearch'
 import { useFilters } from '../composables/useFilters'
+import { useScenarios } from '../composables/useScenarios'
 import { useBookmarks } from '../composables/useBookmarks'
 import { useSkillStatus } from '../composables/useSkillStatus'
 import { useUsageTracker } from '../composables/useUsageTracker'
@@ -28,8 +29,16 @@ onMounted(fetchSkills)
 
 const { query: searchQuery, results: searchResults } = useSearch()
 const { selectedCategory, selectedTags, filtered, toggleCategory, toggleTag, clearFilters } = useFilters(searchResults)
+const { selectedScenario, allScenarios, filterByScenario, toggleScenario, clearScenario } = useScenarios()
 
-const displayedSkills = filtered
+function clearAllFilters() {
+  clearFilters()
+  clearScenario()
+}
+
+// Pipeline: skills → search → category/tag filter → scenario filter → displayed
+const scenarioFiltered = filterByScenario(filtered)
+const displayedSkills = scenarioFiltered
 
 // Personal sections data
 const { bookmarks } = useBookmarks()
@@ -188,6 +197,23 @@ function goToSkill(slug) {
           :selected-tags="selectedTags"
           @toggle="toggleTag"
         />
+        <!-- Scenario Filter -->
+        <div v-if="allScenarios(skills).length" class="mt-8">
+          <h3 style="font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: #8a8a87; margin-bottom: 10px;">
+            使用场景
+          </h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <span
+              v-for="scenario in allScenarios(skills)"
+              :key="scenario"
+              @click="toggleScenario(scenario)"
+              :class="[
+                'scenario-tag',
+                selectedScenario === scenario ? 'scenario-tag--active' : ''
+              ]"
+            >{{ scenario }}</span>
+          </div>
+        </div>
       </aside>
 
       <!-- Right Content -->
@@ -198,8 +224,8 @@ function goToSkill(slug) {
             <span style="font-family: 'Crimson Pro', serif; font-weight: 600;">{{ displayedSkills.length }}</span> 个技能
           </p>
           <button
-            v-if="selectedCategory !== '全部' || selectedTags.length > 0 || searchQuery"
-            @click="clearFilters(); searchQuery = ''"
+            v-if="selectedCategory !== '全部' || selectedTags.length > 0 || searchQuery || selectedScenario"
+            @click="clearAllFilters(); searchQuery = ''"
             class="clear-filter-btn"
           >
             清除筛选
@@ -460,5 +486,28 @@ function goToSkill(slug) {
   font-size: 15px;
   font-weight: 600;
   color: #0a0a0a;
+}
+
+.scenario-tag {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.04);
+  color: #6b6560;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.scenario-tag:hover {
+  background: rgba(196, 85, 58, 0.08);
+  color: #c4553a;
+}
+
+.scenario-tag--active {
+  background: rgba(196, 85, 58, 0.12);
+  color: #c4553a;
+  font-weight: 500;
 }
 </style>
