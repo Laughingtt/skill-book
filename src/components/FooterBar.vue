@@ -1,4 +1,5 @@
 <script setup>
+import DataPanel from './DataPanel.vue'
 </script>
 
 <template>
@@ -14,6 +15,7 @@
       >
         技能知识库
       </span>
+      <DataPanel />
     </div>
   </footer>
 </template>

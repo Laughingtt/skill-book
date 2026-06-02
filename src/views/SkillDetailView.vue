@@ -9,6 +9,7 @@ import { useSkills } from '../composables/useSkills'
 import { useBookmarks } from '../composables/useBookmarks'
 import { useSkillStatus } from '../composables/useSkillStatus'
 import { useUsageTracker } from '../composables/useUsageTracker'
+import { useSkillNotes } from '../composables/useSkillNotes'
 
 const route = useRoute()
 const router = useRouter()
@@ -18,17 +19,20 @@ const rawMd = ref('')
 const loading = ref(true)
 const error = ref(null)
 const showDeleteConfirm = ref(false)
-const showQuickStart = ref(false)
 const { skills, updateSkillFromMd, deleteSkill } = useSkills()
 const { query: searchQuery } = useSearch()
 const { isBookmarked, toggleBookmark } = useBookmarks()
 const { getStatus, setStatus, clearStatus } = useSkillStatus()
 const { trackView } = useUsageTracker()
+const { getNote, saveNote, hasNote } = useSkillNotes()
 
 const editing = ref(false)
 const editContent = ref('')
 const saving = ref(false)
 const copiedCmd = ref(null)
+const showQuickStart = ref(false)
+const showNotes = ref(false)
+const noteContent = ref('')
 
 // Related skills: same category + overlapping tags
 const relatedSkills = computed(() => {
@@ -137,11 +141,34 @@ async function loadSkill(slug) {
   }
 }
 
-onMounted(() => loadSkill(route.params.slug))
+onMounted(() => {
+  loadSkill(route.params.slug)
+  initNote(route.params.slug)
+})
 
 watch(() => route.params.slug, (newSlug) => {
-  if (newSlug) loadSkill(newSlug)
+  if (newSlug) {
+    loadSkill(newSlug)
+    initNote(newSlug)
+  }
 })
+
+function initNote(slug) {
+  noteContent.value = getNote(slug)
+  showNotes.value = hasNote(slug)
+}
+
+let noteTimer = null
+function onNoteInput() {
+  clearTimeout(noteTimer)
+  noteTimer = setTimeout(() => {
+    saveNote(route.params.slug, noteContent.value)
+  }, 500)
+}
+
+function toggleNotes() {
+  showNotes.value = !showNotes.value
+}
 
 function handleDelete() {
   const slug = route.params.slug
@@ -386,6 +413,29 @@ async function saveContentEdit() {
             <span class="related-card__category">{{ s.category }}</span>
             <span class="related-card__name">{{ s.name }}</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- My Notes -->
+    <section v-if="!editing" style="background: #f3f1ec;">
+      <div class="max-w-[720px] mx-auto px-[22px] py-8">
+        <button @click="toggleNotes" class="notes-toggle">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline :points="showNotes ? '6 9 12 15 18 9' : '9 18 15 12 9 6'" />
+          </svg>
+          我的笔记
+          <span v-if="hasNote(skill.slug)" class="notes-indicator"></span>
+        </button>
+        <div v-if="showNotes" class="notes-editor">
+          <textarea
+            v-model="noteContent"
+            @input="onNoteInput"
+            class="notes-textarea"
+            placeholder="记录使用心得、注意事项、常用配置..."
+            rows="5"
+          ></textarea>
+          <p class="notes-hint">自动保存 · 支持 Markdown 格式</p>
         </div>
       </div>
     </section>
@@ -807,5 +857,71 @@ async function saveContentEdit() {
   font-size: 14px;
   font-weight: 600;
   color: #0a0a0a;
+}
+
+/* Notes Editor */
+.notes-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #8a8a87;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s ease;
+}
+
+.notes-toggle:hover {
+  color: #c4553a;
+}
+
+.notes-indicator {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4caf7d;
+}
+
+.notes-editor {
+  margin-top: 12px;
+}
+
+.notes-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 14px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #0a0a0a;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s ease;
+  box-sizing: border-box;
+}
+
+.notes-textarea:focus {
+  border-color: #c4553a;
+}
+
+.notes-textarea::placeholder {
+  color: #8a8a87;
+}
+
+.notes-hint {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  color: #8a8a87;
+  margin: 6px 0 0;
 }
 </style>
