@@ -1,0 +1,677 @@
+[
+  {
+    "name": "Agent Teams_Agency-Agents",
+    "slug": "agency-agents",
+    "category": "编码开发与工程规范",
+    "tags": [
+      "agent",
+      "team",
+      "role",
+      "collaboration",
+      "multi-agent"
+    ],
+    "description": "AI角色团队协同开发，一次配齐架构师、数据库优化师、前端、代码审查和测试等专家角色"
+  },
+  {
+    "name": "Agent Browser MCP",
+    "slug": "agent-browser-mcp",
+    "category": "浏览器与文档处理",
+    "tags": [
+      "browser",
+      "mcp",
+      "automation",
+      "navigate",
+      "click",
+      "screenshot",
+      "rust"
+    ],
+    "description": "MCP服务器提供浏览器自动化能力，使用语义元素定位器而非CSS选择器"
+  },
+  {
+    "name": "Agent Browser",
+    "slug": "agent-browser",
+    "category": "浏览器与文档处理",
+    "tags": [
+      "browser",
+      "automation",
+      "navigation",
+      "forms",
+      "screenshot",
+      "extraction",
+      "testing"
+    ],
+    "description": "AI Agent浏览器自动化CLI，支持网页导航、表单填写、按钮点击、截图和数据提取"
+  },
+  {
+    "name": "Agent Skills（谷歌工程纪律包）",
+    "slug": "agent-skills-google",
+    "category": "编码开发与工程规范",
+    "tags": [
+      "engineering",
+      "discipline",
+      "review",
+      "test",
+      "security",
+      "ship"
+    ],
+    "description": "轻量灵活约束AI行为的工程纪律技能包，覆盖开发全流程"
+  },
+  {
+    "name": "AI Prompt Optimizer",
+    "slug": "ai-prompt-optimizer",
+    "category": "效率工具与自动化",
+    "tags": [
+      "prompt",
+      "optimization",
+      "ai",
+      "quality",
+      "improvement"
+    ],
+    "description": "写不好Prompt时让AI帮你优化的提示词优化工具"
+  },
+  {
+    "name": "AionUI",
+    "slug": "aionui",
+    "category": "UI/UX设计与前端美化",
+    "tags": [
+      "ai",
+      "ui",
+      "component",
+      "generation"
+    ],
+    "description": "AI驱动的用户界面组件生成"
+  },
+  {
+    "name": "Animation Generation",
+    "slug": "animation-generation",
+    "category": "内容创作与自媒体",
+    "tags": [
+      "animation",
+      "video",
+      "motion",
+      "generation",
+      "lottie",
+      "css"
+    ],
+    "description": "AI辅助生成动画效果，支持CSS动画、Lottie动画和SVG动画"
+  },
+  {
+    "name": "API Docs Generator",
+    "slug": "api-docs-generator",
+    "category": "代码维护与质量",
+    "tags": [
+      "api",
+      "documentation",
+      "openapi",
+      "swagger",
+      "endpoint",
+      "sdk"
+    ],
+    "description": "自动生成API文档技能，包含OpenAPI/Swagger规范、端点文档、SDK使用示例"
+  },
+  {
+    "name": "Awesome Design MD / Design MD Collection",
+    "slug": "awesome-design-md",
+    "category": "UI/UX设计与前端美化",
+    "tags": [
+      "design",
+      "style-guide",
+      "brand",
+      "apple",
+      "stripe",
+      "vercel",
+      "design-system"
+    ],
+    "description": "收集顶级网站的DESIGN.md设计规范文件，58+品牌风格，每个附带可视化预览HTML"
+  },
+  {
+    "name": "Baoyu Skill",
+    "slug": "baoyu-skill",
+    "category": "UI/UX设计与前端美化",
+    "tags": [
+      "image",
+      "style",
+      "art",
+      "generation",
+      "concept"
+    ],
+    "description": "快速生成不同艺术风格的概念图"
+  },
+  {
+    "name": "Caveman Review",
+    "slug": "caveman-review",
+    "category": "代码维护与质量",
+    "tags": [
+      "review",
+      "compress",
+      "communication",
+      "token-optimization",
+      "caveman"
+    ],
+    "description": "压缩通信模式代码审查，减少~75%token用量同时保持完整技术准确性"
+  },
+  {
+    "name": "CC Connect",
+    "slug": "cc-connect",
+    "category": "效率工具与自动化",
+    "tags": [
+      "connector",
+      "integration",
+      "platform",
+      "service"
+    ],
+    "description": "特定平台或服务之间的连接器工具"
+  },
+  {
+    "name": "Claude Design",
+    "slug": "claude-design",
+    "category": "UI/UX设计与前端美化",
+    "tags": [
+      "design",
+      "claude",
+      "output",
+      "visual"
+    ],
+    "description": "在Claude中直接获得更好的设计输出"
+  },
+  {
+    "name": "Code Refactor",
+    "slug": "code-refactor",
+    "category": "代码维护与质量",
+    "tags": [
+      "refactor",
+      "legacy",
+      "code-smell",
+      "extract-method",
+      "safe-transform"
+    ],
+    "description": "遗留代码重构技能，基于Fowler和Feathers的著作，分析优先、安全增量变换"
+  },
+  {
+    "name": "Software Copyright / Patent Disclosure Skill",
+    "slug": "copyright-patent-skill",
+    "category": "编码开发与工程规范",
+    "tags": [
+      "copyright",
+      "patent",
+      "legal",
+      "software-registration",
+      "disclosure"
+    ],
+    "description": "软件著作权申请与专利信息披露辅助技能"
+  },
+  {
+    "name": "Dependency Audit",
+    "slug": "dependency-audit",
+    "category": "代码维护与质量",
+    "tags": [
+      "dependency",
+      "security",
+      "vulnerability",
+      "audit",
+      "npm-audit",
+      "pip-audit"
+    ],
+    "description": "依赖安全检测技能，扫描漏洞、未使用包、过时版本和供应链风险"
+  },
+  {
+    "name": "Deploy to Vercel",
+    "slug": "deploy-to-vercel",
+    "category": "云服务与基础设施",
+    "tags": [
+      "deploy",
+      "vercel",
+      "hosting",
+      "ci",
+      "production",
+      "cloud"
+    ],
+    "description": "Vercel官方部署技能，一键将应用部署到Vercel平台的自动化部署流程"
+  },
+  {
+    "name": "UI 设计系统",
+    "slug": "design-skill",
+    "category": "UI/UX设计与前端美化",
+    "tags": [
+      "design",
+      "system",
+      "component"
+    ],
+    "description": "构建一致性 UI 设计系统的核心原则、Token 体系与组件规范"
+  },
+  {
+    "name": "Design Spells",
+    "slug": "design-spells",
+    "category": "UI/UX设计与前端美化",
+    "tags": [
+      "micro-interaction",
+      "animation",
+      "inspiration",
+      "ux",
+      "detail"
+    ],
+    "description": "微交互灵感图鉴，收录APP中的微动效（如加载动画、输入反馈）"
+  },
+  {
+    "name": "Floracat Diagram",
+    "slug": "floracat-diagram",
+    "category": "效率工具与自动化",
+    "tags": [
+      "diagram",
+      "mermaid",
+      "plantuml",
+      "visualization",
+      "chart",
+      "flowchart"
+    ],
+    "description": "AI辅助生成Mermaid、PlantUML等格式的图表和流程图"
+  },
+  {
+    "name": "Frontend Design",
+    "slug": "frontend-design",
+    "category": "UI/UX设计与前端美化",
+    "tags": [
+      "frontend",
+      "design",
+      "react",
+      "tailwind",
+      "shadcn",
+      "page-generation"
+    ],
+    "description": "快速生成符合设计规范的前端页面，支持React/Tailwind/shadcn/ui"
+  },
+  {
+    "name": "Git Smart Commit",
+    "slug": "git-smart-commit",
+    "category": "代码维护与质量",
+    "tags": [
+      "git",
+      "commit",
+      "conventional-commits",
+      "atomic",
+      "layer"
+    ],
+    "description": "规范化智能提交技能，按架构分层自动拆分为符合Conventional Commits规范的多个原子提交"
+  },
+  {
+    "name": "GPT Imager",
+    "slug": "gpt-imager",
+    "category": "内容创作与自媒体",
+    "tags": [
+      "image",
+      "generation",
+      "dall-e",
+      "illustration",
+      "asset"
+    ],
+    "description": "为文章、视频或报告生成配图和图片素材"
+  },
+  {
+    "name": "GStack",
+    "slug": "gstack",
+    "category": "编码开发与工程规范",
+    "tags": [
+      "fullstack",
+      "pipeline",
+      "audit",
+      "ceo",
+      "architecture",
+      "security",
+      "owasp"
+    ],
+    "description": "基于23项专业技能串联从设计到部署的完整研发链路，内置CEO战略审查、架构评审、OWASP安全扫描"
+  },
+  {
+    "name": "guizang-ppt-skill",
+    "slug": "guizang-ppt-skill",
+    "category": "内容创作与自媒体",
+    "tags": [
+      "PPT",
+      "HTML",
+      "演示文稿",
+      "封面生成",
+      "AI Agent"
+    ],
+    "description": "一个适配 Claude Code / Codex 等 AI Agent 环境的网页 PPT 技能，用于生成单文件 HTML 横向翻页 PPT、PPT 配图和多平台封面。内置两套视觉风格，支持快速创建美观的演示文稿。"
+  },
+  {
+    "name": "PPT Master / HTML PPT Skill",
+    "slug": "html-ppt-skill",
+    "category": "内容创作与自媒体",
+    "tags": [
+      "ppt",
+      "presentation",
+      "html",
+      "slide",
+      "demo"
+    ],
+    "description": "快速制作PPT演示文稿，支持HTML格式或PPTX格式输出"
+  },
+  {
+    "name": "Humanizer-ZH",
+    "slug": "humanizer-zh",
+    "category": "内容创作与自媒体",
+    "tags": [
+      "chinese",
+      "text",
+      "naturalize",
+      "copywriting",
+      "humanize"
+    ],
+    "description": "让AI写的文案更像人话，减少机器翻译感的中文文案自然化处理工具"
+  },
+  {
+    "name": "hyperframes",
+    "slug": "hyperframes",
+    "category": "内容创作与自媒体",
+    "tags": [
+      "视频生成",
+      "HTML转视频",
+      "AI代理"
+    ],
+    "description": "HyperFrames 是一个开源框架，能将 HTML、CSS、媒体和可寻址动画转换为确定性的 MP4 视频。它既可以通过 AI 编码代理的技能一键生成视频，也支持 CLI 本地使用，适合快速创作产品介绍、宣传片等视频内容。"
+  },
+  {
+    "name": "Impeccable",
+    "slug": "impeccable",
+    "category": "UI/UX设计与前端美化",
+    "tags": [
+      "design",
+      "polish",
+      "audit",
+      "animate",
+      "adapt",
+      "frontend",
+      "impeccable",
+      "visual"
+    ],
+    "description": "前端视觉品质全方位技能包，覆盖打磨、审计、动画、适配、优化、色彩化等20+子技能"
+  },
+  {
+    "name": "Karpathy's Guidelines",
+    "slug": "karpathy-guidelines",
+    "category": "编码开发与工程规范",
+    "tags": [
+      "guidelines",
+      "coding",
+      "simplicity",
+      "surgical",
+      "goal-driven",
+      "karpathy"
+    ],
+    "description": "Andrej Karpathy的4条AI编程行为规则：先思考、简洁优先、手术式改动、目标驱动执行"
+  },
+  {
+    "name": "Markdown to HTML",
+    "slug": "markdown-to-html",
+    "category": "效率工具与自动化",
+    "tags": [
+      "markdown",
+      "html",
+      "conversion",
+      "rendering",
+      "styling"
+    ],
+    "description": "将Markdown文档转换为精美排版的HTML页面，支持多种样式主题"
+  },
+  {
+    "name": "Marketing Skills",
+    "slug": "marketing-skills",
+    "category": "营销与增长",
+    "tags": [
+      "marketing",
+      "seo",
+      "copywriting",
+      "content-strategy",
+      "email",
+      "cro",
+      "pricing"
+    ],
+    "description": "Corey Haines营销技能包，18个子技能覆盖SEO审计、文案写作、内容策略、邮件序列、CRO优化等"
+  },
+  {
+    "name": "MattPocock Skills",
+    "slug": "mattpocock-skills",
+    "category": "编码开发与工程规范",
+    "tags": [
+      "typescript",
+      "tdd",
+      "ddd",
+      "requirements",
+      "debugging",
+      "caveman",
+      "handoff"
+    ],
+    "description": "前端大神Matt Pocock的28个实战Skills，专治\"氛围编程\"四大通病，遵循TDD/DDD等工程原则"
+  },
+  {
+    "name": "BB Browser / OpenClaw",
+    "slug": "openclaw-browser",
+    "category": "效率工具与自动化",
+    "tags": [
+      "browser",
+      "automation",
+      "mcp",
+      "monitoring",
+      "scraping",
+      "screenshot"
+    ],
+    "description": "提供独立浏览器实例，支持托管浏览器和扩展中继两种模式的浏览器自动化工具"
+  },
+  {
+    "name": "OpenCLI / 9Router",
+    "slug": "opencli-9router",
+    "category": "效率工具与自动化",
+    "tags": [
+      "cli",
+      "router",
+      "api",
+      "terminal",
+      "model"
+    ],
+    "description": "终端环境下的AI调用或API路由管理工具"
+  },
+  {
+    "name": "OpenSpec",
+    "slug": "openspec",
+    "category": "编码开发与工程规范",
+    "tags": [
+      "spec-driven-development",
+      "ai-workflow",
+      "cli-tool",
+      "project-management"
+    ],
+    "description": "OpenSpec 是一个基于规范的 AI 原生工作流工具，帮助开发者用自然语言描述变更，自动生成提案、规范文档、设计说明和任务清单，并引导 AI 逐步实现与归档。它适用于从个人项目到企业级应用的迭代开发，让开发流程更轻量、灵活。"
+  },
+  {
+    "name": "Playwright MCP",
+    "slug": "playwright-mcp",
+    "category": "编码开发与工程规范",
+    "tags": [
+      "testing",
+      "browser",
+      "e2e",
+      "automation",
+      "mcp"
+    ],
+    "description": "通过MCP协议集成Playwright，让AI自动调用进行浏览器操作和端到端自动化测试"
+  },
+  {
+    "name": "React Bits",
+    "slug": "react-bits",
+    "category": "UI/UX设计与前端美化",
+    "tags": [
+      "react",
+      "animation",
+      "component",
+      "interaction",
+      "opensource"
+    ],
+    "description": "开源React动画组件库，提供70+种动画组件，npm install后直接复制代码使用"
+  },
+  {
+    "name": "Remotion Best Practices",
+    "slug": "remotion-best-practices",
+    "category": "内容创作与自媒体",
+    "tags": [
+      "video",
+      "react",
+      "remotion",
+      "animation",
+      "rendering",
+      "programmatic"
+    ],
+    "description": "Remotion官方最佳实践，深度掌握动画、时间轴、音频、字幕和3D的正确编码方式"
+  },
+  {
+    "name": "shadcn/ui Skill",
+    "slug": "shadcn-ui",
+    "category": "UI/UX设计与前端美化",
+    "tags": [
+      "shadcn",
+      "ui",
+      "component",
+      "design-system",
+      "tailwind",
+      "react"
+    ],
+    "description": "shadcn/ui官方技能，管理组件的添加、搜索、修复、样式调整与组合，提供项目上下文与用法示例"
+  },
+  {
+    "name": "Skill Creator/ Find-Skill",
+    "slug": "skill-creator-find",
+    "category": "效率工具与自动化",
+    "tags": [
+      "skill",
+      "creator",
+      "search",
+      "management",
+      "marketplace"
+    ],
+    "description": "自己创建新技能或寻找现成技能的技能管理与搜索工具"
+  },
+  {
+    "name": "Skill Creator (Official)",
+    "slug": "skill-creator-official",
+    "category": "效率工具与自动化",
+    "tags": [
+      "skill",
+      "creator",
+      "build",
+      "eval",
+      "optimize",
+      "anthropic",
+      "official"
+    ],
+    "description": "Anthropic官方技能创建器，交互式创建、修改和优化Agent Skills，支持性能评估与触发精度调优"
+  },
+  {
+    "name": "Sleek Design Mobile Apps",
+    "slug": "sleek-design-mobile-apps",
+    "category": "UI/UX设计与前端美化",
+    "tags": [
+      "mobile",
+      "design",
+      "app",
+      "ui",
+      "screens",
+      "sleek"
+    ],
+    "description": "Sleek移动应用设计技能，AI辅助设计移动端界面、创建屏幕和构建UI"
+  },
+  {
+    "name": "Superpowers",
+    "slug": "superpowers",
+    "category": "编码开发与工程规范",
+    "tags": [
+      "quality",
+      "process",
+      "workflow",
+      "tdd",
+      "debugging",
+      "review"
+    ],
+    "description": "通过流程化引导规范AI编程，提升代码交付质量的技能包"
+  },
+  {
+    "name": "UI/UX Pro Max",
+    "slug": "ui-ux-pro-max",
+    "category": "UI/UX设计与前端美化",
+    "tags": [
+      "design",
+      "ui",
+      "ux",
+      "palette",
+      "banner",
+      "presentation",
+      "chartjs"
+    ],
+    "description": "内置161种产品类型对应的专业调色板和设计策略，支持banner设计和HTML演示文稿"
+  },
+  {
+    "name": "Vercel Composition Patterns",
+    "slug": "vercel-composition-patterns",
+    "category": "编码开发与工程规范",
+    "tags": [
+      "react",
+      "composition",
+      "compound-components",
+      "patterns",
+      "vercel"
+    ],
+    "description": "Vercel官方React组合模式技能，用复合组件替代boolean prop泛滥的架构方案"
+  },
+  {
+    "name": "Vercel React Best Practices",
+    "slug": "vercel-react-best-practices",
+    "category": "编码开发与工程规范",
+    "tags": [
+      "react",
+      "nextjs",
+      "best-practices",
+      "performance",
+      "vercel"
+    ],
+    "description": "Vercel官方React最佳实践，57条性能规则覆盖React/Next.js核心优化策略"
+  },
+  {
+    "name": "Vue3 组件开发",
+    "slug": "vue-skill",
+    "category": "编码开发与工程规范",
+    "tags": [
+      "vue",
+      "frontend",
+      "component"
+    ],
+    "description": "使用 Vue3 Composition API 构建可复用组件的完整技能指南"
+  },
+  {
+    "name": "Webapp Testing",
+    "slug": "webapp-testing",
+    "category": "安全与测试",
+    "tags": [
+      "testing",
+      "browser",
+      "playwright",
+      "e2e",
+      "accessibility",
+      "visual",
+      "webapp"
+    ],
+    "description": "Anthropic官方Web应用测试技能，通过Playwright在真实浏览器中测试本地应用"
+  },
+  {
+    "name": "NotebookLM Skill / Zread",
+    "slug": "zread-notebooklm",
+    "category": "效率工具与自动化",
+    "tags": [
+      "reading",
+      "analysis",
+      "document",
+      "notebooklm",
+      "codebase",
+      "llms-txt"
+    ],
+    "description": "在终端批量分析文档或深入理解GitHub仓库的CLI工具"
+  }
+]

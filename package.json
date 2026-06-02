@@ -1,0 +1,29 @@
+{
+  "name": "skill-book",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build:skills": "node scripts/build-skills.js",
+    "prebuild": "npm run build:skills",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "fuse.js": "^7.1.0",
+    "gray-matter": "^4.0.3",
+    "markdown-it": "^14.1.0",
+    "vue": "^3.5.0",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.0",
+    "@vitejs/plugin-vue": "^5.2.0",
+    "tailwindcss": "^4.1.0",
+    "vite": "^6.3.0",
+    "vitest": "^4.1.7"
+  }
+}

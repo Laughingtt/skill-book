@@ -1,0 +1,55 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Debug pi (interactive)",
+			"type": "node",
+			"request": "launch",
+"runtimeExecutable": "${workspaceFolder}/node_modules/.bin/tsx.cmd",
+			"runtimeArgs": ["--tsconfig", "${workspaceFolder}/tsconfig.json"],
+			"program": "${workspaceFolder}/packages/coding-agent/src/cli.ts",
+			"args": [],
+			"cwd": "${workspaceFolder}",
+			"console": "integratedTerminal",
+			"env": {
+				"PI_CODING_AGENT": "true"
+			}
+		},
+		{
+			"name": "Debug pi (print mode)",
+			"type": "node",
+			"request": "launch",
+			"runtimeExecutable": "${workspaceFolder}/node_modules/.bin/tsx.cmd",
+			"runtimeArgs": ["--tsconfig", "${workspaceFolder}/tsconfig.json"],
+			"program": "${workspaceFolder}/packages/coding-agent/src/cli.ts",
+			"args": ["-p", "say hello", "--model", "deepseek/deepseek-v4-flash"],
+			"cwd": "${workspaceFolder}",
+			"console": "integratedTerminal",
+			"env": {
+				"DEEPSEEK_API_KEY": "sk-47ae95d416c544a2b540b453eccebd6f"
+			}
+		},
+		{
+			"name": "Debug pi (with args)",
+			"type": "node",
+			"request": "launch",
+"runtimeExecutable": "${workspaceFolder}/node_modules/.bin/tsx.cmd",
+			"runtimeArgs": ["--tsconfig", "${workspaceFolder}/tsconfig.json"],
+			"program": "${workspaceFolder}/packages/coding-agent/src/cli.ts",
+			"args": ["${input:piArgs}"],
+			"cwd": "${workspaceFolder}",
+			"console": "integratedTerminal",
+			"env": {
+				"PI_CODING_AGENT": "true"
+			}
+		}
+	],
+	"inputs": [
+		{
+			"id": "piArgs",
+			"type": "promptString",
+			"description": "pi CLI arguments",
+			"default": "--help"
+		}
+	]
+}
