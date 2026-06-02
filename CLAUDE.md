@@ -31,9 +31,10 @@ This is the critical architectural concept: skills persist in two places with di
 
 ### Data Flow
 
-1. **Build time**: `scripts/build-skills.js` scans `public/skills/*.md`, extracts frontmatter, writes `public/skills/index.json` (array of `{name, slug, category, tags, description}`).
+1. **Build time**: `scripts/build-skills.js` scans `public/skills/*.md`, extracts frontmatter, writes `public/skills/index.json` (array of `{name, slug, category, tags, description, scenarios, commands}`).
 2. **Runtime load**: `useSkills` composable fetches `/skills/index.json`, then merges user skills from `localStorage`.
 3. **Detail view**: `SkillDetailView` fetches `/skills/{slug}.md` as raw text, parses frontmatter with the browser-side parser in `src/utils/frontmatter.js`, and renders the body via `markdown-it`.
+4. **Filter pipeline**: `skills → useSearch → useFilters → useScenarios → displayedSkills`
 
 ### Routing
 
@@ -48,14 +49,19 @@ Hash-based routing (`createWebHashHistory`) — required for static file hosting
 
 All composables use **singleton module-level state** — the `ref`s are declared outside the function, so all components share the same instance.
 
-- **`useSkills.js`** — Holds `skills` ref (single source of truth). Exposes `addSkill`/`updateSkill`/`updateSkillContent`/`updateSkillFromMd`/`deleteSkill`, which write through to both `localStorage` and the dev API. Derives `categories` and `allTags` computeds. Tracks user-owned slugs via `userSlugs` Set.
+- **`useSkills.js`** — Holds `skills` ref (single source of truth). Exposes `addSkill`/`updateSkill`/`updateSkillContent`/`updateSkillFromMd`/`deleteSkill`/`getSkillBySlug`, which write through to both `localStorage` and the dev API. Derives `categories` and `allTags` computeds. Tracks user-owned slugs via `userSlugs` Set.
 - **`useSearch.js`** — Wraps `fuse.js` with 300ms debounced search. **Must be initialized** by calling `setSearchSkills(skillsRef)` once (done in `HomeView`), which injects the skills ref into the module-level `_skills` variable. Search weights: name (2), description (1.5), tags (1), category (0.5).
 - **`useFilters.js`** — Category selection (single) + tag selection (multi, AND logic). Operates on already-searched results.
+- **`useBookmarks.js`** — Single favorites list. `bookmarks` ref (slug array), `isBookmarked(slug)`, `toggleBookmark(slug)`. localStorage key: `skill-book-bookmarks`.
+- **`useSkillStatus.js`** — Per-skill status marking: `todo` / `learning` / `mastered`. `statuses` ref, `getStatus`, `setStatus` (pass `null` to clear), `statusStats` computed. localStorage key: `skill-book-skill-status`.
+- **`useUsageTracker.js`** — View counting and recency tracking. `trackView(slug)`, `getViewCount`, `getLastViewed`, `recentlyViewed` (top 5), `getStaleLearning(statuses)` (learning + 7+ days without view). localStorage key: `skill-book-usage-stats`.
+- **`useScenarios.js`** — Scenario filtering. `allScenarios(skills)` extracts unique scenarios, `selectedScenario` ref, `filterByScenario(skills)` returns filtered computed, `toggleScenario`/`clearScenario`. Pipeline position: after useFilters, before displayedSkills.
 - **`useGithubImport.js`** — Imports skills from GitHub repos. Calls Tavily API to extract repo content, then DeepSeek API to generate frontmatter. API keys stored in `localStorage` (`skill-book-deepseek-api-key`, `skill-book-tavily-api-key`).
+- **`useSkillNotes.js`** — Per-skill personal notes (markdown). `getNote`, `saveNote`, `hasNote`. localStorage key: `skill-book-skill-notes`. Empty notes are auto-removed.
 
 ### Browser-side Frontmatter Parser
 
-`src/utils/frontmatter.js` is a lightweight parser (no YAML library dependency). It handles `---` delimiters, string values with quote stripping, and inline arrays `[a, b, c]`. It does **not** support nested objects, multiline values, or YAML anchors. This is intentional — skill frontmatter is flat and simple.
+`src/utils/frontmatter.js` is a lightweight parser (no YAML library dependency). It handles `---` delimiters, string values with quote stripping, inline arrays `[a, b, c]`, multi-line values (`|` syntax), and object arrays (`- name: x\n  cmd: y` format). It does **not** support nested objects deeper than one level, YAML anchors, or flow-style mappings. This is intentional — skill frontmatter is flat and simple.
 
 ### Design System
 
@@ -72,6 +78,12 @@ name: My Skill
 category: Category Name
 tags: [tag1, tag2]
 description: Short description
+scenarios: [debugging, code-review, deployment]
+commands:
+  - name: "安装"
+    cmd: "npx skills add my-skill"
+  - name: "使用"
+    cmd: "/my-skill"
 install: "npx skills add ..."
 source: "https://..."
 ---
