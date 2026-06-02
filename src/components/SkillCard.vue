@@ -1,19 +1,36 @@
 <script setup>
 import { useRouter } from 'vue-router'
+import { useBookmarks } from '../composables/useBookmarks'
 
 defineProps({
   skill: { type: Object, required: true },
 })
 
 const router = useRouter()
+const { isBookmarked, toggleBookmark } = useBookmarks()
 
 function navigateTo(slug) {
   router.push({ name: 'skill-detail', params: { slug } })
+}
+
+function onBookmarkClick(e, slug) {
+  e.stopPropagation()
+  toggleBookmark(slug)
 }
 </script>
 
 <template>
   <div class="skill-card" @click="navigateTo(skill.slug)">
+    <button
+      class="skill-card__bookmark"
+      :class="{ 'skill-card__bookmark--active': isBookmarked(skill.slug).value }"
+      @click="onBookmarkClick($event, skill.slug)"
+      :aria-label="isBookmarked(skill.slug).value ? '取消收藏' : '收藏'"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+      </svg>
+    </button>
     <span class="skill-card__category">{{ skill.category }}</span>
     <h3 class="skill-card__name">{{ skill.name }}</h3>
     <p class="skill-card__description">{{ skill.description }}</p>
@@ -80,5 +97,38 @@ function navigateTo(slug) {
   font-family: 'DM Sans', sans-serif;
   font-size: 11px;
   color: #6b6560;
+}
+
+.skill-card__bookmark {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #8a8a87;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.skill-card__bookmark svg {
+  width: 18px;
+  height: 18px;
+}
+
+.skill-card__bookmark:hover {
+  color: #c4553a;
+  transform: scale(1.1);
+}
+
+.skill-card__bookmark--active {
+  color: #c4553a;
+}
+
+.skill-card__bookmark--active svg {
+  fill: #c4553a;
+  stroke: #c4553a;
 }
 </style>

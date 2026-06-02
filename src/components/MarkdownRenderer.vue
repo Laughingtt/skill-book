@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch, onMounted, nextTick } from 'vue'
 import MarkdownIt from 'markdown-it'
 
 const props = defineProps({
@@ -7,23 +7,57 @@ const props = defineProps({
 })
 
 const rendered = ref('')
+const containerRef = ref(null)
 const md = new MarkdownIt({
   html: false,
   linkify: true,
   typographer: true,
 })
 
-onMounted(() => {
+function addCopyButtons() {
+  if (!containerRef.value) return
+  const preBlocks = containerRef.value.querySelectorAll('pre')
+  preBlocks.forEach(pre => {
+    if (pre.querySelector('.copy-btn')) return // already has button
+    const btn = document.createElement('button')
+    btn.className = 'copy-btn'
+    btn.textContent = '复制'
+    btn.addEventListener('click', async () => {
+      const code = pre.querySelector('code')
+      const text = code ? code.textContent : pre.textContent
+      try {
+        await navigator.clipboard.writeText(text)
+        btn.textContent = '✓'
+        btn.classList.add('copy-btn--done')
+        setTimeout(() => {
+          btn.textContent = '复制'
+          btn.classList.remove('copy-btn--done')
+        }, 2000)
+      } catch {
+        btn.textContent = '失败'
+        setTimeout(() => { btn.textContent = '复制' }, 2000)
+      }
+    })
+    pre.style.position = 'relative'
+    pre.appendChild(btn)
+  })
+}
+
+onMounted(async () => {
   rendered.value = md.render(props.source)
+  await nextTick()
+  addCopyButtons()
 })
 
-watch(() => props.source, (val) => {
+watch(() => props.source, async (val) => {
   rendered.value = md.render(val)
+  await nextTick()
+  addCopyButtons()
 })
 </script>
 
 <template>
-  <div class="editorial-md" v-html="rendered"></div>
+  <div class="editorial-md" ref="containerRef" v-html="rendered"></div>
 </template>
 
 <style scoped>
@@ -204,5 +238,32 @@ watch(() => props.source, (val) => {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   color: #0a0a0a;
   vertical-align: top;
+}
+
+.editorial-md :deep(.copy-btn) {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  background: rgba(250, 249, 246, 0.12);
+  color: #faf9f6;
+  border: 1px solid rgba(250, 249, 246, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  z-index: 1;
+}
+
+.editorial-md :deep(.copy-btn:hover) {
+  background: rgba(250, 249, 246, 0.2);
+  border-color: rgba(250, 249, 246, 0.35);
+}
+
+.editorial-md :deep(.copy-btn--done) {
+  color: #4caf7d;
+  border-color: #4caf7d;
 }
 </style>

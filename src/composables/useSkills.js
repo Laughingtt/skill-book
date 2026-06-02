@@ -175,8 +175,8 @@ export function useSkills() {
     return Array.from(tags).sort()
   })
 
-  function getSkillBySlug(slug) {
-    return skills.value.find(s => s.slug === slug)
+  const getSkillBySlug = (slug) => {
+    return skills.value.find(s => s.slug === slug) || null
   }
 
   return {

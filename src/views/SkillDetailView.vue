@@ -6,6 +6,9 @@ import SubNav from '../components/SubNav.vue'
 import MarkdownRenderer from '../components/MarkdownRenderer.vue'
 import { useSearch } from '../composables/useSearch'
 import { useSkills } from '../composables/useSkills'
+import { useBookmarks } from '../composables/useBookmarks'
+import { useSkillStatus } from '../composables/useSkillStatus'
+import { useUsageTracker } from '../composables/useUsageTracker'
 
 const route = useRoute()
 const router = useRouter()
@@ -17,6 +20,9 @@ const error = ref(null)
 const showDeleteConfirm = ref(false)
 const { skills, updateSkillFromMd, deleteSkill } = useSkills()
 const { query: searchQuery } = useSearch()
+const { isBookmarked, toggleBookmark } = useBookmarks()
+const { getStatus, setStatus, clearStatus } = useSkillStatus()
+const { trackView } = useUsageTracker()
 
 const editing = ref(false)
 const editContent = ref('')
@@ -93,6 +99,9 @@ async function loadSkill(slug) {
         content.value = userVersion.content
       }
     }
+
+    // Track this view
+    trackView(slug)
   } catch (e) {
     error.value = e.message
   } finally {
@@ -206,6 +215,37 @@ async function saveContentEdit() {
             <span>{{ tag }}</span><span v-if="i < skill.tags.length - 1"> · </span>
           </template>
         </p>
+
+        <!-- Status Selector -->
+        <div class="status-selector">
+          <button
+            class="status-badge"
+            :class="{ 'status-badge--active': getStatus(skill.slug) === 'todo' }"
+            @click="setStatus(skill.slug, getStatus(skill.slug) === 'todo' ? null : 'todo')"
+          >待尝试</button>
+          <button
+            class="status-badge"
+            :class="{ 'status-badge--active': getStatus(skill.slug) === 'learning' }"
+            @click="setStatus(skill.slug, getStatus(skill.slug) === 'learning' ? null : 'learning')"
+          >学习中</button>
+          <button
+            class="status-badge"
+            :class="{ 'status-badge--active': getStatus(skill.slug) === 'mastered' }"
+            @click="setStatus(skill.slug, getStatus(skill.slug) === 'mastered' ? null : 'mastered')"
+          >已掌握</button>
+        </div>
+
+        <!-- Bookmark Toggle -->
+        <button
+          class="bookmark-btn"
+          :class="{ 'bookmark-btn--active': isBookmarked(skill.slug).value }"
+          @click="toggleBookmark(skill.slug)"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+          {{ isBookmarked(skill.slug).value ? '已收藏' : '收藏' }}
+        </button>
 
         <!-- Decorative Rule -->
         <div style="width: 60px; height: 2px; background: #c4553a; margin-top: 20px;"></div>
@@ -456,5 +496,67 @@ async function saveContentEdit() {
   display: flex;
   justify-content: center;
   gap: 12px;
+}
+
+.status-selector {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.status-badge {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.status-badge:hover {
+  border-color: var(--color-ink-muted);
+}
+
+.status-badge--active {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: var(--color-bg-accent);
+}
+
+.bookmark-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+  margin-top: 12px;
+}
+
+.bookmark-btn:hover {
+  border-color: #c4553a;
+  color: #c4553a;
+}
+
+.bookmark-btn--active {
+  border-color: #c4553a;
+  color: #c4553a;
+  background: rgba(196, 85, 58, 0.08);
+}
+
+.bookmark-btn--active svg {
+  fill: #c4553a;
+  stroke: #c4553a;
 }
 </style>
