@@ -11,6 +11,11 @@
   </head>
   <body>
     <div id="app"></div>
+    <pre id="vue-error-debug" style="display:none;position:fixed;top:0;left:0;right:0;z-index:99999;background:#fee;color:#c00;padding:20px;font:14px/1.5 monospace;white-space:pre-wrap;max-height:50vh;overflow:auto;border-bottom:4px solid #c00;"></pre>
+    <script>
+      window.onerror=function(m,f,l){var d=document.getElementById('vue-error-debug');d.style.display='block';d.textContent+='[JS] '+m+'\n'+f+':'+l+'\n'};
+      window.onunhandledrejection=function(e){var d=document.getElementById('vue-error-debug');d.style.display='block';d.textContent+='[Promise] '+(e.reason&&e.reason.message||e.reason)+'\n'+(e.reason&&e.reason.stack||'')+'\n'};
+    </script>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

@@ -19,6 +19,11 @@ const emit = defineEmits(['update:searchQuery'])
         @update:model-value="emit('update:searchQuery', $event)"
       />
     </div>
+    <div class="subnav-actions">
+      <router-link :to="{ name: 'my-space' }" class="subnav-my-link" title="我的空间">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -49,5 +54,27 @@ const emit = defineEmits(['update:searchQuery'])
 
 .sub-nav-search {
   margin-left: auto;
+}
+
+.subnav-actions {
+  margin-left: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.subnav-my-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: #6b6560;
+  transition: all 0.15s ease;
+}
+
+.subnav-my-link:hover {
+  background: rgba(196, 85, 58, 0.08);
+  color: #c4553a;
 }
 </style>

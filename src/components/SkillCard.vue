@@ -1,6 +1,7 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { useBookmarks } from '../composables/useBookmarks'
+import { useSkillStatus } from '../composables/useSkillStatus'
 
 defineProps({
   skill: { type: Object, required: true },
@@ -8,6 +9,7 @@ defineProps({
 
 const router = useRouter()
 const { isBookmarked, toggleBookmark } = useBookmarks()
+const { getStatus } = useSkillStatus()
 
 function navigateTo(slug) {
   router.push({ name: 'skill-detail', params: { slug } })
@@ -17,6 +19,8 @@ function onBookmarkClick(e, slug) {
   e.stopPropagation()
   toggleBookmark(slug)
 }
+
+const statusLabel = { todo: '待尝试', learning: '学习中', mastered: '已掌握' }
 </script>
 
 <template>
@@ -31,6 +35,9 @@ function onBookmarkClick(e, slug) {
         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
       </svg>
     </button>
+    <span v-if="getStatus(skill.slug)" class="skill-card__status" :class="`skill-card__status--${getStatus(skill.slug)}`">
+      {{ statusLabel[getStatus(skill.slug)] }}
+    </span>
     <span class="skill-card__category">{{ skill.category }}</span>
     <h3 class="skill-card__name">{{ skill.name }}</h3>
     <p class="skill-card__description">{{ skill.description }}</p>
@@ -40,6 +47,7 @@ function onBookmarkClick(e, slug) {
 
 <style scoped>
 .skill-card {
+  position: relative;
   background: #ffffff;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -130,5 +138,31 @@ function onBookmarkClick(e, slug) {
 .skill-card__bookmark--active svg {
   fill: #c4553a;
   stroke: #c4553a;
+}
+
+.skill-card__status {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.skill-card__status--todo {
+  background: #e5a84b;
+}
+
+.skill-card__status--learning {
+  background: #5b8dd9;
+}
+
+.skill-card__status--mastered {
+  background: #4caf7d;
 }
 </style>

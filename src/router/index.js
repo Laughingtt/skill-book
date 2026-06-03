@@ -14,6 +14,11 @@ const router = createRouter({
       name: 'skill-detail',
       component: () => import('../views/SkillDetailView.vue'),
     },
+    {
+      path: '/my',
+      name: 'my-space',
+      component: () => import('../views/MySpaceView.vue'),
+    },
   ],
 })
 
