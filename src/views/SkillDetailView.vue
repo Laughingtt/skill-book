@@ -20,7 +20,7 @@ const loading = ref(true)
 const error = ref(null)
 const showDeleteConfirm = ref(false)
 const { skills, updateSkillFromMd, deleteSkill } = useSkills()
-const { query: searchQuery } = useSearch()
+const { query, clearSearch } = useSearch()
 const { isBookmarked, toggleBookmark } = useBookmarks()
 const { getStatus, setStatus, clearStatus } = useSkillStatus()
 const { trackView } = useUsageTracker()
@@ -67,8 +67,13 @@ const previewBody = computed(() => {
   return body
 })
 
+function goHome() {
+  clearSearch()
+  router.push('/')
+}
+
 function handleSearch(val) {
-  searchQuery.value = val
+  query.value = val
   router.push('/')
 }
 
@@ -174,7 +179,7 @@ function handleDelete() {
   const slug = route.params.slug
   deleteSkill(slug)
   showDeleteConfirm.value = false
-  router.push('/')
+  goHome()
 }
 
 async function copyCommand(cmd) {
@@ -224,8 +229,8 @@ async function saveContentEdit() {
 <template>
   <div>
   <SubNav
-    :search-query="searchQuery"
-    @update:search-query="handleSearch($event)"
+    v-model:query="query"
+    @go-home="goHome"
   />
 
   <div v-if="loading" class="flex items-center justify-center py-20">
@@ -236,7 +241,7 @@ async function saveContentEdit() {
     <div class="text-center">
       <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; color: #6b6560; margin-bottom: 16px;">{{ error }}</p>
       <button
-        @click="router.push('/')"
+        @click="goHome"
         class="back-link"
       >
         返回首页
@@ -250,7 +255,7 @@ async function saveContentEdit() {
       <div class="max-w-[980px] mx-auto px-[22px] pt-8 pb-14">
         <!-- Back Button -->
         <button
-          @click="router.push('/')"
+          @click="goHome"
           class="back-btn"
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

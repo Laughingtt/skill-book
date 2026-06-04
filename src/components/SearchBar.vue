@@ -1,9 +1,39 @@
 <script setup>
-defineProps({
+import { computed } from 'vue'
+
+const props = defineProps({
   modelValue: { type: String, default: '' },
 })
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'clear-and-home'])
+
+const hasValue = computed(() => props.modelValue && props.modelValue.length > 0)
+
+function onInput(e) {
+  emit('update:modelValue', e.target.value)
+}
+
+function onKeydown(e) {
+  if (e.key === 'Escape') {
+    e.preventDefault()
+    clearAndHome()
+  }
+  if (e.key === 'Enter' && !props.modelValue.trim()) {
+    // 搜索框已清空时按回车 → 返回全部列表
+    e.preventDefault()
+    clearAndHome()
+  }
+}
+
+function clear() {
+  emit('update:modelValue', '')
+  emit('clear-and-home')
+}
+
+function clearAndHome() {
+  emit('update:modelValue', '')
+  emit('clear-and-home')
+}
 </script>
 
 <template>
@@ -15,10 +45,17 @@ const emit = defineEmits(['update:modelValue'])
     <input
       type="text"
       :value="modelValue"
-      @input="emit('update:modelValue', $event.target.value)"
+      @input="onInput"
+      @keydown="onKeydown"
       placeholder="搜索技能..."
       class="search-input"
     />
+    <button v-if="hasValue" class="search-clear" @click="clear" title="清除搜索">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
   </div>
 </template>
 
@@ -43,7 +80,7 @@ const emit = defineEmits(['update:modelValue'])
 .search-input {
   width: 100%;
   height: 36px;
-  padding: 0 14px 0 36px;
+  padding: 0 32px 0 36px;
   font-family: 'DM Sans', sans-serif;
   font-size: 13px;
   color: #0a0a0a;
@@ -52,6 +89,7 @@ const emit = defineEmits(['update:modelValue'])
   border-radius: 8px;
   outline: none;
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .search-input::placeholder {
@@ -69,8 +107,36 @@ const emit = defineEmits(['update:modelValue'])
   box-shadow: 0 0 0 3px rgba(196, 85, 58, 0.08);
 }
 
-.search-input:focus + .search-icon,
 .search-wrapper:focus-within .search-icon {
   color: #c4553a;
+}
+
+.search-clear {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.06);
+  border: none;
+  cursor: pointer;
+  color: #6b6560;
+  border-radius: 50%;
+  transition: all 0.15s ease;
+}
+
+.search-clear svg {
+  width: 12px;
+  height: 12px;
+}
+
+.search-clear:hover {
+  color: #c4553a;
+  background: rgba(196, 85, 58, 0.12);
 }
 </style>

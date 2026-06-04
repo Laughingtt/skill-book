@@ -35,10 +35,12 @@ const statusLabel = { todo: '待尝试', learning: '学习中', mastered: '已�
         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
       </svg>
     </button>
-    <span v-if="getStatus(skill.slug)" class="skill-card__status" :class="`skill-card__status--${getStatus(skill.slug)}`">
-      {{ statusLabel[getStatus(skill.slug)] }}
-    </span>
-    <span class="skill-card__category">{{ skill.category }}</span>
+    <div class="skill-card__header-row">
+      <span class="skill-card__category">{{ skill.category }}</span>
+      <span v-if="getStatus(skill.slug)" class="skill-card__status" :class="`skill-card__status--${getStatus(skill.slug)}`">
+        {{ statusLabel[getStatus(skill.slug)] }}
+      </span>
+    </div>
     <h3 class="skill-card__name">{{ skill.name }}</h3>
     <p class="skill-card__description">{{ skill.description }}</p>
     <span class="skill-card__tags">{{ (skill.tags || []).join(' · ') }}</span>
@@ -67,15 +69,20 @@ const statusLabel = { todo: '待尝试', learning: '学习中', mastered: '已�
   box-shadow: none;
 }
 
+.skill-card__header-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
 .skill-card__category {
-  display: block;
   font-family: 'DM Sans', sans-serif;
   font-size: 10px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: #c4553a;
-  margin-bottom: 16px;
 }
 
 .skill-card__name {
@@ -141,17 +148,16 @@ const statusLabel = { todo: '待尝试', learning: '学习中', mastered: '已�
 }
 
 .skill-card__status {
-  position: absolute;
-  top: 16px;
-  left: 16px;
   font-family: 'DM Sans', sans-serif;
   font-size: 9px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  padding: 3px 8px;
+  padding: 2px 8px;
   border-radius: 4px;
   color: #fff;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .skill-card__status--todo {

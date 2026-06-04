@@ -2,21 +2,22 @@
 import SearchBar from './SearchBar.vue'
 
 defineProps({
-  searchQuery: { type: String, default: '' },
+  query: { type: String, default: '' },
 })
 
-const emit = defineEmits(['update:searchQuery'])
+const emit = defineEmits(['update:query', 'go-home'])
 </script>
 
 <template>
   <div class="sub-nav">
-    <h1 class="sub-nav-title">
+    <a class="sub-nav-title" @click.prevent="emit('go-home')">
       Skill Book
-    </h1>
+    </a>
     <div class="sub-nav-search">
       <SearchBar
-        :model-value="searchQuery"
-        @update:model-value="emit('update:searchQuery', $event)"
+        :model-value="query"
+        @update:model-value="emit('update:query', $event)"
+        @clear-and-home="emit('go-home')"
       />
     </div>
     <div class="subnav-actions">
@@ -50,6 +51,13 @@ const emit = defineEmits(['update:searchQuery'])
   letter-spacing: -0.02em;
   margin: 0;
   line-height: 1;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.sub-nav-title:hover {
+  opacity: 0.7;
 }
 
 .sub-nav-search {

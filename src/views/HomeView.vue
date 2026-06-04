@@ -27,13 +27,22 @@ function handleCreateSave(skillData) {
 
 onMounted(fetchSkills)
 
-const { query: searchQuery, results: searchResults } = useSearch()
+const { query, results: searchResults, clearSearch } = useSearch()
 const { selectedCategory, selectedTags, filtered, toggleCategory, toggleTag, clearFilters } = useFilters(searchResults)
 const { selectedScenario, allScenarios, filterByScenario, toggleScenario, clearScenario } = useScenarios()
 
 function clearAllFilters() {
   clearFilters()
   clearScenario()
+  clearSearch()
+}
+
+function handleCategorySelect(cat) {
+  toggleCategory(cat)
+  // 点击"全部"时同时清空搜索
+  if (cat === '全部') {
+    clearSearch()
+  }
 }
 
 const scenarioFiltered = filterByScenario(filtered)
@@ -50,10 +59,7 @@ const recentCount = computed(() => (recentlyViewed.value || []).length)
 
 <template>
   <div>
-  <SubNav
-    :search-query="searchQuery"
-    @update:search-query="searchQuery = $event"
-  />
+  <SubNav v-model:query="query" @go-home="clearSearch()" />
 
   <div v-if="loading" class="flex items-center justify-center py-20">
     <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: #6b6560;">加载中...</span>
@@ -120,7 +126,7 @@ const recentCount = computed(() => (recentlyViewed.value || []).length)
         <CategorySidebar
           :categories="categories"
           :selected="selectedCategory"
-          @select="toggleCategory"
+          @select="handleCategorySelect"
         />
         <TagCloud
           :tags="allTags"
@@ -151,8 +157,8 @@ const recentCount = computed(() => (recentlyViewed.value || []).length)
             <span style="font-family: 'Crimson Pro', serif; font-weight: 600;">{{ displayedSkills.length }}</span> 个技能
           </p>
           <button
-            v-if="selectedCategory !== '全部' || selectedTags.length > 0 || searchQuery || selectedScenario"
-            @click="clearAllFilters(); searchQuery = ''"
+            v-if="selectedCategory !== '全部' || selectedTags.length > 0 || query || selectedScenario"
+            @click="clearAllFilters()"
             class="clear-filter-btn"
           >
             清除筛选
