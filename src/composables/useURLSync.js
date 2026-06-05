@@ -13,10 +13,10 @@ export function readFromURL() {
   const params = new URLSearchParams(search)
 
   return {
-    category: params.get('category') ? decodeURIComponent(params.get('category')) : null,
-    tags: params.get('tags') ? params.get('tags').split(',').map(t => decodeURIComponent(t.trim())) : [],
-    scenario: params.get('scenario') ? decodeURIComponent(params.get('scenario')) : null,
-    q: params.get('q') ? decodeURIComponent(params.get('q')) : '',
+    category: params.get('category') || null,
+    tags: params.get('tags') ? params.get('tags').split(',').map(t => t.trim()) : [],
+    scenario: params.get('scenario') || null,
+    q: params.get('q') || '',
   }
 }
 
@@ -25,10 +25,11 @@ export function readFromURL() {
  */
 export function syncToURL({ category, tags, scenario, q }) {
   const params = new URLSearchParams()
-  if (category && category !== '全部') params.set('category', encodeURIComponent(category))
-  if (tags && tags.length > 0) params.set('tags', tags.map(t => encodeURIComponent(t)).join(','))
-  if (scenario) params.set('scenario', encodeURIComponent(scenario))
-  if (q && q.trim()) params.set('q', encodeURIComponent(q.trim()))
+  // URLSearchParams.set() handles encoding automatically — don't double-encode
+  if (category && category !== '全部') params.set('category', category)
+  if (tags && tags.length > 0) params.set('tags', tags.join(','))
+  if (scenario) params.set('scenario', scenario)
+  if (q && q.trim()) params.set('q', q.trim())
 
   const queryString = params.toString()
   const newHash = queryString ? `#/?${queryString}` : '#/'
