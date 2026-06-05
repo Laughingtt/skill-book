@@ -5,6 +5,7 @@ import { useSkills } from '../composables/useSkills'
 import { useBookmarks } from '../composables/useBookmarks'
 import { useSkillStatus } from '../composables/useSkillStatus'
 import { useUsageTracker } from '../composables/useUsageTracker'
+import { useSpacedRepetition } from '../composables/useSpacedRepetition'
 import SubNav from '../components/SubNav.vue'
 
 const router = useRouter()
@@ -12,6 +13,7 @@ const { skills, getSkillBySlug } = useSkills()
 const { bookmarks } = useBookmarks()
 const { statuses, statusStats, getStatus, setStatus } = useSkillStatus()
 const { recentlyViewed, getStaleLearning, getViewCount, getLastViewed } = useUsageTracker()
+const { dueReviews, markReviewed, markForgotten } = useSpacedRepetition()
 
 // Grouped skill lists by status
 const masteredSkills = computed(() => {
@@ -60,6 +62,13 @@ const staleSkills = computed(() => {
     return null
   }).filter(Boolean)
 })
+
+const dueReviewSkills = computed(() =>
+  dueReviews.value.map(r => {
+    const skill = getSkillBySlug(r.slug)
+    return { ...r, skill }
+  }).filter(r => r.skill)
+)
 
 const recentSkills = computed(() => {
   return recentlyViewed.value.map(r => {
@@ -203,6 +212,29 @@ const statusIcon = {
       <p v-if="!masteredSkills.length && !learningSkills.length && !todoSkills.length" class="empty-hint">
         还没有标记任何学习状态，浏览技能时点击状态按钮开始记录
       </p>
+    </section>
+
+    <!-- ── Section: Today's Review ── -->
+    <section class="my-section">
+      <div class="section-head">
+        <h2 class="section-title">今日复习</h2>
+        <span v-if="dueReviewSkills.length" class="section-badge">{{ dueReviewSkills.length }} 项</span>
+      </div>
+
+      <p v-if="dueReviewSkills.length === 0" class="empty-hint">🎉 今日无需复习</p>
+
+      <div v-else class="review-list">
+        <div v-for="r in dueReviewSkills" :key="r.slug" class="review-card">
+          <div class="review-card__info" @click="goToSkill(r.slug)">
+            <span class="review-card__name">{{ r.skill.name }}</span>
+            <span class="review-card__meta">间隔 {{ r.interval }} 天 · 已复习 {{ r.reviewCount }} 次</span>
+          </div>
+          <div class="review-card__actions">
+            <button class="review-btn review-btn--forgot" @click="markForgotten(r.slug)">未记住</button>
+            <button class="review-btn review-btn--done" @click="markReviewed(r.slug)">已复习</button>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ── Section: Bookmarks ── -->
@@ -636,5 +668,89 @@ const statusIcon = {
   font-style: italic;
   padding: 16px 0;
   margin: 0;
+}
+
+/* ── Review Section ── */
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.review-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  cursor: pointer;
+  flex: 1;
+  min-width: 0;
+}
+
+.review-card__info:hover .review-card__name {
+  color: #c4553a;
+}
+
+.review-card__name {
+  font-family: 'Crimson Pro', serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #0a0a0a;
+  line-height: 1.3;
+  transition: color 0.15s ease;
+}
+
+.review-card__meta {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  color: #b0ada8;
+}
+
+.review-card__actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.review-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.review-btn--forgot {
+  background: rgba(0,0,0,0.05);
+  color: #6b6560;
+}
+
+.review-btn--forgot:hover {
+  background: rgba(0,0,0,0.1);
+  color: #0a0a0a;
+}
+
+.review-btn--done {
+  background: #c4553a;
+  color: #fff;
+}
+
+.review-btn--done:hover {
+  background: #a8442e;
 }
 </style>
