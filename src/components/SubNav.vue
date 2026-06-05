@@ -1,5 +1,6 @@
 <script setup>
 import SearchBar from './SearchBar.vue'
+import ThemeToggle from './ThemeToggle.vue'
 
 defineProps({
   query: { type: String, default: '' },
@@ -21,6 +22,7 @@ const emit = defineEmits(['update:query', 'go-home'])
       />
     </div>
     <div class="subnav-actions">
+      <ThemeToggle />
       <router-link :to="{ name: 'my-space' }" class="subnav-my-link" title="我的空间">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       </router-link>
@@ -37,17 +39,17 @@ const emit = defineEmits(['update:query', 'go-home'])
   display: flex;
   align-items: center;
   padding: 0 24px;
-  background: rgba(250, 249, 246, 0.85);
+  background: var(--color-bg);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .sub-nav-title {
   font-family: 'Crimson Pro', serif;
   font-size: 24px;
   font-weight: 600;
-  color: #0a0a0a;
+  color: var(--color-text-primary);
   letter-spacing: -0.02em;
   margin: 0;
   line-height: 1;
@@ -77,12 +79,12 @@ const emit = defineEmits(['update:query', 'go-home'])
   width: 32px;
   height: 32px;
   border-radius: 8px;
-  color: #6b6560;
+  color: var(--color-text-secondary);
   transition: all 0.15s ease;
 }
 
 .subnav-my-link:hover {
-  background: rgba(196, 85, 58, 0.08);
-  color: #c4553a;
+  background: var(--color-bg-accent);
+  color: var(--color-accent);
 }
 </style>

@@ -194,6 +194,58 @@
   }
 }
 
+/* ── Dark Mode (Manual Toggle) ────────────── */
+[data-theme="dark"] {
+  --color-ink:           #f5f3ef;
+  --color-ink-soft:      #e0ddd7;
+  --color-ink-muted:     #a8a5a0;
+  --color-paper:         #111110;
+  --color-paper-warm:    #1a1918;
+  --color-paper-cool:    #161615;
+  --color-paper-deep:    #222120;
+  --color-accent:        #d4755e;
+  --color-accent-hover:  #e08570;
+  --color-accent-soft:   #c4553a;
+  --color-accent-muted:  rgba(212, 117, 94, 0.15);
+  --color-accent-glow:   rgba(212, 117, 94, 0.08);
+  --color-text-primary:  #f5f3ef;
+  --color-text-secondary:#9a9893;
+  --color-text-tertiary: #6a6865;
+  --color-text-inverse:  #111110;
+  --color-border:        rgba(245, 243, 239, 0.08);
+  --color-border-strong: rgba(245, 243, 239, 0.15);
+  --color-border-accent: rgba(212, 117, 94, 0.3);
+  --color-bg:            #111110;
+  --color-bg-elevated:   #1a1918;
+  --color-bg-recessed:   #0a0a09;
+  --color-bg-dark:       #faf9f6;
+  --color-bg-accent:     rgba(212, 117, 94, 0.08);
+  --shadow-sm:   0 1px 2px rgba(0, 0, 0, 0.2),
+                 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md:   0 2px 4px rgba(0, 0, 0, 0.15),
+                 0 4px 12px rgba(0, 0, 0, 0.2),
+                 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-lg:   0 4px 8px rgba(0, 0, 0, 0.15),
+                 0 8px 24px rgba(0, 0, 0, 0.25),
+                 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-xl:   0 8px 16px rgba(0, 0, 0, 0.2),
+                 0 16px 48px rgba(0, 0, 0, 0.3),
+                 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-card: 0 1px 0 rgba(0, 0, 0, 0.15),
+                 0 2px 8px rgba(0, 0, 0, 0.2),
+                 0 8px 24px rgba(0, 0, 0, 0.15);
+  --shadow-card-hover: 0 2px 0 rgba(0, 0, 0, 0.2),
+                       0 4px 12px rgba(0, 0, 0, 0.25),
+                       0 12px 36px rgba(0, 0, 0, 0.2);
+  --shadow-accent: 0 4px 16px rgba(212, 117, 94, 0.2),
+                   0 2px 4px rgba(212, 117, 94, 0.1);
+  --color-heatmap-0:     #161b22;
+  --color-heatmap-1:     #0e4429;
+  --color-heatmap-2:     #006d32;
+  --color-heatmap-3:     #26a641;
+  --color-heatmap-4:     #39d353;
+}
+
 /* ── Body & Base ─────────────────────────────── */
 body {
   font-family: var(--font-body);
@@ -228,6 +280,10 @@ body::before {
   body::before {
     opacity: 0.04;
   }
+}
+
+[data-theme="dark"] body::before {
+  opacity: 0.04;
 }
 
 /* ── Headings — Crimson Pro Display ──────────── */

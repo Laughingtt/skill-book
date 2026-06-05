@@ -15,12 +15,12 @@
 <style scoped>
 .global-nav {
   height: 48px;
-  background: #0a0a0a;
+  background: var(--color-bg-dark);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .nav-title {
@@ -28,7 +28,8 @@
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.2em;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--color-text-inverse);
+  opacity: 0.7;
   text-decoration: none;
   transition: opacity 0.3s ease;
 }
@@ -47,7 +48,7 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #c4553a;
+  background: var(--color-accent);
   opacity: 0.6;
 }
 </style>

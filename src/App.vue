@@ -1,11 +1,22 @@
 <script setup>
+import { watch, onMounted } from 'vue'
 import GlobalNav from './components/GlobalNav.vue'
 import FooterBar from './components/FooterBar.vue'
 import CommandPalette from './components/CommandPalette.vue'
+import { useSettings } from './composables/useSettings'
+
+const { effectiveTheme } = useSettings()
+
+function applyTheme() {
+  document.documentElement.setAttribute('data-theme', effectiveTheme.value)
+}
+
+onMounted(applyTheme)
+watch(effectiveTheme, applyTheme)
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col bg-[#faf9f6]">
+  <div class="min-h-screen flex flex-col" style="background: var(--color-bg);">
     <GlobalNav />
     <div class="flex-1">
       <router-view v-slot="{ Component }">

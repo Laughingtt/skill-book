@@ -50,9 +50,9 @@ const statusLabel = { todo: '待尝试', learning: '学习中', mastered: '已�
 <style scoped>
 .skill-card {
   position: relative;
-  background: #ffffff;
+  background: var(--color-bg-elevated);
   border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid var(--color-border);
   border-radius: 0;
   padding: 28px 24px;
   cursor: pointer;
@@ -61,7 +61,7 @@ const statusLabel = { todo: '待尝试', learning: '学习中', mastered: '已�
 
 .skill-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-lg);
 }
 
 .skill-card:active {
@@ -82,14 +82,14 @@ const statusLabel = { todo: '待尝试', learning: '学习中', mastered: '已�
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: #c4553a;
+  color: var(--color-accent);
 }
 
 .skill-card__name {
   font-family: 'Crimson Pro', serif;
   font-size: 22px;
   font-weight: 600;
-  color: #0a0a0a;
+  color: var(--color-text-primary);
   letter-spacing: -0.01em;
   line-height: 1.2;
   margin: 0 0 8px;
@@ -98,7 +98,7 @@ const statusLabel = { todo: '待尝试', learning: '学习中', mastered: '已�
 .skill-card__description {
   font-family: 'DM Sans', sans-serif;
   font-size: 14px;
-  color: #6b6560;
+  color: var(--color-text-secondary);
   line-height: 1.6;
   margin: 0 0 20px;
   display: -webkit-box;
@@ -111,7 +111,7 @@ const statusLabel = { todo: '待尝试', learning: '学习中', mastered: '已�
   display: block;
   font-family: 'DM Sans', sans-serif;
   font-size: 11px;
-  color: #6b6560;
+  color: var(--color-text-secondary);
 }
 
 .skill-card__bookmark {
@@ -124,7 +124,7 @@ const statusLabel = { todo: '待尝试', learning: '学习中', mastered: '已�
   background: none;
   border: none;
   cursor: pointer;
-  color: #8a8a87;
+  color: var(--color-text-tertiary);
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
@@ -134,17 +134,17 @@ const statusLabel = { todo: '待尝试', learning: '学习中', mastered: '已�
 }
 
 .skill-card__bookmark:hover {
-  color: #c4553a;
+  color: var(--color-accent);
   transform: scale(1.1);
 }
 
 .skill-card__bookmark--active {
-  color: #c4553a;
+  color: var(--color-accent);
 }
 
 .skill-card__bookmark--active svg {
-  fill: #c4553a;
-  stroke: #c4553a;
+  fill: var(--color-accent);
+  stroke: var(--color-accent);
 }
 
 .skill-card__status {
@@ -155,20 +155,20 @@ const statusLabel = { todo: '待尝试', learning: '学习中', mastered: '已�
   letter-spacing: 0.08em;
   padding: 2px 8px;
   border-radius: 4px;
-  color: #fff;
+  color: var(--color-text-inverse);
   white-space: nowrap;
   flex-shrink: 0;
 }
 
 .skill-card__status--todo {
-  background: #e5a84b;
+  background: var(--color-warning, #e5a84b);
 }
 
 .skill-card__status--learning {
-  background: #5b8dd9;
+  background: var(--color-info, #5b8dd9);
 }
 
 .skill-card__status--mastered {
-  background: #4caf7d;
+  background: var(--color-success, #4caf7d);
 }
 </style>

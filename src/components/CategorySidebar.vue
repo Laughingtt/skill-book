@@ -42,13 +42,13 @@ const emit = defineEmits(['select'])
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: #6b6560;
+  color: var(--color-text-secondary);
 }
 
 .section-rule {
   width: 12px;
   height: 1px;
-  background-color: #6b6560;
+  background-color: var(--color-text-secondary);
   margin-top: 8px;
 }
 
@@ -62,7 +62,7 @@ const emit = defineEmits(['select'])
   font-family: 'DM Sans', sans-serif;
   font-size: 14px;
   font-weight: 400;
-  color: #0a0a0a;
+  color: var(--color-text-primary);
   padding: 8px 0 8px 12px;
   margin-bottom: 10px;
   cursor: pointer;
@@ -71,12 +71,12 @@ const emit = defineEmits(['select'])
 }
 
 .category-item:hover {
-  background-color: rgba(0, 0, 0, 0.02);
+  background-color: var(--color-bg-accent);
 }
 
 .category-item--active {
   font-weight: 500;
-  border-left-color: #c4553a;
+  border-left-color: var(--color-accent);
   padding-left: 16px;
 }
 </style>

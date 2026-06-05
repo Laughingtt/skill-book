@@ -116,7 +116,7 @@ function importData(event) {
   gap: 4px;
   font-family: 'DM Sans', sans-serif;
   font-size: 11px;
-  color: #8a8a87;
+  color: var(--color-text-tertiary);
   background: none;
   border: none;
   cursor: pointer;
@@ -125,7 +125,7 @@ function importData(event) {
 }
 
 .data-panel__toggle:hover {
-  color: #c4553a;
+  color: var(--color-accent);
 }
 
 .data-panel__content {
@@ -139,17 +139,17 @@ function importData(event) {
   font-size: 11px;
   font-weight: 500;
   padding: 4px 10px;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid var(--color-border-strong);
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.15s ease;
   background: transparent;
-  color: #6b6560;
+  color: var(--color-text-secondary);
 }
 
 .data-panel__btn:hover {
-  border-color: #c4553a;
-  color: #c4553a;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .data-panel__btn--import {

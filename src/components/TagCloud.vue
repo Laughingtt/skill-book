@@ -42,13 +42,13 @@ const emit = defineEmits(['toggle'])
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: #6b6560;
+  color: var(--color-text-secondary);
 }
 
 .section-rule {
   width: 12px;
   height: 1px;
-  background-color: #6b6560;
+  background-color: var(--color-text-secondary);
   margin-top: 8px;
 }
 
@@ -63,21 +63,21 @@ const emit = defineEmits(['toggle'])
   font-family: 'DM Sans', sans-serif;
   font-size: 12px;
   font-weight: 400;
-  color: #6b6560;
+  color: var(--color-text-secondary);
   cursor: pointer;
   transition: color 0.2s ease, text-decoration 0.2s ease;
   white-space: nowrap;
 }
 
 .tag-item:hover {
-  color: #c4553a;
+  color: var(--color-accent);
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 0.5px;
 }
 
 .tag-item--active {
-  color: #c4553a;
+  color: var(--color-accent);
   font-weight: 500;
   text-decoration: none;
 }

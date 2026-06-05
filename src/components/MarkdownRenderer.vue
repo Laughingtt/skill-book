@@ -67,19 +67,19 @@ watch(() => props.source, async (val) => {
   font-family: 'Crimson Pro', Georgia, serif;
   font-size: 32px;
   font-weight: 600;
-  color: #0a0a0a;
+  color: var(--color-text-primary);
   letter-spacing: -0.02em;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
   padding-bottom: 0.75rem;
-  border-bottom: 2px solid #c4553a;
+  border-bottom: 2px solid var(--color-accent);
 }
 
 .editorial-md :deep(h2) {
   font-family: 'Crimson Pro', Georgia, serif;
   font-size: 24px;
   font-weight: 600;
-  color: #0a0a0a;
+  color: var(--color-text-primary);
   letter-spacing: -0.01em;
   margin-top: 2rem;
   margin-bottom: 0.75rem;
@@ -89,7 +89,7 @@ watch(() => props.source, async (val) => {
   font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 17px;
   font-weight: 600;
-  color: #0a0a0a;
+  color: var(--color-text-primary);
   letter-spacing: 0.02em;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
@@ -99,7 +99,7 @@ watch(() => props.source, async (val) => {
   font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 16px;
   font-weight: 400;
-  color: #0a0a0a;
+  color: var(--color-text-primary);
   line-height: 1.75;
   margin-bottom: 1.25rem;
 }
@@ -107,18 +107,18 @@ watch(() => props.source, async (val) => {
 .editorial-md :deep(code) {
   font-family: 'DM Mono', Menlo, monospace;
   font-size: 14px;
-  background: rgba(196, 85, 58, 0.08);
-  color: #c4553a;
+  background: var(--color-bg-accent);
+  color: var(--color-accent);
   padding: 2px 6px;
   border-radius: 4px;
 }
 
 .editorial-md :deep(pre) {
-  background: #0a0a0a;
-  color: #faf9f6;
+  background: var(--color-bg-dark);
+  color: var(--color-text-inverse);
   padding: 20px 24px;
   border-radius: 0;
-  border-left: 3px solid #c4553a;
+  border-left: 3px solid var(--color-accent);
   overflow-x: auto;
   margin-bottom: 1.25rem;
 }
@@ -155,56 +155,56 @@ watch(() => props.source, async (val) => {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #c4553a;
+  background: var(--color-accent);
 }
 
 .editorial-md :deep(li) {
   font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.75;
-  color: #0a0a0a;
+  color: var(--color-text-primary);
   margin-bottom: 0.4rem;
 }
 
 .editorial-md :deep(blockquote) {
-  border-left: 3px solid #c4553a;
+  border-left: 3px solid var(--color-accent);
   padding-left: 1.25rem;
   margin: 1.5rem 0;
-  color: #6b6560;
+  color: var(--color-text-secondary);
   font-style: italic;
 }
 
 .editorial-md :deep(blockquote p) {
-  color: #6b6560;
+  color: var(--color-text-secondary);
   font-style: italic;
 }
 
 .editorial-md :deep(a) {
-  color: #c4553a;
+  color: var(--color-accent);
   text-decoration: underline;
   text-underline-offset: 2px;
   transition: color 0.15s ease;
 }
 
 .editorial-md :deep(a:hover) {
-  color: #a3442e;
+  color: var(--color-accent-hover);
 }
 
 .editorial-md :deep(strong) {
   font-weight: 600;
-  color: #0a0a0a;
+  color: var(--color-text-primary);
 }
 
 .editorial-md :deep(hr) {
   border: none;
   height: 1px;
-  background: rgba(0, 0, 0, 0.08);
+  background: var(--color-border);
   margin: 2rem 0;
 }
 
 .editorial-md :deep(em) {
   font-style: italic;
-  color: #6b6560;
+  color: var(--color-text-secondary);
 }
 
 .editorial-md :deep(img) {
@@ -227,7 +227,7 @@ watch(() => props.source, async (val) => {
   font-size: 13px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: #6b6560;
+  color: var(--color-text-secondary);
   border-bottom: 2px solid rgba(0, 0, 0, 0.08);
   padding: 0.5rem 0.75rem 0.5rem 0;
   text-align: left;
@@ -235,8 +235,8 @@ watch(() => props.source, async (val) => {
 
 .editorial-md :deep(td) {
   padding: 0.625rem 0.75rem 0.625rem 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  color: #0a0a0a;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-primary);
   vertical-align: top;
 }
 
@@ -249,7 +249,7 @@ watch(() => props.source, async (val) => {
   font-weight: 500;
   padding: 3px 10px;
   background: rgba(250, 249, 246, 0.12);
-  color: #faf9f6;
+  color: var(--color-text-inverse);
   border: 1px solid rgba(250, 249, 246, 0.2);
   border-radius: 4px;
   cursor: pointer;
@@ -263,7 +263,7 @@ watch(() => props.source, async (val) => {
 }
 
 .editorial-md :deep(.copy-btn--done) {
-  color: #4caf7d;
-  border-color: #4caf7d;
+  color: var(--color-success, #4caf7d);
+  border-color: var(--color-success, #4caf7d);
 }
 </style>

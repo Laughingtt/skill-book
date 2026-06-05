@@ -244,12 +244,12 @@ async function saveContentEdit() {
   />
 
   <div v-if="loading" class="flex items-center justify-center py-20">
-    <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: #6b6560;">加载中...</span>
+    <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--color-text-secondary);">加载中...</span>
   </div>
 
   <div v-else-if="error" class="flex items-center justify-center py-20">
     <div class="text-center">
-      <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; color: #6b6560; margin-bottom: 16px;">{{ error }}</p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; color: var(--color-text-secondary); margin-bottom: 16px;">{{ error }}</p>
       <button
         @click="goHome"
         class="back-link"
@@ -261,7 +261,7 @@ async function saveContentEdit() {
 
   <template v-else>
     <!-- Hero Section — warm off-white editorial header -->
-    <section style="background: #faf9f6;">
+    <section style="background: var(--color-bg);">
       <div class="max-w-[980px] mx-auto px-[22px] pt-8 pb-14">
         <!-- Back Button -->
         <button
@@ -280,17 +280,17 @@ async function saveContentEdit() {
         </p>
 
         <!-- Skill Name -->
-        <h1 style="font-family: 'Crimson Pro', serif; font-size: 44px; font-weight: 600; color: #0a0a0a; letter-spacing: -0.02em; line-height: 1.15; margin-top: 24px; writing-mode: horizontal-tb; white-space: normal; word-break: break-word;">
+        <h1 style="font-family: 'Crimson Pro', serif; font-size: 44px; font-weight: 600; color: var(--color-text-primary); letter-spacing: -0.02em; line-height: 1.15; margin-top: 24px; writing-mode: horizontal-tb; white-space: normal; word-break: break-word;">
           {{ skill.name }}
         </h1>
 
         <!-- Description -->
-        <p style="font-family: 'DM Sans', sans-serif; font-size: 18px; color: #6b6560; line-height: 1.6; max-width: 600px; margin-top: 12px;">
+        <p style="font-family: 'DM Sans', sans-serif; font-size: 18px; color: var(--color-text-secondary); line-height: 1.6; max-width: 600px; margin-top: 12px;">
           {{ skill.description }}
         </p>
 
         <!-- Tags -->
-        <p v-if="skill.tags?.length" style="font-family: 'DM Sans', sans-serif; font-size: 12px; color: #6b6560; margin-top: 16px;">
+        <p v-if="skill.tags?.length" style="font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--color-text-secondary); margin-top: 16px;">
           <template v-for="(tag, i) in skill.tags" :key="tag">
             <span>{{ tag }}</span><span v-if="i < skill.tags.length - 1"> · </span>
           </template>
@@ -337,7 +337,7 @@ async function saveContentEdit() {
         </button>
 
         <!-- Decorative Rule -->
-        <div style="width: 60px; height: 2px; background: #c4553a; margin-top: 20px;"></div>
+        <div style="width: 60px; height: 2px; background: var(--color-accent); margin-top: 20px;"></div>
 
         <!-- Action Buttons -->
         <div style="display: flex; gap: 12px; margin-top: 20px;">
@@ -360,7 +360,7 @@ async function saveContentEdit() {
     </section>
 
     <!-- Content Section — white, narrow reading column -->
-    <section style="background: #ffffff;">
+    <section style="background: var(--color-bg-elevated);">
       <div :class="editing ? 'max-w-[1200px]' : 'max-w-[720px]'" class="mx-auto px-[22px] py-16">
         <!-- Preview mode -->
         <MarkdownRenderer v-if="!editing" :source="content" />
@@ -389,7 +389,7 @@ async function saveContentEdit() {
     </section>
 
     <!-- Quick Start Section (collapsible) -->
-    <section v-if="!editing && quickStartContent" style="background: #f3f1ec;">
+    <section v-if="!editing && quickStartContent" style="background: var(--color-bg-recessed);">
       <div class="max-w-[720px] mx-auto px-[22px] py-8">
         <button @click="showQuickStart = !showQuickStart" class="quickstart-toggle">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -404,7 +404,7 @@ async function saveContentEdit() {
     </section>
 
     <!-- Command Cards Section -->
-    <section v-if="!editing && skill.commands?.length" style="background: #ffffff;">
+    <section v-if="!editing && skill.commands?.length" style="background: var(--color-bg-elevated);">
       <div class="max-w-[720px] mx-auto px-[22px] py-8">
         <h4 class="cmd-section-title">常用命令</h4>
         <div class="cmd-cards">
@@ -420,7 +420,7 @@ async function saveContentEdit() {
     </section>
 
     <!-- Related Skills -->
-    <section v-if="!editing && relatedSkills.length" style="background: #faf9f6;">
+    <section v-if="!editing && relatedSkills.length" style="background: var(--color-bg);">
       <div class="max-w-[720px] mx-auto px-[22px] py-10">
         <h4 class="related-title">相关技能</h4>
         <div class="related-grid">
@@ -433,9 +433,9 @@ async function saveContentEdit() {
     </section>
 
     <!-- Skill Relationship Graph -->
-    <section v-if="!editing && graphData.nodes.length > 1" style="background: #faf9f6;">
+    <section v-if="!editing && graphData.nodes.length > 1" style="background: var(--color-bg);">
       <div class="max-w-[720px] mx-auto px-[22px] py-10">
-        <h4 style="font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: #8a8a87; margin: 0 0 12px;">关联图谱</h4>
+        <h4 style="font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-text-tertiary); margin: 0 0 12px;">关联图谱</h4>
         <SkillGraphView
           :nodes="graphData.nodes"
           :edges="graphData.edges"
@@ -446,7 +446,7 @@ async function saveContentEdit() {
     </section>
 
     <!-- My Notes -->
-    <section v-if="!editing" style="background: #f3f1ec;">
+    <section v-if="!editing" style="background: var(--color-bg-recessed);">
       <div class="max-w-[720px] mx-auto px-[22px] py-8">
         <button @click="toggleNotes" class="notes-toggle">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -550,7 +550,7 @@ async function saveContentEdit() {
   gap: 4px;
   font-family: 'DM Sans', sans-serif;
   font-size: 13px;
-  color: #6b6560;
+  color: var(--color-text-secondary);
   background: none;
   border: none;
   cursor: pointer;
@@ -559,7 +559,7 @@ async function saveContentEdit() {
 }
 
 .back-btn:hover {
-  color: #c4553a;
+  color: var(--color-accent);
 }
 
 .category-label {
@@ -567,14 +567,14 @@ async function saveContentEdit() {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: #c4553a;
+  color: var(--color-accent);
   margin-top: 24px;
 }
 
 .back-link {
   font-family: 'DM Sans', sans-serif;
   font-size: 14px;
-  color: #c4553a;
+  color: var(--color-accent);
   background: none;
   border: none;
   cursor: pointer;
@@ -618,9 +618,9 @@ async function saveContentEdit() {
 }
 
 .action-btn--save {
-  background: #dcfce7;
-  color: #16a34a;
-  border-color: #86efac;
+  background: var(--color-success, #dcfce7);
+  color: var(--color-success-text, #16a34a);
+  border-color: var(--color-success-border, #86efac);
 }
 
 .action-btn--save:disabled {
@@ -714,19 +714,19 @@ async function saveContentEdit() {
 }
 
 .bookmark-btn:hover {
-  border-color: #c4553a;
-  color: #c4553a;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .bookmark-btn--active {
-  border-color: #c4553a;
-  color: #c4553a;
-  background: rgba(196, 85, 58, 0.08);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: var(--color-bg-accent);
 }
 
 .bookmark-btn--active svg {
-  fill: #c4553a;
-  stroke: #c4553a;
+  fill: var(--color-accent);
+  stroke: var(--color-accent);
 }
 
 /* Scenario pills */
@@ -736,8 +736,8 @@ async function saveContentEdit() {
   font-weight: 500;
   padding: 3px 10px;
   border-radius: 12px;
-  background: rgba(196, 85, 58, 0.08);
-  color: #c4553a;
+  background: var(--color-bg-accent);
+  color: var(--color-accent);
 }
 
 /* Quick Start */
@@ -750,7 +750,7 @@ async function saveContentEdit() {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #8a8a87;
+  color: var(--color-text-tertiary);
   background: none;
   border: none;
   cursor: pointer;
@@ -759,15 +759,15 @@ async function saveContentEdit() {
 }
 
 .quickstart-toggle:hover {
-  color: #c4553a;
+  color: var(--color-accent);
 }
 
 .quickstart-content {
   margin-top: 12px;
   padding: 16px 20px;
-  background: #ffffff;
+  background: var(--color-bg-elevated);
   border-radius: 8px;
-  border-left: 3px solid #c4553a;
+  border-left: 3px solid var(--color-accent);
 }
 
 /* Command Cards */
@@ -777,7 +777,7 @@ async function saveContentEdit() {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: #8a8a87;
+  color: var(--color-text-tertiary);
   margin: 0 0 12px;
 }
 
@@ -793,8 +793,8 @@ async function saveContentEdit() {
   align-items: center;
   gap: 12px;
   padding: 10px 16px;
-  background: #0a0a0a;
-  border-left: 3px solid #c4553a;
+  background: var(--color-bg-dark);
+  border-left: 3px solid var(--color-accent);
   border-radius: 0;
 }
 
@@ -802,14 +802,14 @@ async function saveContentEdit() {
   font-family: 'DM Sans', sans-serif;
   font-size: 11px;
   font-weight: 500;
-  color: #8a8a87;
+  color: var(--color-text-tertiary);
   white-space: nowrap;
 }
 
 .cmd-card__code {
   font-family: 'DM Mono', Menlo, monospace;
   font-size: 13px;
-  color: #faf9f6;
+  color: var(--color-text-inverse);
   flex: 1;
   overflow-x: auto;
 }
@@ -820,7 +820,7 @@ async function saveContentEdit() {
   font-weight: 500;
   padding: 3px 8px;
   background: rgba(250, 249, 246, 0.1);
-  color: #faf9f6;
+  color: var(--color-text-inverse);
   border: 1px solid rgba(250, 249, 246, 0.15);
   border-radius: 4px;
   cursor: pointer;
@@ -833,8 +833,8 @@ async function saveContentEdit() {
 }
 
 .cmd-card__copy--done {
-  color: #4caf7d;
-  border-color: #4caf7d;
+  color: var(--color-success, #4caf7d);
+  border-color: var(--color-success, #4caf7d);
 }
 
 /* Related Skills */
@@ -844,7 +844,7 @@ async function saveContentEdit() {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: #8a8a87;
+  color: var(--color-text-tertiary);
   margin: 0 0 12px;
 }
 
@@ -859,16 +859,16 @@ async function saveContentEdit() {
   flex-direction: column;
   gap: 4px;
   padding: 10px 14px;
-  background: #ffffff;
+  background: var(--color-bg-elevated);
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  box-shadow: var(--shadow-sm);
 }
 
 .related-card:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  box-shadow: var(--shadow-md);
 }
 
 .related-card__category {
@@ -877,14 +877,14 @@ async function saveContentEdit() {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #c4553a;
+  color: var(--color-accent);
 }
 
 .related-card__name {
   font-family: 'Crimson Pro', serif;
   font-size: 14px;
   font-weight: 600;
-  color: #0a0a0a;
+  color: var(--color-text-primary);
 }
 
 /* Notes Editor */
@@ -897,7 +897,7 @@ async function saveContentEdit() {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #8a8a87;
+  color: var(--color-text-tertiary);
   background: none;
   border: none;
   cursor: pointer;
@@ -906,7 +906,7 @@ async function saveContentEdit() {
 }
 
 .notes-toggle:hover {
-  color: #c4553a;
+  color: var(--color-accent);
 }
 
 .notes-indicator {
@@ -914,7 +914,7 @@ async function saveContentEdit() {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #4caf7d;
+  background: var(--color-success, #4caf7d);
 }
 
 .notes-editor {
@@ -928,9 +928,9 @@ async function saveContentEdit() {
   font-family: 'DM Sans', sans-serif;
   font-size: 13px;
   line-height: 1.6;
-  color: #0a0a0a;
-  background: #ffffff;
-  border: 1px solid rgba(0,0,0,0.1);
+  color: var(--color-text-primary);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-strong);
   border-radius: 8px;
   resize: vertical;
   outline: none;
@@ -939,17 +939,17 @@ async function saveContentEdit() {
 }
 
 .notes-textarea:focus {
-  border-color: #c4553a;
+  border-color: var(--color-accent);
 }
 
 .notes-textarea::placeholder {
-  color: #8a8a87;
+  color: var(--color-text-tertiary);
 }
 
 .notes-hint {
   font-family: 'DM Sans', sans-serif;
   font-size: 10px;
-  color: #8a8a87;
+  color: var(--color-text-tertiary);
   margin: 6px 0 0;
 }
 </style>

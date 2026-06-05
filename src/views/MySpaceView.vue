@@ -325,7 +325,7 @@ const statusIcon = {
   gap: 4px;
   font-family: 'DM Sans', sans-serif;
   font-size: 12px;
-  color: #8a8a87;
+  color: var(--color-text-tertiary);
   background: none;
   border: none;
   cursor: pointer;
@@ -335,14 +335,14 @@ const statusIcon = {
 }
 
 .back-btn:hover {
-  color: #c4553a;
+  color: var(--color-accent);
 }
 
 .my-title {
   font-family: 'Crimson Pro', serif;
   font-size: 40px;
   font-weight: 600;
-  color: #0a0a0a;
+  color: var(--color-text-primary);
   line-height: 1.1;
   letter-spacing: -0.02em;
   margin: 0;
@@ -351,14 +351,14 @@ const statusIcon = {
 .my-subtitle {
   font-family: 'DM Sans', sans-serif;
   font-size: 15px;
-  color: #6b6560;
+  color: var(--color-text-secondary);
   margin: 6px 0 0;
 }
 
 .my-rule {
   width: 60px;
   height: 2px;
-  background: #c4553a;
+  background: var(--color-accent);
   margin-top: 16px;
 }
 
@@ -369,8 +369,8 @@ const statusIcon = {
 }
 
 .my-section--alert {
-  background: rgba(229, 168, 75, 0.04);
-  border: 1px solid rgba(229, 168, 75, 0.15);
+  background: var(--color-bg-accent);
+  border: 1px solid var(--color-border-accent);
   border-radius: 12px;
   padding: 24px;
   margin-left: -24px;
@@ -389,27 +389,27 @@ const statusIcon = {
   font-family: 'Crimson Pro', serif;
   font-size: 22px;
   font-weight: 600;
-  color: #0a0a0a;
+  color: var(--color-text-primary);
   margin: 0;
 }
 
 .section-title--alert {
-  color: #b8860b;
+  color: var(--color-warning, #b8860b);
 }
 
 .section-badge {
   font-family: 'DM Sans', sans-serif;
   font-size: 10px;
   font-weight: 600;
-  color: #8a8a87;
-  background: rgba(0,0,0,0.05);
+  color: var(--color-text-tertiary);
+  background: var(--color-bg-recessed);
   padding: 2px 8px;
   border-radius: 8px;
 }
 
 .section-badge--alert {
-  color: #fff;
-  background: #e5a84b;
+  color: var(--color-text-inverse);
+  background: var(--color-warning, #e5a84b);
 }
 
 /* ── Progress Overview ── */
@@ -418,8 +418,8 @@ const statusIcon = {
   display: flex;
   align-items: center;
   gap: 32px;
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.06);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
   border-radius: 14px;
   padding: 24px 28px;
   margin-bottom: 24px;
@@ -440,7 +440,7 @@ const statusIcon = {
 
 .ov-ring-bg {
   fill: none;
-  stroke: rgba(0,0,0,0.05);
+  stroke: var(--color-border);
   stroke-width: 8;
 }
 
@@ -451,9 +451,9 @@ const statusIcon = {
   transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
 }
 
-.ov-ring--mastered { stroke: #4caf7d; }
-.ov-ring--learning { stroke: #5b8dd9; }
-.ov-ring--todo { stroke: #e5a84b; }
+.ov-ring--mastered { stroke: var(--color-success, #4caf7d); }
+.ov-ring--learning { stroke: var(--color-info, #5b8dd9); }
+.ov-ring--todo { stroke: var(--color-warning, #e5a84b); }
 
 .ov-ring-center {
   position: absolute;
@@ -468,14 +468,14 @@ const statusIcon = {
   font-family: 'Crimson Pro', serif;
   font-size: 28px;
   font-weight: 600;
-  color: #0a0a0a;
+  color: var(--color-text-primary);
   line-height: 1;
 }
 
 .ov-ring-label {
   font-family: 'DM Sans', sans-serif;
   font-size: 10px;
-  color: #8a8a87;
+  color: var(--color-text-tertiary);
   margin-top: 2px;
 }
 
@@ -488,14 +488,14 @@ const statusIcon = {
 .ov-legend-item {
   font-family: 'DM Sans', sans-serif;
   font-size: 13px;
-  color: #6b6560;
+  color: var(--color-text-secondary);
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .ov-legend-item strong {
-  color: #0a0a0a;
+  color: var(--color-text-primary);
   font-weight: 600;
   margin-left: auto;
 }
@@ -508,9 +508,9 @@ const statusIcon = {
   flex-shrink: 0;
 }
 
-.ov-dot--mastered { background: #4caf7d; }
-.ov-dot--learning { background: #5b8dd9; }
-.ov-dot--todo { background: #e5a84b; }
+.ov-dot--mastered { background: var(--color-success, #4caf7d); }
+.ov-dot--learning { background: var(--color-info, #5b8dd9); }
+.ov-dot--todo { background: var(--color-warning, #e5a84b); }
 
 /* ── Status Groups ── */
 
@@ -522,7 +522,7 @@ const statusIcon = {
   font-family: 'DM Sans', sans-serif;
   font-size: 12px;
   font-weight: 600;
-  color: #6b6560;
+  color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin: 0 0 10px;
@@ -540,8 +540,8 @@ const statusIcon = {
 }
 
 .skill-item {
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.06);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
   border-radius: 10px;
   padding: 14px 16px;
   cursor: pointer;
@@ -553,12 +553,12 @@ const statusIcon = {
 }
 
 .skill-item:hover {
-  border-color: rgba(196, 85, 58, 0.2);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  border-color: var(--color-border-accent);
+  box-shadow: var(--shadow-sm);
 }
 
 .skill-item--stale {
-  border-left: 3px solid #e5a84b;
+  border-left: 3px solid var(--color-warning, #e5a84b);
 }
 
 .skill-item__cat {
@@ -567,21 +567,21 @@ const statusIcon = {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #c4553a;
+  color: var(--color-accent);
 }
 
 .skill-item__name {
   font-family: 'Crimson Pro', serif;
   font-size: 15px;
   font-weight: 500;
-  color: #0a0a0a;
+  color: var(--color-text-primary);
   line-height: 1.3;
 }
 
 .skill-item__desc {
   font-family: 'DM Sans', sans-serif;
   font-size: 11px;
-  color: #8a8a87;
+  color: var(--color-text-tertiary);
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -592,7 +592,7 @@ const statusIcon = {
 .skill-item__meta {
   font-family: 'DM Sans', sans-serif;
   font-size: 10px;
-  color: #b0ada8;
+  color: var(--color-text-tertiary);
   margin-top: 2px;
 }
 
@@ -607,7 +607,7 @@ const statusIcon = {
   justify-content: center;
   background: none;
   border: none;
-  color: #b0ada8;
+  color: var(--color-text-tertiary);
   font-size: 14px;
   cursor: pointer;
   border-radius: 50%;
@@ -617,8 +617,8 @@ const statusIcon = {
 }
 
 .skill-item__clear:hover {
-  background: rgba(0,0,0,0.06);
-  color: #c4553a;
+  background: var(--color-bg-recessed);
+  color: var(--color-accent);
 }
 
 /* ── Recently Viewed Timeline ── */
@@ -636,7 +636,7 @@ const statusIcon = {
   padding: 12px 0;
   cursor: pointer;
   transition: background 0.15s ease;
-  border-bottom: 1px solid rgba(0,0,0,0.04);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .recent-item:last-child {
@@ -644,14 +644,14 @@ const statusIcon = {
 }
 
 .recent-item:hover {
-  background: rgba(196, 85, 58, 0.02);
+  background: var(--color-bg-accent);
 }
 
 .recent-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #c4553a;
+  background: var(--color-accent);
   flex-shrink: 0;
   margin-top: 5px;
 }
@@ -666,13 +666,13 @@ const statusIcon = {
   font-family: 'Crimson Pro', serif;
   font-size: 15px;
   font-weight: 500;
-  color: #0a0a0a;
+  color: var(--color-text-primary);
 }
 
 .recent-meta {
   font-family: 'DM Sans', sans-serif;
   font-size: 11px;
-  color: #8a8a87;
+  color: var(--color-text-tertiary);
 }
 
 /* ── Empty State ── */
@@ -680,7 +680,7 @@ const statusIcon = {
 .empty-hint {
   font-family: 'DM Sans', sans-serif;
   font-size: 13px;
-  color: #b0ada8;
+  color: var(--color-text-tertiary);
   font-style: italic;
   padding: 16px 0;
   margin: 0;
@@ -695,8 +695,8 @@ const statusIcon = {
 }
 
 .review-card {
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.06);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
   border-radius: 10px;
   padding: 14px 16px;
   display: flex;
@@ -715,14 +715,14 @@ const statusIcon = {
 }
 
 .review-card__info:hover .review-card__name {
-  color: #c4553a;
+  color: var(--color-accent);
 }
 
 .review-card__name {
   font-family: 'Crimson Pro', serif;
   font-size: 15px;
   font-weight: 500;
-  color: #0a0a0a;
+  color: var(--color-text-primary);
   line-height: 1.3;
   transition: color 0.15s ease;
 }
@@ -730,7 +730,7 @@ const statusIcon = {
 .review-card__meta {
   font-family: 'DM Sans', sans-serif;
   font-size: 10px;
-  color: #b0ada8;
+  color: var(--color-text-tertiary);
 }
 
 .review-card__actions {
@@ -752,29 +752,29 @@ const statusIcon = {
 }
 
 .review-btn--forgot {
-  background: rgba(0,0,0,0.05);
-  color: #6b6560;
+  background: var(--color-bg-recessed);
+  color: var(--color-text-secondary);
 }
 
 .review-btn--forgot:hover {
   background: rgba(0,0,0,0.1);
-  color: #0a0a0a;
+  color: var(--color-text-primary);
 }
 
 .review-btn--done {
-  background: #c4553a;
-  color: #fff;
+  background: var(--color-accent);
+  color: var(--color-text-inverse);
 }
 
 .review-btn--done:hover {
-  background: #a8442e;
+  background: var(--color-accent-hover);
 }
 
 /* ── Heatmap ── */
 
 .heatmap-wrapper {
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.06);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
   border-radius: 14px;
   padding: 20px 24px;
   overflow-x: auto;

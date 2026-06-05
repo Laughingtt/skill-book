@@ -148,7 +148,7 @@ function nodeRadius(id) {
 }
 
 function nodeColor(id) {
-  return id === props.currentSlug ? '#c4553a' : '#6b6560'
+  return id === props.currentSlug ? 'var(--color-accent)' : 'var(--color-text-secondary)'
 }
 
 // Mouse interactions
@@ -214,8 +214,8 @@ function onHoverNode(index) {
     left: `${pos.x}px`,
     top: `${pos.y - 30}px`,
     transform: 'translate(-50%, -100%)',
-    background: 'rgba(10,10,10,0.85)',
-    color: '#faf9f6',
+    background: 'var(--color-bg-dark)',
+    color: 'var(--color-text-inverse)',
     padding: '4px 10px',
     borderRadius: '4px',
     fontSize: '11px',
@@ -259,7 +259,7 @@ watch(() => [props.nodes, props.edges], () => {
         :x2="getNodePos(edge.target).x"
         :y2="getNodePos(edge.target).y"
         :stroke-opacity="edgeOpacity(edge.score)"
-        stroke="#8a8a87"
+        stroke="var(--color-text-tertiary)"
         stroke-width="1.5"
       />
 
@@ -278,7 +278,7 @@ watch(() => [props.nodes, props.edges], () => {
           :cy="getNodePos(node.id).y"
           :r="nodeRadius(node.id)"
           :fill="nodeColor(node.id)"
-          :stroke="node.id === currentSlug ? '#c4553a' : '#faf9f6'"
+          :stroke="node.id === currentSlug ? 'var(--color-accent)' : 'var(--color-bg)'"
           :stroke-width="node.id === currentSlug ? 3 : 2"
           :style="{ transition: dragging === null ? 'cx 0.3s ease, cy 0.3s ease' : 'none' }"
         />
@@ -286,7 +286,7 @@ watch(() => [props.nodes, props.edges], () => {
           :x="getNodePos(node.id).x"
           :y="getNodePos(node.id).y + nodeRadius(node.id) + 14"
           text-anchor="middle"
-          style="font-family: 'DM Sans', sans-serif; font-size: 10px; fill: #6b6560; pointer-events: none;"
+          style="font-family: 'DM Sans', sans-serif; font-size: 10px; fill: var(--color-text-secondary); pointer-events: none;"
         >{{ node.name }}</text>
       </g>
     </svg>
