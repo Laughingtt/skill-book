@@ -89,7 +89,7 @@ export function parseFrontmatter(raw) {
 
     // Parse YAML inline arrays: [a, b, c]
     if (val.startsWith('[') && val.endsWith(']')) {
-      data[key] = val.slice(1, -1).split(',').map(s => s.trim().replace(/^["']|["']$/g, ''))
+      data[key] = val.slice(1, -1).split(',').map(s => s.trim().replace(/^["']|["']$/g, '')).filter(s => s !== '')
     } else {
       data[key] = val
     }
