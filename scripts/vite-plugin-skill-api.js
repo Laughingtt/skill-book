@@ -19,6 +19,12 @@ function rebuildIndex() {
       category: data.category || '',
       tags: data.tags || [],
       description: data.description || '',
+      scenarios: data.scenarios || [],
+      ...(data.commands && { commands: data.commands }),
+      ...(data.quickstart && { quickstart: data.quickstart }),
+      ...(data.install && { install: data.install }),
+      ...(data.source && { source: data.source }),
+      ...(data.related && { related: data.related }),
     })
   }
   fs.writeFileSync(path.join(skillsDir, 'index.json'), JSON.stringify(index, null, 2), 'utf-8')
@@ -72,6 +78,10 @@ export default function skillApiPlugin() {
               ...(frontmatter.description && { description: frontmatter.description }),
               ...(frontmatter.install && { install: frontmatter.install }),
               ...(frontmatter.source && { source: frontmatter.source }),
+              ...(frontmatter.scenarios?.length && { scenarios: frontmatter.scenarios }),
+              ...(frontmatter.commands?.length && { commands: frontmatter.commands }),
+              ...(frontmatter.quickstart && { quickstart: frontmatter.quickstart }),
+              ...(frontmatter.related?.length && { related: frontmatter.related }),
             }
 
             const mdContent = matter.stringify(content || '', fm)
