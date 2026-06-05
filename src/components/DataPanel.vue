@@ -9,13 +9,15 @@ const showPanel = ref(false)
 
 function exportData() {
   const data = {
-    version: 1,
+    version: 2,
     exportedAt: new Date().toISOString(),
     bookmarks: JSON.parse(localStorage.getItem('skill-book-bookmarks') || '[]'),
     skillStatus: JSON.parse(localStorage.getItem('skill-book-skill-status') || '{}'),
     skillNotes: JSON.parse(localStorage.getItem('skill-book-skill-notes') || '{}'),
     usageStats: JSON.parse(localStorage.getItem('skill-book-usage-stats') || '{}'),
     userSkills: JSON.parse(localStorage.getItem('skill-book-skills') || '[]'),
+    reviewSchedule: JSON.parse(localStorage.getItem('skill-book-review-schedule') || '{}'),
+    settings: JSON.parse(localStorage.getItem('skill-book-settings') || '{}'),
   }
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
   const url = URL.createObjectURL(blob)
@@ -33,7 +35,7 @@ function importData(event) {
   reader.onload = (e) => {
     try {
       const data = JSON.parse(e.target.result)
-      if (data.version !== 1) {
+      if (data.version !== 1 && data.version !== 2) {
         alert('不支持的备份格式')
         return
       }
@@ -50,6 +52,24 @@ function importData(event) {
       if (data.skillNotes && Object.keys(data.skillNotes).length) {
         const existing = JSON.parse(localStorage.getItem('skill-book-skill-notes') || '{}')
         localStorage.setItem('skill-book-skill-notes', JSON.stringify({ ...data.skillNotes, ...existing }))
+      }
+      if (data.usageStats && Object.keys(data.usageStats).length) {
+        const existing = JSON.parse(localStorage.getItem('skill-book-usage-stats') || '{}')
+        localStorage.setItem('skill-book-usage-stats', JSON.stringify({ ...data.usageStats, ...existing }))
+      }
+      if (data.userSkills?.length) {
+        const existing = JSON.parse(localStorage.getItem('skill-book-skills') || '[]')
+        const existingSlugs = new Set(existing.map(s => s.slug))
+        const newSkills = data.userSkills.filter(s => !existingSlugs.has(s.slug))
+        localStorage.setItem('skill-book-skills', JSON.stringify([...existing, ...newSkills]))
+      }
+      if (data.reviewSchedule && Object.keys(data.reviewSchedule).length) {
+        const existing = JSON.parse(localStorage.getItem('skill-book-review-schedule') || '{}')
+        localStorage.setItem('skill-book-review-schedule', JSON.stringify({ ...data.reviewSchedule, ...existing }))
+      }
+      if (data.settings && Object.keys(data.settings).length) {
+        const existing = JSON.parse(localStorage.getItem('skill-book-settings') || '{}')
+        localStorage.setItem('skill-book-settings', JSON.stringify({ ...data.settings, ...existing }))
       }
       alert('导入成功！刷新页面查看更新。')
       location.reload()
