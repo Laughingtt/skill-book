@@ -1,6 +1,7 @@
 <script setup>
 import GlobalNav from './components/GlobalNav.vue'
 import FooterBar from './components/FooterBar.vue'
+import CommandPalette from './components/CommandPalette.vue'
 </script>
 
 <template>
@@ -14,6 +15,7 @@ import FooterBar from './components/FooterBar.vue'
       </router-view>
     </div>
     <FooterBar />
+    <CommandPalette />
   </div>
 </template>
 
