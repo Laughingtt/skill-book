@@ -10,6 +10,8 @@ import { useBookmarks } from '../composables/useBookmarks'
 import { useSkillStatus } from '../composables/useSkillStatus'
 import { useUsageTracker } from '../composables/useUsageTracker'
 import { useSkillNotes } from '../composables/useSkillNotes'
+import { useSkillGraph } from '../composables/useSkillGraph'
+import SkillGraphView from '../components/SkillGraphView.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -25,6 +27,7 @@ const { isBookmarked, toggleBookmark } = useBookmarks()
 const { getStatus, setStatus, clearStatus } = useSkillStatus()
 const { trackView } = useUsageTracker()
 const { getNote, saveNote, hasNote } = useSkillNotes()
+const { computeRelations } = useSkillGraph()
 
 const editing = ref(false)
 const editContent = ref('')
@@ -48,6 +51,12 @@ const relatedSkills = computed(() => {
     .filter(s => s.overlap > 0)
     .sort((a, b) => b.overlap - a.overlap)
     .slice(0, 5)
+})
+
+// Skill relationship graph
+const graphData = computed(() => {
+  if (!skill.value) return { nodes: [], edges: [] }
+  return computeRelations(skill.value.slug, skills.value)
 })
 
 // Quick start content
@@ -419,6 +428,19 @@ async function saveContentEdit() {
             <span class="related-card__name">{{ s.name }}</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Skill Relationship Graph -->
+    <section v-if="!editing && graphData.nodes.length > 1" style="background: #faf9f6;">
+      <div class="max-w-[720px] mx-auto px-[22px] py-10">
+        <h4 style="font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: #8a8a87; margin: 0 0 12px;">关联图谱</h4>
+        <SkillGraphView
+          :nodes="graphData.nodes"
+          :edges="graphData.edges"
+          :current-slug="skill.slug"
+          @navigate="slug => router.push({ name: 'skill-detail', params: { slug } })"
+        />
       </div>
     </section>
 
