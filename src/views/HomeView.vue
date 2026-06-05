@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useSkills } from '../composables/useSkills'
 import { useSearch, setSearchSkills } from '../composables/useSearch'
@@ -9,6 +9,7 @@ import { useBookmarks } from '../composables/useBookmarks'
 import { useSkillStatus } from '../composables/useSkillStatus'
 import { useUsageTracker } from '../composables/useUsageTracker'
 import { useSort } from '../composables/useSort'
+import { readFromURL, syncToURL } from '../composables/useURLSync'
 import SubNav from '../components/SubNav.vue'
 import CategorySidebar from '../components/CategorySidebar.vue'
 import TagCloud from '../components/TagCloud.vue'
@@ -26,7 +27,32 @@ function handleCreateSave(skillData) {
   showCreateModal.value = false
 }
 
-onMounted(fetchSkills)
+onMounted(() => {
+  fetchSkills().then(() => {
+    // Apply URL state after skills are loaded
+    const urlState = readFromURL()
+    if (urlState.category) selectedCategory.value = urlState.category
+    if (urlState.tags.length) selectedTags.value = urlState.tags
+    if (urlState.scenario) selectedScenario.value = urlState.scenario
+    if (urlState.q) query.value = urlState.q
+  })
+  window.addEventListener('popstate', handlePopState)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('popstate', handlePopState)
+})
+
+function handlePopState() {
+  const urlState = readFromURL()
+  if (urlState.category !== null) selectedCategory.value = urlState.category
+  else selectedCategory.value = '全部'
+  selectedTags.value = urlState.tags
+  if (urlState.scenario !== null) selectedScenario.value = urlState.scenario
+  else selectedScenario.value = null
+  if (urlState.q !== '') query.value = urlState.q
+  else query.value = ''
+}
 
 const { query, results: searchResults, clearSearch } = useSearch()
 const { selectedCategory, selectedTags, filtered, toggleCategory, toggleTag, clearFilters } = useFilters(searchResults)
@@ -54,6 +80,20 @@ const displayedSkills = computed(() => sorted(scenarioFiltered.value))
 const { bookmarks } = useBookmarks()
 const { statuses: skillStatuses, statusStats } = useSkillStatus()
 const { recentlyViewed, getStaleLearning } = useUsageTracker()
+
+// Sync filter state to URL
+watch(
+  [selectedCategory, selectedTags, selectedScenario, query],
+  () => {
+    syncToURL({
+      category: selectedCategory.value,
+      tags: selectedTags.value,
+      scenario: selectedScenario.value,
+      q: query.value,
+    })
+  },
+  { deep: true }
+)
 
 const staleCount = computed(() => (getStaleLearning(skillStatuses.value || {}) || []).length)
 const recentCount = computed(() => (recentlyViewed.value || []).length)
