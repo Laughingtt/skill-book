@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 
 const props = defineProps({
   data: {
@@ -100,12 +100,12 @@ const gridData = computed(() => {
 })
 
 // Tooltip state
-const tooltip = computed(() => ({
+const tooltip = ref({
   visible: false,
   text: '',
   x: 0,
   y: 0
-}))
+})
 
 function showTooltip(event, cell) {
   tooltip.value = {
