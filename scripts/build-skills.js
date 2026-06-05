@@ -27,7 +27,11 @@ for (const file of files) {
     tags: data.tags || [],
     description: data.description || '',
     scenarios: data.scenarios || [],
-    ...(data.commands && { commands: data.commands.map(c => c.cmd) }),
+    ...(data.commands && { commands: data.commands }),
+    ...(data.quickstart && { quickstart: data.quickstart }),
+    ...(data.install && { install: data.install }),
+    ...(data.source && { source: data.source }),
+    ...(data.related && { related: data.related }),
   })
 }
 

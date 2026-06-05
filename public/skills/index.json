@@ -27,7 +27,9 @@
       "rust"
     ],
     "description": "MCP服务器提供浏览器自动化能力，使用语义元素定位器而非CSS选择器",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npm install -g agent-browser && agent-browser install && npx agent-browser-mcp",
+    "source": "https://github.com/minhlucvan/agent-browser-mcp"
   },
   {
     "name": "Agent Browser",
@@ -43,7 +45,9 @@
       "testing"
     ],
     "description": "AI Agent浏览器自动化CLI，支持网页导航、表单填写、按钮点击、截图和数据提取",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills add https://github.com/vercel-labs/agent-browser --skill agent-browser",
+    "source": "https://www.skills.sh/vercel-labs/agent-browser/agent-browser"
   },
   {
     "name": "Agent Skills（谷歌工程纪律包）",
@@ -58,7 +62,9 @@
       "ship"
     ],
     "description": "轻量灵活约束AI行为的工程纪律技能包，覆盖开发全流程",
-    "scenarios": []
+    "scenarios": [],
+    "install": "/plugin marketplace add addyosmani/agent-skills",
+    "source": "https://github.com/addyosmani/agent-skills"
   },
   {
     "name": "AI Prompt Optimizer",
@@ -72,7 +78,9 @@
       "improvement"
     ],
     "description": "写不好Prompt时让AI帮你优化的提示词优化工具",
-    "scenarios": []
+    "scenarios": [],
+    "install": "cp -r skill ~/.claude/skills/prompt-optimizer",
+    "source": "https://github.com/joaocarlos/prompt-optimizer-skill"
   },
   {
     "name": "AionUI",
@@ -85,7 +93,9 @@
       "generation"
     ],
     "description": "AI驱动的用户界面组件生成",
-    "scenarios": []
+    "scenarios": [],
+    "install": "从 GitHub Releases 下载桌面应用（macOS/Windows/Linux）",
+    "source": "https://github.com/iOfficeAI/AionUi"
   },
   {
     "name": "Animation Generation",
@@ -100,7 +110,9 @@
       "css"
     ],
     "description": "AI辅助生成动画效果，支持CSS动画、Lottie动画和SVG动画",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills add nicobailon/animation-generation --skill animation-generation",
+    "source": "https://github.com/nicobailon/animation-generation"
   },
   {
     "name": "API Docs Generator",
@@ -115,7 +127,9 @@
       "sdk"
     ],
     "description": "自动生成API文档技能，包含OpenAPI/Swagger规范、端点文档、SDK使用示例",
-    "scenarios": []
+    "scenarios": [],
+    "install": "复制 SKILL.md 到 .claude/skills/api-documentation-generator/",
+    "source": "https://github.com/luongnv89/claude-howto"
   },
   {
     "name": "Awesome Design MD / Design MD Collection",
@@ -131,7 +145,9 @@
       "design-system"
     ],
     "description": "收集顶级网站的DESIGN.md设计规范文件，58+品牌风格，每个附带可视化预览HTML",
-    "scenarios": []
+    "scenarios": [],
+    "install": "git clone 仓库，复制 DESIGN.md 到项目根目录（无需安装）",
+    "source": "https://github.com/VoltAgent/awesome-design-md"
   },
   {
     "name": "Baoyu Skill",
@@ -145,7 +161,9 @@
       "concept"
     ],
     "description": "快速生成不同艺术风格的概念图",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx add-skill jimliu/baoyu-skills",
+    "source": "https://github.com/JimLiu/baoyu-skills"
   },
   {
     "name": "Caveman Review",
@@ -159,7 +177,9 @@
       "caveman"
     ],
     "description": "压缩通信模式代码审查，减少~75%token用量同时保持完整技术准确性",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills add https://github.com/juliusbrussee/caveman --skill caveman",
+    "source": "https://www.skills.sh/juliusbrussee/caveman/caveman"
   },
   {
     "name": "CC Connect",
@@ -172,7 +192,9 @@
       "service"
     ],
     "description": "特定平台或服务之间的连接器工具",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npm install -g cc-connect 或 brew install cc-connect",
+    "source": "https://github.com/chenhg5/cc-connect"
   },
   {
     "name": "Claude Design",
@@ -185,7 +207,9 @@
       "visual"
     ],
     "description": "在Claude中直接获得更好的设计输出",
-    "scenarios": []
+    "scenarios": [],
+    "install": "访问 claude.ai/design 上传 DESIGN.md（无需安装）",
+    "source": "https://github.com/VoltAgent/awesome-claude-design"
   },
   {
     "name": "Code Refactor",
@@ -203,7 +227,9 @@
       "code-maintenance",
       "legacy-migration",
       "code-smell-fix"
-    ]
+    ],
+    "install": "claude plugins install https://github.com/elifiner/refactoring",
+    "source": "https://github.com/elifiner/refactoring"
   },
   {
     "name": "Software Copyright / Patent Disclosure Skill",
@@ -217,7 +243,9 @@
       "disclosure"
     ],
     "description": "软件著作权申请与专利信息披露辅助技能",
-    "scenarios": []
+    "scenarios": [],
+    "install": "/plugin marketplace add trilogy-group/cc-skill-patent-disclosure",
+    "source": "https://github.com/trilogy-group/cc-skill-patent-disclosure"
   },
   {
     "name": "Dependency Audit",
@@ -236,7 +264,9 @@
       "security-audit",
       "dependency-management",
       "vulnerability-scan"
-    ]
+    ],
+    "install": "npx antigravity-awesome-skills 或复制 SKILL.md 到 .claude/skills/dependency-audit/",
+    "source": "https://github.com/sickn33/antigravity-awesome-skills"
   },
   {
     "name": "Deploy to Vercel",
@@ -257,8 +287,13 @@
       "production-release"
     ],
     "commands": [
-      "vercel --prod"
-    ]
+      {
+        "name": "部署到Vercel",
+        "cmd": "vercel --prod"
+      }
+    ],
+    "install": "npx skills add https://github.com/vercel-labs/agent-skills --skill deploy-to-vercel",
+    "source": "https://www.skills.sh/vercel-labs/agent-skills/deploy-to-vercel"
   },
   {
     "name": "UI 设计系统",
@@ -284,7 +319,9 @@
       "detail"
     ],
     "description": "微交互灵感图鉴，收录APP中的微动效（如加载动画、输入反馈）",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx antigravity-awesome-skills --claude",
+    "source": "https://github.com/sickn33/antigravity-awesome-skills"
   },
   {
     "name": "Floracat Diagram",
@@ -299,7 +336,9 @@
       "flowchart"
     ],
     "description": "AI辅助生成Mermaid、PlantUML等格式的图表和流程图",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills add floracat/diagram --skill floracat-diagram",
+    "source": "https://github.com/FloraCat/diagram"
   },
   {
     "name": "Frontend Design",
@@ -314,7 +353,9 @@
       "page-generation"
     ],
     "description": "快速生成符合设计规范的前端页面，支持React/Tailwind/shadcn/ui",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills add https://github.com/anthropics/skills --skill frontend-design",
+    "source": "https://github.com/anthropics/skills"
   },
   {
     "name": "Git Smart Commit",
@@ -334,8 +375,13 @@
       "commit-hygiene"
     ],
     "commands": [
-      "git add -A && claude /commit"
-    ]
+      {
+        "name": "智能提交",
+        "cmd": "git add -A && claude /commit"
+      }
+    ],
+    "install": "复制 SKILL.md 到 .claude/skills/git-smart-commit/ 或通过 openskills 安装",
+    "source": "https://github.com/alirezarezvani/claude-code-tresor"
   },
   {
     "name": "GPT Imager",
@@ -349,7 +395,9 @@
       "asset"
     ],
     "description": "为文章、视频或报告生成配图和图片素材",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx evolink-gpt-image@latest -y --path ~/.claude/skills",
+    "source": "https://github.com/EvoLinkAI/gpt-image-2-gen-skill"
   },
   {
     "name": "GStack",
@@ -365,7 +413,9 @@
       "owasp"
     ],
     "description": "基于23项专业技能串联从设计到部署的完整研发链路，内置CEO战略审查、架构评审、OWASP安全扫描",
-    "scenarios": []
+    "scenarios": [],
+    "install": "git clone --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack && cd ~/.claude/skills/gstack && ./setup",
+    "source": "https://github.com/garrytan/gstack"
   },
   {
     "name": "guizang-ppt-skill",
@@ -379,7 +429,8 @@
       "AI Agent"
     ],
     "description": "一个适配 Claude Code / Codex 等 AI Agent 环境的网页 PPT 技能，用于生成单文件 HTML 横向翻页 PPT、PPT 配图和多平台封面。内置两套视觉风格，支持快速创建美观的演示文稿。",
-    "scenarios": []
+    "scenarios": [],
+    "source": "https://github.com/op7418/guizang-ppt-skill"
   },
   {
     "name": "PPT Master / HTML PPT Skill",
@@ -393,7 +444,9 @@
       "demo"
     ],
     "description": "快速制作PPT演示文稿，支持HTML格式或PPTX格式输出",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills add lewislulu/html-ppt-skill",
+    "source": "https://github.com/lewislulu/html-ppt-skill"
   },
   {
     "name": "Humanizer-ZH",
@@ -407,7 +460,9 @@
       "humanize"
     ],
     "description": "让AI写的文案更像人话，减少机器翻译感的中文文案自然化处理工具",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills add op7418/humanizer-zh --skill humanizer-zh",
+    "source": "https://github.com/chulo559/Humanizer-zh"
   },
   {
     "name": "hyperframes",
@@ -419,7 +474,8 @@
       "AI代理"
     ],
     "description": "HyperFrames 是一个开源框架，能将 HTML、CSS、媒体和可寻址动画转换为确定性的 MP4 视频。它既可以通过 AI 编码代理的技能一键生成视频，也支持 CLI 本地使用，适合快速创作产品介绍、宣传片等视频内容。",
-    "scenarios": []
+    "scenarios": [],
+    "source": "https://github.com/heygen-com/hyperframes"
   },
   {
     "name": "Impeccable",
@@ -436,7 +492,9 @@
       "visual"
     ],
     "description": "前端视觉品质全方位技能包，覆盖打磨、审计、动画、适配、优化、色彩化等20+子技能",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills add https://github.com/pbakaus/impeccable --skill impeccable",
+    "source": "https://www.skills.sh/pbakaus/impeccable/impeccable"
   },
   {
     "name": "Karpathy's Guidelines",
@@ -451,7 +509,9 @@
       "karpathy"
     ],
     "description": "Andrej Karpathy的4条AI编程行为规则：先思考、简洁优先、手术式改动、目标驱动执行",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills add https://github.com/karpathy/agent-skills --skill guidelines",
+    "source": "https://www.skills.sh/karpathy/agent-skills/guidelines"
   },
   {
     "name": "Markdown to HTML",
@@ -465,7 +525,9 @@
       "styling"
     ],
     "description": "将Markdown文档转换为精美排版的HTML页面，支持多种样式主题",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills add alchaincyf/huashu-md-html",
+    "source": "https://github.com/alchaincyf/huashu-md-html"
   },
   {
     "name": "Marketing Skills",
@@ -481,7 +543,9 @@
       "pricing"
     ],
     "description": "Corey Haines营销技能包，18个子技能覆盖SEO审计、文案写作、内容策略、邮件序列、CRO优化等",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills add https://github.com/coreyhaines31/marketingskills --skill seo-audit",
+    "source": "https://www.skills.sh/coreyhaines31/marketingskills/seo-audit"
   },
   {
     "name": "MattPocock Skills",
@@ -497,7 +561,9 @@
       "handoff"
     ],
     "description": "前端大神Matt Pocock的28个实战Skills，专治\"氛围编程\"四大通病，遵循TDD/DDD等工程原则",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills@latest add mattpocock/skills",
+    "source": "https://github.com/mattpocock/skills"
   },
   {
     "name": "BB Browser / OpenClaw",
@@ -512,7 +578,9 @@
       "screenshot"
     ],
     "description": "提供独立浏览器实例，支持托管浏览器和扩展中继两种模式的浏览器自动化工具",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npm install -g openclaw && openclaw onboard",
+    "source": "https://github.com/openclaw/openclaw"
   },
   {
     "name": "OpenCLI / 9Router",
@@ -526,7 +594,9 @@
       "model"
     ],
     "description": "终端环境下的AI调用或API路由管理工具",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npm install -g 9router && 9router",
+    "source": "https://github.com/decolua/9router"
   },
   {
     "name": "OpenSpec",
@@ -539,7 +609,9 @@
       "project-management"
     ],
     "description": "OpenSpec 是一个基于规范的 AI 原生工作流工具，帮助开发者用自然语言描述变更，自动生成提案、规范文档、设计说明和任务清单，并引导 AI 逐步实现与归档。它适用于从个人项目到企业级应用的迭代开发，让开发流程更轻量、灵活。",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npm install -g @fission-ai/openspec && openspec init",
+    "source": "https://github.com/Fission-AI/OpenSpec"
   },
   {
     "name": "Playwright MCP",
@@ -559,8 +631,13 @@
       "ci-testing"
     ],
     "commands": [
-      "claude /verify"
-    ]
+      {
+        "name": "启动浏览器测试",
+        "cmd": "claude /verify"
+      }
+    ],
+    "install": "claude mcp add playwright npx @playwright/mcp@latest",
+    "source": "https://github.com/microsoft/playwright-mcp"
   },
   {
     "name": "React Bits",
@@ -574,7 +651,9 @@
       "opensource"
     ],
     "description": "开源React动画组件库，提供70+种动画组件，npm install后直接复制代码使用",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npm install react-bits 或配置 MCP: npx -y reactbits-mcp-server",
+    "source": "https://github.com/DavidHDev/react-bits"
   },
   {
     "name": "Remotion Best Practices",
@@ -589,7 +668,9 @@
       "programmatic"
     ],
     "description": "Remotion官方最佳实践，深度掌握动画、时间轴、音频、字幕和3D的正确编码方式",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills add https://github.com/remotion-dev/skills --skill remotion-best-practices",
+    "source": "https://www.skills.sh/remotion-dev/skills/remotion-best-practices"
   },
   {
     "name": "shadcn/ui Skill",
@@ -604,7 +685,9 @@
       "react"
     ],
     "description": "shadcn/ui官方技能，管理组件的添加、搜索、修复、样式调整与组合，提供项目上下文与用法示例",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills add https://github.com/shadcn/ui --skill shadcn",
+    "source": "https://www.skills.sh/shadcn/ui/shadcn"
   },
   {
     "name": "Skill Creator/ Find-Skill",
@@ -618,7 +701,9 @@
       "marketplace"
     ],
     "description": "自己创建新技能或寻找现成技能的技能管理与搜索工具",
-    "scenarios": []
+    "scenarios": [],
+    "install": "brew install find-skill 或 pipx install find-skill",
+    "source": "https://github.com/fockus/claude-skill-find-skill"
   },
   {
     "name": "Skill Creator (Official)",
@@ -634,7 +719,9 @@
       "official"
     ],
     "description": "Anthropic官方技能创建器，交互式创建、修改和优化Agent Skills，支持性能评估与触发精度调优",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills add https://github.com/anthropics/skills --skill skill-creator",
+    "source": "https://www.skills.sh/anthropics/skills/skill-creator"
   },
   {
     "name": "Sleek Design Mobile Apps",
@@ -649,7 +736,9 @@
       "sleek"
     ],
     "description": "Sleek移动应用设计技能，AI辅助设计移动端界面、创建屏幕和构建UI",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills add https://github.com/sleekdotdesign/agent-skills --skill sleek-design-mobile-apps",
+    "source": "https://www.skills.sh/sleekdotdesign/agent-skills/sleek-design-mobile-apps"
   },
   {
     "name": "Superpowers",
@@ -664,7 +753,9 @@
       "review"
     ],
     "description": "通过流程化引导规范AI编程，提升代码交付质量的技能包",
-    "scenarios": []
+    "scenarios": [],
+    "install": "/plugin marketplace add obra/superpowers-marketplace",
+    "source": "https://github.com/obra/superpowers"
   },
   {
     "name": "UI/UX Pro Max",
@@ -680,7 +771,9 @@
       "chartjs"
     ],
     "description": "内置161种产品类型对应的专业调色板和设计策略，支持banner设计和HTML演示文稿",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills add nextlevelbuilder/ui-ux-pro-max-skill@ui-ux-pro-max",
+    "source": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill"
   },
   {
     "name": "Vercel Composition Patterns",
@@ -694,7 +787,9 @@
       "vercel"
     ],
     "description": "Vercel官方React组合模式技能，用复合组件替代boolean prop泛滥的架构方案",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills add https://github.com/vercel-labs/agent-skills --skill vercel-composition-patterns",
+    "source": "https://www.skills.sh/vercel-labs/agent-skills/vercel-composition-patterns"
   },
   {
     "name": "Vercel React Best Practices",
@@ -708,7 +803,9 @@
       "vercel"
     ],
     "description": "Vercel官方React最佳实践，57条性能规则覆盖React/Next.js核心优化策略",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills add https://github.com/vercel-labs/agent-skills --skill vercel-react-best-practices",
+    "source": "https://www.skills.sh/vercel-labs/agent-skills/vercel-react-best-practices"
   },
   {
     "name": "Vue3 组件开发",
@@ -726,8 +823,14 @@
       "spa-building"
     ],
     "commands": [
-      "npm create vite@latest my-app -- --template vue",
-      "cd my-app && npm run dev"
+      {
+        "name": "创建Vue项目",
+        "cmd": "npm create vite@latest my-app -- --template vue"
+      },
+      {
+        "name": "开发模式启动",
+        "cmd": "cd my-app && npm run dev"
+      }
     ]
   },
   {
@@ -744,7 +847,9 @@
       "webapp"
     ],
     "description": "Anthropic官方Web应用测试技能，通过Playwright在真实浏览器中测试本地应用",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills add https://github.com/anthropics/skills --skill webapp-testing",
+    "source": "https://www.skills.sh/anthropics/skills/webapp-testing"
   },
   {
     "name": "NotebookLM Skill / Zread",
@@ -759,6 +864,8 @@
       "llms-txt"
     ],
     "description": "在终端批量分析文档或深入理解GitHub仓库的CLI工具",
-    "scenarios": []
+    "scenarios": [],
+    "install": "npx skills add tianxiao1430-jpg/zai-skills",
+    "source": "https://github.com/tianxiao1430-jpg/zai-skills"
   }
 ]
