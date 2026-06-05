@@ -6,7 +6,9 @@ import { useBookmarks } from '../composables/useBookmarks'
 import { useSkillStatus } from '../composables/useSkillStatus'
 import { useUsageTracker } from '../composables/useUsageTracker'
 import { useSpacedRepetition } from '../composables/useSpacedRepetition'
+import { useStats } from '../composables/useStats'
 import SubNav from '../components/SubNav.vue'
+import UsageHeatmap from '../components/UsageHeatmap.vue'
 
 const router = useRouter()
 const { skills, getSkillBySlug, fetchSkills } = useSkills()
@@ -14,6 +16,7 @@ const { bookmarks } = useBookmarks()
 const { statuses, statusStats, getStatus, setStatus } = useSkillStatus()
 const { recentlyViewed, getStaleLearning, getViewCount, getLastViewed } = useUsageTracker()
 const { dueReviews, markReviewed, markForgotten } = useSpacedRepetition()
+const { heatmapData } = useStats()
 
 onMounted(fetchSkills)
 
@@ -287,6 +290,17 @@ const statusIcon = {
         </div>
       </div>
       <p v-else class="empty-hint">浏览技能后会自动记录在这里</p>
+    </section>
+
+    <!-- ── Section: Activity Heatmap ── -->
+    <section class="my-section">
+      <div class="section-head">
+        <h2 class="section-title">活动热力图</h2>
+        <span class="section-badge">近 90 天</span>
+      </div>
+      <div class="heatmap-wrapper">
+        <UsageHeatmap :data="heatmapData" />
+      </div>
     </section>
   </div>
   </div>
@@ -754,5 +768,15 @@ const statusIcon = {
 
 .review-btn--done:hover {
   background: #a8442e;
+}
+
+/* ── Heatmap ── */
+
+.heatmap-wrapper {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 14px;
+  padding: 20px 24px;
+  overflow-x: auto;
 }
 </style>

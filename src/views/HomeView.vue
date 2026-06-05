@@ -8,6 +8,7 @@ import { useScenarios } from '../composables/useScenarios'
 import { useBookmarks } from '../composables/useBookmarks'
 import { useSkillStatus } from '../composables/useSkillStatus'
 import { useUsageTracker } from '../composables/useUsageTracker'
+import { useSort } from '../composables/useSort'
 import SubNav from '../components/SubNav.vue'
 import CategorySidebar from '../components/CategorySidebar.vue'
 import TagCloud from '../components/TagCloud.vue'
@@ -46,7 +47,8 @@ function handleCategorySelect(cat) {
 }
 
 const scenarioFiltered = filterByScenario(filtered)
-const displayedSkills = scenarioFiltered
+const { sortMode, setSortMode, sorted } = useSort()
+const displayedSkills = computed(() => sorted(scenarioFiltered.value))
 
 // Personal data for Hero summary panel
 const { bookmarks } = useBookmarks()
@@ -151,18 +153,34 @@ const recentCount = computed(() => (recentlyViewed.value || []).length)
 
       <!-- Right Content -->
       <main class="flex-1 min-w-0">
-        <!-- Results Count & Clear -->
+        <!-- Results Count & Sort -->
         <div class="flex items-center justify-between mb-6">
           <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: #6b6560;">
             <span style="font-family: 'Crimson Pro', serif; font-weight: 600;">{{ displayedSkills.length }}</span> 个技能
           </p>
-          <button
-            v-if="selectedCategory !== '全部' || selectedTags.length > 0 || query || selectedScenario"
-            @click="clearAllFilters()"
-            class="clear-filter-btn"
-          >
-            清除筛选
-          </button>
+          <div class="flex items-center gap-4">
+            <select
+              :value="sortMode"
+              @change="setSortMode($event.target.value)"
+              class="sort-select"
+            >
+              <option value="default">默认排序</option>
+              <option value="name-asc">名称 A-Z</option>
+              <option value="name-desc">名称 Z-A</option>
+              <option value="views-desc">查看频率 高→低</option>
+              <option value="views-asc">查看频率 低→高</option>
+              <option value="recent-desc">最近查看</option>
+              <option value="recent-asc">最近查看 旧→新</option>
+              <option value="status">学习状态</option>
+            </select>
+            <button
+              v-if="selectedCategory !== '全部' || selectedTags.length > 0 || query || selectedScenario"
+              @click="clearAllFilters()"
+              class="clear-filter-btn"
+            >
+              清除筛选
+            </button>
+          </div>
         </div>
 
         <!-- Empty State -->
@@ -409,6 +427,27 @@ const recentCount = computed(() => (recentlyViewed.value || []).length)
 
 .clear-filter-btn:hover {
   text-decoration: underline;
+}
+
+.sort-select {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: #6b6560;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.sort-select:hover {
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.sort-select:focus {
+  border-color: #c4553a;
 }
 
 /* ── Scenario Tags ── */

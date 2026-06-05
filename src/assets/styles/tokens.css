@@ -124,6 +124,13 @@
   --duration-slow:   500ms;
   --duration-reveal: 600ms;
 
+  /* Heatmap */
+  --color-heatmap-0:     #ebedf0;
+  --color-heatmap-1:     #9be9a8;
+  --color-heatmap-2:     #40c463;
+  --color-heatmap-3:     #30a14e;
+  --color-heatmap-4:     #216e39;
+
   /* Z-Index Scale */
   --z-base:      1;
   --z-dropdown:  100;
@@ -179,6 +186,11 @@
                          0 12px 36px rgba(0, 0, 0, 0.2);
     --shadow-accent: 0 4px 16px rgba(212, 117, 94, 0.2),
                      0 2px 4px rgba(212, 117, 94, 0.1);
+    --color-heatmap-0:     #161b22;
+    --color-heatmap-1:     #0e4429;
+    --color-heatmap-2:     #006d32;
+    --color-heatmap-3:     #26a641;
+    --color-heatmap-4:     #39d353;
   }
 }
 
