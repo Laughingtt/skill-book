@@ -21,7 +21,7 @@ const rawMd = ref('')
 const loading = ref(true)
 const error = ref(null)
 const showDeleteConfirm = ref(false)
-const { skills, updateSkillFromMd, deleteSkill } = useSkills()
+const { skills, fetchSkills, updateSkillFromMd, deleteSkill } = useSkills()
 const { query, clearSearch } = useSearch()
 const { isBookmarked, toggleBookmark } = useBookmarks()
 const { getStatus, setStatus, clearStatus } = useSkillStatus()
@@ -156,6 +156,7 @@ async function loadSkill(slug) {
 }
 
 onMounted(() => {
+  fetchSkills()
   loadSkill(route.params.slug)
   initNote(route.params.slug)
 })
