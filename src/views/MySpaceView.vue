@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useSkills } from '../composables/useSkills'
 import { useBookmarks } from '../composables/useBookmarks'
@@ -9,11 +9,13 @@ import { useSpacedRepetition } from '../composables/useSpacedRepetition'
 import SubNav from '../components/SubNav.vue'
 
 const router = useRouter()
-const { skills, getSkillBySlug } = useSkills()
+const { skills, getSkillBySlug, fetchSkills } = useSkills()
 const { bookmarks } = useBookmarks()
 const { statuses, statusStats, getStatus, setStatus } = useSkillStatus()
 const { recentlyViewed, getStaleLearning, getViewCount, getLastViewed } = useUsageTracker()
 const { dueReviews, markReviewed, markForgotten } = useSpacedRepetition()
+
+onMounted(fetchSkills)
 
 // Grouped skill lists by status
 const masteredSkills = computed(() => {
