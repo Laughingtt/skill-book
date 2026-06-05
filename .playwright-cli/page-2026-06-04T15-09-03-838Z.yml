@@ -1,0 +1,573 @@
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - link "SKILL BOOK" [ref=e5] [cursor=pointer]:
+      - /url: "#/"
+  - generic [ref=e817]:
+    - generic [ref=e818]:
+      - generic [ref=e819] [cursor=pointer]: Skill Book
+      - generic [ref=e821]:
+        - img
+        - textbox "搜索技能..." [ref=e822]: superpower
+        - button "清除搜索" [ref=e823] [cursor=pointer]:
+          - img [ref=e824]
+      - link "我的空间" [ref=e828] [cursor=pointer]:
+        - /url: "#/my"
+        - img [ref=e829]
+    - generic [ref=e833]:
+      - button "返回列表" [ref=e834] [cursor=pointer]:
+        - img [ref=e835]
+        - text: 返回列表
+      - paragraph [ref=e837]: 编码开发与工程规范
+      - heading "Superpowers" [level=1] [ref=e838]
+      - paragraph [ref=e839]: 通过流程化引导规范AI编程，提升代码交付质量的技能包
+      - paragraph [ref=e840]: quality · process · workflow · tdd · debugging · review
+      - generic [ref=e841]:
+        - button "待尝试" [ref=e842] [cursor=pointer]
+        - button "学习中" [ref=e843] [cursor=pointer]
+        - button "已掌握" [ref=e844] [cursor=pointer]
+      - button "收藏" [ref=e845] [cursor=pointer]:
+        - img [ref=e846]
+        - text: 收藏
+      - generic [ref=e849]:
+        - button "编辑" [ref=e850] [cursor=pointer]:
+          - img [ref=e851]
+          - text: 编辑
+        - button "删除" [ref=e854] [cursor=pointer]:
+          - img [ref=e855]
+          - text: 删除
+    - generic [ref=e859]:
+      - heading "Superpowers — AI 编程代理的结构化开发方法论" [level=1] [ref=e860]
+      - heading "简介" [level=2] [ref=e861]
+      - paragraph [ref=e862]: Superpowers 是由 Jesse Vincent 创建的一套完整的 AI 编程代理技能框架与软件开发方法论。它不是单一的提示词模板，而是一组可组合的技能（Skills），通过结构化引导强制 AI 代理遵循严格的工程流程，从而将"氛围编程"（Vibe Coding）转变为可预测、可验证、可审查的专业级开发实践。
+      - paragraph [ref=e863]:
+        - text: 核心理念：
+        - strong [ref=e864]: AI 代理缺少的不是能力，而是纪律。
+        - text: Superpowers 通过将工程最佳实践编码为自动触发的技能，让 Claude Code、Codex CLI、Cursor、Gemini CLI 等代理从"快速代码生成器"转变为"有条理的开发伙伴"。
+      - heading "与标准 AI 编程的对比" [level=3] [ref=e865]
+      - table [ref=e866]:
+        - rowgroup [ref=e867]:
+          - row "维度 标准 AI 编程 Superpowers 工作流" [ref=e868]:
+            - columnheader "维度" [ref=e869]
+            - columnheader "标准 AI 编程" [ref=e870]
+            - columnheader "Superpowers 工作流" [ref=e871]
+        - rowgroup [ref=e872]:
+          - row "起点 直接开始写代码 苏格拉底式头脑风暴，验证设计后再动手" [ref=e873]:
+            - cell "起点" [ref=e874]
+            - cell "直接开始写代码" [ref=e875]
+            - cell "苏格拉底式头脑风暴，验证设计后再动手" [ref=e876]
+          - row "规划 无规划或一次性模糊计划 详细的实施计划，每个任务 2-5 分钟，包含精确文件路径" [ref=e877]:
+            - cell "规划" [ref=e878]
+            - cell "无规划或一次性模糊计划" [ref=e879]
+            - cell "详细的实施计划，每个任务 2-5 分钟，包含精确文件路径" [ref=e880]
+          - row "测试 事后补写，经常不完整 严格的 TDD：先写失败测试，再写生产代码" [ref=e881]:
+            - cell "测试" [ref=e882]
+            - cell "事后补写，经常不完整" [ref=e883]
+            - cell "严格的 TDD：先写失败测试，再写生产代码" [ref=e884]
+          - row "长上下文 渐进漂移，遗忘初始指令 每个任务分派独立子代理，无上下文漂移" [ref=e885]:
+            - cell "长上下文" [ref=e886]
+            - cell "渐进漂移，遗忘初始指令" [ref=e887]
+            - cell "每个任务分派独立子代理，无上下文漂移" [ref=e888]
+          - row "代码审查 无 每个任务后自动审查，关键问题阻断进度" [ref=e889]:
+            - cell "代码审查" [ref=e890]
+            - cell "无" [ref=e891]
+            - cell "每个任务后自动审查，关键问题阻断进度" [ref=e892]
+          - row "隔离 直接在主分支修改 隔离的 Git Worktree，独立分支" [ref=e893]:
+            - cell "隔离" [ref=e894]
+            - cell "直接在主分支修改" [ref=e895]
+            - cell "隔离的 Git Worktree，独立分支" [ref=e896]
+          - row "自主性 10-15 分钟后质量下降 可连续数小时自主工作不偏离计划" [ref=e897]:
+            - cell "自主性" [ref=e898]
+            - cell "10-15 分钟后质量下降" [ref=e899]
+            - cell "可连续数小时自主工作不偏离计划" [ref=e900]
+      - heading "核心功能" [level=2] [ref=e901]
+      - heading "1. 技能发现与自动激活（Skill Discovery）" [level=3] [ref=e902]
+      - paragraph [ref=e903]:
+        - text: Superpowers 技能在代理启动时自动注册。当代理开始一项任务时，会自动检查是否有适用的技能。如果有，必须使用——这不是建议，而是强制要求。
+        - code [ref=e904]: using-superpowers
+        - text: 技能作为框架入口，确保每个任务都不会遗漏最佳实践。
+      - heading "2. 头脑风暴（Brainstorming）" [level=3] [ref=e905]
+      - paragraph [ref=e906]: 通过苏格拉底式提问引导，在写任何代码之前澄清真实需求：
+      - list [ref=e907]:
+        - listitem [ref=e908]: 探索你可能没考虑到的替代方案
+        - listitem [ref=e909]: 将设计方案分段呈现，便于消化和确认
+        - listitem [ref=e910]: 保存设计文档供后续参考
+      - paragraph [ref=e911]:
+        - strong [ref=e912]: 触发方式
+        - text: ：需求不明确时自动激活，或通过
+        - code [ref=e913]: /superpowers:brainstorming
+        - text: 手动触发
+      - heading "3. 实施计划编写（Writing Plans）" [level=3] [ref=e914]
+      - paragraph [ref=e915]: 将批准的设计分解为可执行的小任务：
+      - list [ref=e916]:
+        - listitem [ref=e917]: 每个步骤 2-5 分钟，精确到文件路径和代码片段
+        - listitem [ref=e918]: 包含验证命令和预期结果
+        - listitem [ref=e919]: 绝不允许占位符（无 TBD、TODO、“后续实现”）
+        - listitem [ref=e920]: 遵循 YAGNI（你不会需要它）和 DRY 原则
+        - listitem [ref=e921]: 自动自检：覆盖度扫描、占位符扫描、类型一致性检查
+      - paragraph [ref=e922]:
+        - strong [ref=e923]: 触发关键词
+        - text: ：“制定计划”、“planning”、“make a plan”
+      - heading "4. 子代理驱动开发（Subagent-Driven Development）" [level=3] [ref=e924]
+      - paragraph [ref=e925]: Superpowers 最强大的模式——从"好习惯"升级为"架构创新"：
+      - list [ref=e926]:
+        - listitem [ref=e927]: 为主计划中的每个任务分派一个全新的子代理
+        - listitem [ref=e928]: 子代理不继承会话上下文，避免累积混乱
+        - listitem [ref=e929]: 两阶段审查：先检查规格合规性，再检查代码质量
+        - listitem [ref=e930]: 支持选择最经济的模型处理机械性任务（如 Haiku）
+        - listitem [ref=e931]: 连续执行，不在任务间暂停请示，仅在阻塞时停止
+      - paragraph [ref=e932]:
+        - strong [ref=e933]: 适用场景
+        - text: ：有独立任务的计划执行，需要并行处理的场景
+      - heading "5. 测试驱动开发（TDD）" [level=3] [ref=e934]
+      - paragraph [ref=e935]:
+        - text: 执行"铁律"：
+        - strong [ref=e936]: 没有失败测试，就没有生产代码。
+      - paragraph [ref=e937]: 严格的 RED-GREEN-REFACTOR 循环：
+      - list [ref=e938]:
+        - listitem [ref=e939]:
+          - strong [ref=e940]: RED
+          - text: — 编写描述期望行为的失败测试
+        - listitem [ref=e941]:
+          - strong [ref=e942]: GREEN
+          - text: — 编写让测试通过的最小代码
+        - listitem [ref=e943]:
+          - strong [ref=e944]: REFACTOR
+          - text: — 在测试通过的前提下清理、消除重复
+        - listitem [ref=e945]:
+          - strong [ref=e946]: COMMIT
+          - text: — 绿灯时提交
+      - paragraph [ref=e947]: 核心原则：如果你没有看到测试失败，你就不确定它测试的是否正确。违反规则的精神就是违反规则本身。先于测试编写的生产代码会被删除。
+      - heading "6. 系统化调试（Systematic Debugging）" [level=3] [ref=e948]
+      - paragraph [ref=e949]: 四阶段根本原因分析方法：
+      - list [ref=e950]:
+        - listitem [ref=e951]:
+          - strong [ref=e952]: 根本原因调查
+          - text: — 隔离问题，检查最近变更
+        - listitem [ref=e953]:
+          - strong [ref=e954]: 模式分析
+          - text: — 识别错误模式和触发条件
+        - listitem [ref=e955]:
+          - strong [ref=e956]: 假设验证
+          - text: — 构建可测试的假设并逐一验证
+        - listitem [ref=e957]:
+          - strong [ref=e958]: 实施修复
+          - text: — 基于证据而非猜测修复问题
+      - paragraph [ref=e959]:
+        - strong [ref=e960]: 触发关键词
+        - text: ：“debug”、“bug”、“不工作”、“报错”
+      - heading "7. 代码审查（Code Review）" [level=3] [ref=e961]
+      - paragraph [ref=e962]: 双向审查机制：
+      - list [ref=e963]:
+        - listitem [ref=e964]:
+          - strong [ref=e965]: 请求审查
+          - text: （requesting-code-review）：对照计划审查，按严重程度报告问题，关键问题阻断进度
+        - listitem [ref=e966]:
+          - strong [ref=e967]: 接收审查
+          - text: （receiving-code-review）：技术严谨地验证反馈，不做表演性同意或盲目实施
+      - heading "8. 完成前验证（Verification Before Completion）" [level=3] [ref=e968]
+      - paragraph [ref=e969]: 在声称工作完成之前，必须：
+      - list [ref=e970]:
+        - listitem [ref=e971]: 运行验证命令并确认输出
+        - listitem [ref=e972]: 证据先于断言——没有证明就不能说"完成了"
+        - listitem [ref=e973]: 检查所有测试是否通过
+        - listitem [ref=e974]: 确认与计划规格一致
+      - heading "9. Git Worktree 隔离（Using Git Worktrees）" [level=3] [ref=e975]
+      - paragraph [ref=e976]: 在设计批准后自动创建隔离工作空间：
+      - list [ref=e977]:
+        - listitem [ref=e978]: 在新分支上工作，保持主分支稳定
+        - listitem [ref=e979]: 实验失败时轻松清理
+        - listitem [ref=e980]: 支持并行开发多个功能
+      - heading "10. 开发分支完成（Finishing a Development Branch）" [level=3] [ref=e981]
+      - paragraph [ref=e982]: 任务完成时自动激活：
+      - list [ref=e983]:
+        - listitem [ref=e984]: 验证所有测试通过
+        - listitem [ref=e985]: 提供选项：合并 / 创建 PR / 保留分支 / 放弃
+        - listitem [ref=e986]: 清理 Worktree
+      - heading "安装与配置" [level=2] [ref=e987]
+      - heading "Claude Code" [level=3] [ref=e988]
+      - paragraph [ref=e989]:
+        - strong [ref=e990]: 方式一：官方插件市场（推荐）
+      - generic [ref=e991]:
+        - code [ref=e992]: /plugin install superpowers@claude-plugins-official
+        - button "复制" [ref=e993] [cursor=pointer]
+      - paragraph [ref=e994]:
+        - strong [ref=e995]: 方式二：Superpowers 市场
+      - generic [ref=e996]:
+        - code [ref=e997]: "# 注册市场 /plugin marketplace add obra/superpowers-marketplace # 安装插件 /plugin install superpowers@superpowers-marketplace"
+        - button "复制" [ref=e998] [cursor=pointer]
+      - paragraph [ref=e999]:
+        - text: 安装后重启 Claude Code，看到
+        - code [ref=e1000]: "SessionStart:startup hook succeeded: Success"
+        - text: 即表示激活成功。
+      - heading "Codex CLI" [level=3] [ref=e1001]
+      - generic [ref=e1002]:
+        - code [ref=e1003]: "# 打开插件搜索 # 搜索 \"Superpowers\" # 选择 Install Plugin"
+        - button "复制" [ref=e1004] [cursor=pointer]
+      - heading "Cursor" [level=3] [ref=e1005]
+      - paragraph [ref=e1006]: 在 Cursor Agent 聊天中：
+      - generic [ref=e1007]:
+        - code [ref=e1008]: /add-plugin superpowers
+        - button "复制" [ref=e1009] [cursor=pointer]
+      - paragraph [ref=e1010]: 或在插件市场中搜索 “superpowers”。
+      - heading "Gemini CLI" [level=3] [ref=e1011]
+      - generic [ref=e1012]:
+        - code [ref=e1013]: gemini extensions install obra/superpowers
+        - button "复制" [ref=e1014] [cursor=pointer]
+      - heading "GitHub Copilot CLI" [level=3] [ref=e1015]
+      - generic [ref=e1016]:
+        - code [ref=e1017]: "# 注册市场后安装插件"
+        - button "复制" [ref=e1018] [cursor=pointer]
+      - heading "OpenCode" [level=3] [ref=e1019]
+      - generic [ref=e1020]:
+        - code [ref=e1021]: Fetch and follow instructions from https://raw.githubusercontent.com/obra/superpowers/refs/heads/main/.opencode/INSTALL.md
+        - button "复制" [ref=e1022] [cursor=pointer]
+      - heading "验证安装" [level=3] [ref=e1023]
+      - paragraph [ref=e1024]: 安装完成后，在对话中描述你想构建的功能。如果 Superpowers 正常工作，代理会在写代码之前先提问澄清需求——头脑风暴技能会自动激活。
+      - heading "可用技能列表与分类" [level=2] [ref=e1025]
+      - heading "测试类" [level=3] [ref=e1026]
+      - table [ref=e1027]:
+        - rowgroup [ref=e1028]:
+          - row "技能 斜杠命令 说明" [ref=e1029]:
+            - columnheader "技能" [ref=e1030]
+            - columnheader "斜杠命令" [ref=e1031]
+            - columnheader "说明" [ref=e1032]
+        - rowgroup [ref=e1033]:
+          - row "test-driven-development /superpowers:test-driven-development 强制 RED-GREEN-REFACTOR TDD 工作流" [ref=e1034]:
+            - cell "test-driven-development" [ref=e1035]
+            - cell "/superpowers:test-driven-development" [ref=e1036]:
+              - code [ref=e1037]: /superpowers:test-driven-development
+            - cell "强制 RED-GREEN-REFACTOR TDD 工作流" [ref=e1038]
+          - row "verification-before-completion /superpowers:verification-before-completion 完成前强制验证，证据先于断言" [ref=e1039]:
+            - cell "verification-before-completion" [ref=e1040]
+            - cell "/superpowers:verification-before-completion" [ref=e1041]:
+              - code [ref=e1042]: /superpowers:verification-before-completion
+            - cell "完成前强制验证，证据先于断言" [ref=e1043]
+      - heading "调试类" [level=3] [ref=e1044]
+      - table [ref=e1045]:
+        - rowgroup [ref=e1046]:
+          - row "技能 斜杠命令 说明" [ref=e1047]:
+            - columnheader "技能" [ref=e1048]
+            - columnheader "斜杠命令" [ref=e1049]
+            - columnheader "说明" [ref=e1050]
+        - rowgroup [ref=e1051]:
+          - row "systematic-debugging /superpowers:systematic-debugging 四阶段系统化根本原因分析" [ref=e1052]:
+            - cell "systematic-debugging" [ref=e1053]
+            - cell "/superpowers:systematic-debugging" [ref=e1054]:
+              - code [ref=e1055]: /superpowers:systematic-debugging
+            - cell "四阶段系统化根本原因分析" [ref=e1056]
+      - heading "协作类" [level=3] [ref=e1057]
+      - table [ref=e1058]:
+        - rowgroup [ref=e1059]:
+          - row "技能 斜杠命令 说明" [ref=e1060]:
+            - columnheader "技能" [ref=e1061]
+            - columnheader "斜杠命令" [ref=e1062]
+            - columnheader "说明" [ref=e1063]
+        - rowgroup [ref=e1064]:
+          - row "brainstorming /superpowers:brainstorming 苏格拉底式头脑风暴，澄清需求" [ref=e1065]:
+            - cell "brainstorming" [ref=e1066]
+            - cell "/superpowers:brainstorming" [ref=e1067]:
+              - code [ref=e1068]: /superpowers:brainstorming
+            - cell "苏格拉底式头脑风暴，澄清需求" [ref=e1069]
+          - row "requesting-code-review /superpowers:requesting-code-review 请求代码审查，按严重程度报告" [ref=e1070]:
+            - cell "requesting-code-review" [ref=e1071]
+            - cell "/superpowers:requesting-code-review" [ref=e1072]:
+              - code [ref=e1073]: /superpowers:requesting-code-review
+            - cell "请求代码审查，按严重程度报告" [ref=e1074]
+          - row "receiving-code-review /superpowers:receiving-code-review 接收代码审查反馈，技术严谨验证" [ref=e1075]:
+            - cell "receiving-code-review" [ref=e1076]
+            - cell "/superpowers:receiving-code-review" [ref=e1077]:
+              - code [ref=e1078]: /superpowers:receiving-code-review
+            - cell "接收代码审查反馈，技术严谨验证" [ref=e1079]
+      - heading "工作流类" [level=3] [ref=e1080]
+      - table [ref=e1081]:
+        - rowgroup [ref=e1082]:
+          - row "技能 斜杠命令 说明" [ref=e1083]:
+            - columnheader "技能" [ref=e1084]
+            - columnheader "斜杠命令" [ref=e1085]
+            - columnheader "说明" [ref=e1086]
+        - rowgroup [ref=e1087]:
+          - row "writing-plans /superpowers:writing-plans 将设计分解为可执行的实施计划" [ref=e1088]:
+            - cell "writing-plans" [ref=e1089]
+            - cell "/superpowers:writing-plans" [ref=e1090]:
+              - code [ref=e1091]: /superpowers:writing-plans
+            - cell "将设计分解为可执行的实施计划" [ref=e1092]
+          - row "executing-plans /superpowers:executing-plans 在当前会话中逐步执行计划" [ref=e1093]:
+            - cell "executing-plans" [ref=e1094]
+            - cell "/superpowers:executing-plans" [ref=e1095]:
+              - code [ref=e1096]: /superpowers:executing-plans
+            - cell "在当前会话中逐步执行计划" [ref=e1097]
+          - row "subagent-driven-development /superpowers:subagent-driven-development 子代理并行执行，两阶段审查" [ref=e1098]:
+            - cell "subagent-driven-development" [ref=e1099]
+            - cell "/superpowers:subagent-driven-development" [ref=e1100]:
+              - code [ref=e1101]: /superpowers:subagent-driven-development
+            - cell "子代理并行执行，两阶段审查" [ref=e1102]
+          - row "using-git-worktrees /superpowers:using-git-worktrees Git Worktree 隔离工作空间" [ref=e1103]:
+            - cell "using-git-worktrees" [ref=e1104]
+            - cell "/superpowers:using-git-worktrees" [ref=e1105]:
+              - code [ref=e1106]: /superpowers:using-git-worktrees
+            - cell "Git Worktree 隔离工作空间" [ref=e1107]
+          - row "finishing-a-development-branch /superpowers:finishing-a-development-branch 分支完成后的合并/PR/清理" [ref=e1108]:
+            - cell "finishing-a-development-branch" [ref=e1109]
+            - cell "/superpowers:finishing-a-development-branch" [ref=e1110]:
+              - code [ref=e1111]: /superpowers:finishing-a-development-branch
+            - cell "分支完成后的合并/PR/清理" [ref=e1112]
+      - heading "元技能类" [level=3] [ref=e1113]
+      - table [ref=e1114]:
+        - rowgroup [ref=e1115]:
+          - row "技能 斜杠命令 说明" [ref=e1116]:
+            - columnheader "技能" [ref=e1117]
+            - columnheader "斜杠命令" [ref=e1118]
+            - columnheader "说明" [ref=e1119]
+        - rowgroup [ref=e1120]:
+          - row "using-superpowers /superpowers:using-superpowers 框架入口，确保技能被正确发现和使用" [ref=e1121]:
+            - cell "using-superpowers" [ref=e1122]
+            - cell "/superpowers:using-superpowers" [ref=e1123]:
+              - code [ref=e1124]: /superpowers:using-superpowers
+            - cell "框架入口，确保技能被正确发现和使用" [ref=e1125]
+          - row "writing-skills /superpowers:writing-skills 创建和编辑自定义技能" [ref=e1126]:
+            - cell "writing-skills" [ref=e1127]
+            - cell "/superpowers:writing-skills" [ref=e1128]:
+              - code [ref=e1129]: /superpowers:writing-skills
+            - cell "创建和编辑自定义技能" [ref=e1130]
+          - row "dispatching-parallel-agents /superpowers:dispatching-parallel-agents 分派并行代理处理独立任务" [ref=e1131]:
+            - cell "dispatching-parallel-agents" [ref=e1132]
+            - cell "/superpowers:dispatching-parallel-agents" [ref=e1133]:
+              - code [ref=e1134]: /superpowers:dispatching-parallel-agents
+            - cell "分派并行代理处理独立任务" [ref=e1135]
+      - heading "使用方法" [level=2] [ref=e1136]
+      - heading "标准开发工作流" [level=3] [ref=e1137]
+      - paragraph [ref=e1138]: Superpowers 的真正力量来自多个技能的组合。以下是完整的标准开发流程：
+      - generic [ref=e1139]:
+        - code [ref=e1140]: 1. 头脑风暴 (brainstorming) ↓ 通过问答澄清真实需求 2. 设计文档 ↓ 分段呈现设计方案，等待确认 3. 编写计划 (writing-plans) ↓ 分解为 2-5 分钟的小任务，精确到文件路径 4. Git Worktree (using-git-worktrees) ↓ 创建隔离工作空间，在新分支上开发 5. 子代理执行 (subagent-driven-development) ↓ 每个任务分派独立子代理 ↓ 两阶段审查：规格合规 + 代码质量 6. TDD (test-driven-development) ↓ 强制 RED-GREEN-REFACTOR 循环 7. 代码审查 (requesting-code-review) ↓ 质量关卡，关键问题阻断 8. 完成分支 (finishing-a-development-branch) ↓ 验证、合并/PR、清理
+        - button "复制" [ref=e1141] [cursor=pointer]
+      - heading "斜杠命令触发" [level=3] [ref=e1142]
+      - paragraph [ref=e1143]: 技能可以通过斜杠命令手动触发：
+      - generic [ref=e1144]:
+        - code [ref=e1145]: "/superpowers:brainstorming # 开始头脑风暴 /superpowers:writing-plans # 编写实施计划 /superpowers:executing-plans # 执行已有计划 /superpowers:test-driven-development # 启动 TDD 流程 /superpowers:systematic-debugging # 系统化调试 /superpowers:requesting-code-review # 请求代码审查 /superpowers:verification-before-completion # 完成前验证"
+        - button "复制" [ref=e1146] [cursor=pointer]
+      - heading "关键词自动触发" [level=3] [ref=e1147]
+      - paragraph [ref=e1148]: Superpowers 技能也通过关键词自动激活：
+      - table [ref=e1149]:
+        - rowgroup [ref=e1150]:
+          - row "技能 触发关键词" [ref=e1151]:
+            - columnheader "技能" [ref=e1152]
+            - columnheader "触发关键词" [ref=e1153]
+        - rowgroup [ref=e1154]:
+          - row "brainstorming 需求不明确时自动触发" [ref=e1155]:
+            - cell "brainstorming" [ref=e1156]
+            - cell "需求不明确时自动触发" [ref=e1157]
+          - row "test-driven-development “TDD”、“test-driven”、“先写测试”" [ref=e1158]:
+            - cell "test-driven-development" [ref=e1159]
+            - cell "“TDD”、“test-driven”、“先写测试”" [ref=e1160]
+          - row "systematic-debugging “debug”、“bug”、“不工作”、“报错”" [ref=e1161]:
+            - cell "systematic-debugging" [ref=e1162]
+            - cell "“debug”、“bug”、“不工作”、“报错”" [ref=e1163]
+          - row "writing-plans “制定计划”、“planning”" [ref=e1164]:
+            - cell "writing-plans" [ref=e1165]
+            - cell "“制定计划”、“planning”" [ref=e1166]
+          - row "verification-before-completion 即将声称完成时自动触发" [ref=e1167]:
+            - cell "verification-before-completion" [ref=e1168]
+            - cell "即将声称完成时自动触发" [ref=e1169]
+      - heading "实战示例：用 Superpowers 构建用户认证系统" [level=3] [ref=e1170]
+      - paragraph [ref=e1171]:
+        - strong [ref=e1172]: 第 1 步：头脑风暴
+      - list [ref=e1173]:
+        - listitem [ref=e1174]: 代理提问：需要支持哪些认证方式？是否需要 OAuth？密码策略是什么？
+        - listitem [ref=e1175]: 你回答后，代理呈现设计方案
+        - listitem [ref=e1176]: 你逐段确认，最终批准设计
+      - paragraph [ref=e1177]:
+        - strong [ref=e1178]: 第 2 步：编写计划
+      - list [ref=e1179]:
+        - listitem [ref=e1180]: 代理生成包含 10-15 个任务的详细计划
+        - listitem [ref=e1181]: 每个任务有精确的文件路径、代码片段、验证命令
+        - listitem [ref=e1182]: 你审核计划，调整后批准
+      - paragraph [ref=e1183]:
+        - strong [ref=e1184]: 第 3 步：子代理执行
+      - list [ref=e1185]:
+        - listitem [ref=e1186]: 每个任务由独立的子代理执行
+        - listitem [ref=e1187]: 完成后自动审查：先检查是否与规格一致，再检查代码质量
+        - listitem [ref=e1188]: 关键问题阻断，小问题记录后继续
+      - paragraph [ref=e1189]:
+        - strong [ref=e1190]: 第 4 步：TDD 循环
+      - list [ref=e1191]:
+        - listitem [ref=e1192]: 子代理先编写失败测试
+        - listitem [ref=e1193]: 确认测试失败（证明测试有效）
+        - listitem [ref=e1194]: 编写最小实现代码使测试通过
+        - listitem [ref=e1195]: 重构清理
+      - paragraph [ref=e1196]:
+        - strong [ref=e1197]: 第 5 步：审查与完成
+      - list [ref=e1198]:
+        - listitem [ref=e1199]: 自动代码审查
+        - listitem [ref=e1200]: 验证所有测试通过
+        - listitem [ref=e1201]: 提交代码，提供合并选项
+      - heading "技能开发指南" [level=2] [ref=e1202]
+      - paragraph [ref=e1203]:
+        - text: Superpowers 包含
+        - code [ref=e1204]: writing-skills
+        - text: 元技能，帮助你创建自定义技能。
+      - heading "技能基本结构" [level=3] [ref=e1205]
+      - generic [ref=e1206]:
+        - code [ref=e1207]: "my-skill/ ├── SKILL.md # 技能主文件，包含指令和流程 └── resources/ # 支持文件（参考文档、模板等）"
+        - button "复制" [ref=e1208] [cursor=pointer]
+      - heading "SKILL.md 编写要点" [level=3] [ref=e1209]:
+        - link "SKILL.md" [ref=e1210] [cursor=pointer]:
+          - /url: http://SKILL.md
+        - text: 编写要点
+      - list [ref=e1211]:
+        - listitem [ref=e1212]:
+          - strong [ref=e1213]: 明确的触发条件
+          - text: ：描述什么时候应该使用这个技能，代理据此决定是否自动加载
+        - listitem [ref=e1214]:
+          - strong [ref=e1215]: 简洁的上下文预览
+          - text: ：代理在技能列表中看到的摘要，用于判断是否加载
+        - listitem [ref=e1216]:
+          - strong [ref=e1217]: 结构化的流程
+          - text: ：按步骤描述执行过程，避免模糊指令
+        - listitem [ref=e1218]:
+          - strong [ref=e1219]: 具体示例
+          - text: ：包含输入输出示例，帮助代理理解成功标准
+        - listitem [ref=e1220]:
+          - strong [ref=e1221]: 禁止事项
+          - text: ：明确列出不应做的事情，比正面指令更有效
+      - heading "创建步骤" [level=3] [ref=e1222]
+      - list [ref=e1223]:
+        - listitem [ref=e1224]:
+          - text: 使用
+          - code [ref=e1225]: /superpowers:writing-skills
+          - text: 启动技能创建流程
+        - listitem [ref=e1226]: 描述你希望技能做什么
+        - listitem [ref=e1227]:
+          - text: 代理会帮你生成
+          - link "SKILL.md" [ref=e1228] [cursor=pointer]:
+            - /url: http://SKILL.md
+          - text: 和相关资源
+        - listitem [ref=e1229]: 在子代理上测试技能——使用真实场景而非知识竞赛式测试
+        - listitem [ref=e1230]: 迭代改进，确保技能在压力场景下依然有效
+      - heading "技能组合" [level=3] [ref=e1231]
+      - paragraph [ref=e1232]: 技能可以自然组合——Claude 可以同时使用多个技能。这种可组合性是框架最强大的特性之一：
+      - list [ref=e1233]:
+        - listitem [ref=e1234]: 头脑风暴 + 编写计划 = 从想法到可执行路线图
+        - listitem [ref=e1235]: TDD + 系统化调试 = 测试驱动的故障排查
+        - listitem [ref=e1236]: 子代理开发 + 代码审查 = 自动化质量保证流水线
+      - heading "跨代理兼容" [level=3] [ref=e1237]
+      - paragraph [ref=e1238]:
+        - text: Superpowers 技能以纯 Markdown 编写，与宿主代理无关。同一套技能可在 Claude Code、Codex CLI、Cursor、Gemini CLI 等多个平台上运行。每个平台通过薄薄的清单文件（
+        - code [ref=e1239]: .claude-plugin/
+        - text: 、
+        - code [ref=e1240]: .cursor-plugin/
+        - text: 、
+        - code [ref=e1241]: .codex-plugin/
+        - text: 等）指向相同的 Markdown 内容。
+      - heading "最佳实践" [level=2] [ref=e1242]
+      - list [ref=e1243]:
+        - listitem [ref=e1244]:
+          - strong [ref=e1245]: 不要抗拒头脑风暴阶段
+          - text: — 感觉很慢，但提问的几分钟会省下大量返工时间
+        - listitem [ref=e1246]:
+          - strong [ref=e1247]: 用真实任务测试，不要用"Hello World"
+          - text: — Superpowers 在真实复杂度中才显现价值
+        - listitem [ref=e1248]:
+          - strong [ref=e1249]: 信任 TDD 流程
+          - text: — 第一次看到代理先写失败测试再写最小实现时，你会感受到区别
+        - listitem [ref=e1250]:
+          - strong [ref=e1251]: 审核计划再执行
+          - text: — 计划文档是你的恢复机制，如果会话中断，未勾选的复选框是下次会话唯一的状态日志
+        - listitem [ref=e1252]:
+          - strong [ref=e1253]: 让子代理自主工作
+          - text: — 不要在任务间频繁检查，子代理会在真正阻塞时停下来
+        - listitem [ref=e1254]:
+          - strong [ref=e1255]: 优先使用子代理驱动开发
+          - text: — 比内联执行（executing-plans）质量更高，尤其在大项目中
+        - listitem [ref=e1256]:
+          - strong [ref=e1257]:
+            - text: 在
+            - link "CLAUDE.md" [ref=e1258] [cursor=pointer]:
+              - /url: http://CLAUDE.md
+            - text: 中定制行为
+          - text: — Superpowers 会优先遵循你项目中的
+          - link "CLAUDE.md" [ref=e1259] [cursor=pointer]:
+            - /url: http://CLAUDE.md
+          - text: 或
+          - link "AGENTS.md" [ref=e1260] [cursor=pointer]:
+            - /url: http://AGENTS.md
+          - text: 中的直接指令
+        - listitem [ref=e1261]:
+          - strong [ref=e1262]: 简单任务无需全流程
+          - text: — 单行修改不需要完整的七阶段工作流，Superpowers 在多文件功能和完整构建中表现最佳
+      - heading "常见问题" [level=2] [ref=e1263]
+      - heading "Superpowers 会增加 Token 消耗吗？" [level=3] [ref=e1264]
+      - paragraph [ref=e1265]: 短期来看是的，技能加载和结构化流程会增加初始 Token 用量。但长期来看，通过减少返工、避免方向性错误、降低调试成本，总 Token 消耗反而更低。Superpowers v5 已支持为机械性任务选择最经济的模型（如 Haiku），进一步控制成本。
+      - heading "安装后代理没有自动触发技能怎么办？" [level=3] [ref=e1266]
+      - list [ref=e1267]:
+        - listitem [ref=e1268]: 确认重启了 Claude Code
+        - listitem [ref=e1269]:
+          - text: 检查是否看到
+          - code [ref=e1270]: SessionStart:startup hook succeeded
+          - text: 提示
+        - listitem [ref=e1271]:
+          - text: 尝试手动触发：
+          - code [ref=e1272]: /superpowers:using-superpowers
+        - listitem [ref=e1273]: 描述一个具体的构建任务，而非泛泛提问
+      - heading "executing-plans 和 subagent-driven-development 如何选择？" [level=3] [ref=e1274]
+      - list [ref=e1275]:
+        - listitem [ref=e1276]:
+          - strong [ref=e1277]: subagent-driven-development
+          - text: （推荐）：每个任务分派独立子代理，上下文干净，适合大多数场景。需要支持子代理的平台（如 Claude Code）。
+        - listitem [ref=e1278]:
+          - strong [ref=e1279]: executing-plans
+          - text: ：在当前会话中逐步执行，有人工检查点。适合不支持子代理的平台，或需要更紧密人工监督的场景。
+      - heading "与 GSD、Spec-Kit、BMAD 等框架有何不同？" [level=3] [ref=e1280]
+      - paragraph [ref=e1281]:
+        - text: Superpowers 的核心差异是
+        - strong [ref=e1282]: 强制 TDD
+        - text: ——这是其他框架不具备的。此外，子代理驱动开发、两阶段代码审查、自动技能发现也是独特优势。GSD 侧重上下文工程和环境管理，Spec-Kit 侧重规格驱动，而 Superpowers 是完整的工程方法论。
+      - heading "可以只使用部分技能吗？" [level=3] [ref=e1283]
+      - paragraph [ref=e1284]:
+        - text: 可以。每个技能可以独立使用，但完整工作流能发挥最大价值。你可以在
+        - link "CLAUDE.md" [ref=e1285] [cursor=pointer]:
+          - /url: http://CLAUDE.md
+        - text: 中添加指令来定制哪些技能优先适用。Superpowers 会优先遵循你的项目指令而非内部默认行为。
+      - heading "技能会自动更新吗？" [level=3] [ref=e1286]
+      - paragraph [ref=e1287]:
+        - text: Superpowers 更新取决于所使用的宿主平台。Claude Code 支持自动插件更新，其他平台可能需要手动更新。v5 版本已废弃旧的斜杠命令（
+        - code [ref=e1288]: /brainstorm
+        - text: 、
+        - code [ref=e1289]: /write-plan
+        - text: 、
+        - code [ref=e1290]: /execute-plan
+        - text: ），改为技能原生斜杠命令格式（
+        - code [ref=e1291]: /superpowers:brainstorming
+        - text: 等）。
+      - heading "上下文窗口会成为瓶颈吗？" [level=3] [ref=e1292]
+      - paragraph [ref=e1293]: 对于大型代码库，这确实是个问题。Superpowers 通过子代理架构缓解了这一压力——每个子代理从干净的上下文开始，只关注一个任务。主会话只负责协调，不承载实现细节。但在极长会话中，仍需注意上下文管理。
+    - button "快速开始" [ref=e1296] [cursor=pointer]:
+      - img [ref=e1297]
+      - text: 快速开始
+    - generic [ref=e1300]:
+      - heading "相关技能" [level=4] [ref=e1301]
+      - generic [ref=e1302]:
+        - generic [ref=e1303] [cursor=pointer]:
+          - generic [ref=e1304]: 编码开发与工程规范
+          - generic [ref=e1305]: MattPocock Skills
+        - generic [ref=e1306] [cursor=pointer]:
+          - generic [ref=e1307]: 编码开发与工程规范
+          - generic [ref=e1308]: Agent Skills（谷歌工程纪律包）
+        - generic [ref=e1309] [cursor=pointer]:
+          - generic [ref=e1310]: 编码开发与工程规范
+          - generic [ref=e1311]: Agent Teams_Agency-Agents
+        - generic [ref=e1312] [cursor=pointer]:
+          - generic [ref=e1313]: 效率工具与自动化
+          - generic [ref=e1314]: AI Prompt Optimizer
+        - generic [ref=e1315] [cursor=pointer]:
+          - generic [ref=e1316]: 代码维护与质量
+          - generic [ref=e1317]: Caveman Review
+    - button "我的笔记" [ref=e1320] [cursor=pointer]:
+      - img [ref=e1321]
+      - text: 我的笔记
+  - contentinfo [ref=e803]:
+    - generic [ref=e804]:
+      - generic [ref=e805]: Skill Book
+      - generic [ref=e806]: 技能知识库
+      - button "数据管理" [ref=e808] [cursor=pointer]:
+        - img [ref=e809]
+        - text: 数据管理
