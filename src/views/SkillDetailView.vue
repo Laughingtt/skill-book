@@ -12,6 +12,7 @@ import { useUsageTracker } from '../composables/useUsageTracker'
 import { useSkillNotes } from '../composables/useSkillNotes'
 import { useSkillGraph } from '../composables/useSkillGraph'
 import SkillGraphView from '../components/SkillGraphView.vue'
+import SkillFormModal from '../components/SkillFormModal.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -21,7 +22,9 @@ const rawMd = ref('')
 const loading = ref(true)
 const error = ref(null)
 const showDeleteConfirm = ref(false)
-const { skills, fetchSkills, updateSkillFromMd, deleteSkill } = useSkills()
+const showEditModal = ref(false)
+const editingSkill = ref(null)
+const { skills, fetchSkills, updateSkill, deleteSkill, categories } = useSkills()
 const { query, clearSearch } = useSearch()
 const { isBookmarked, toggleBookmark } = useBookmarks()
 const { getStatus, setStatus, clearStatus } = useSkillStatus()
@@ -49,9 +52,6 @@ function buildRawMd(skillObj) {
   return `---\n${fmLines.join('\n')}\n---\n\n${skillObj.content || ''}`
 }
 
-const editing = ref(false)
-const editContent = ref('')
-const saving = ref(false)
 const copiedCmd = ref(null)
 const showQuickStart = ref(false)
 const showNotes = ref(false)
@@ -87,13 +87,6 @@ const quickStartContent = computed(() => {
     return `1. 安装: \` ${skill.value.install}\`\n2. 开始使用此skill`
   }
   return ''
-})
-
-// Preview body only (strip frontmatter from editContent for preview)
-const previewBody = computed(() => {
-  if (!editContent.value) return ''
-  const { content: body } = parseFrontmatter(editContent.value)
-  return body
 })
 
 function goHome() {
@@ -216,31 +209,15 @@ async function copyCommand(cmd) {
   }
 }
 
-function startContentEdit() {
-  editContent.value = rawMd.value
-  editing.value = true
+function openEditModal() {
+  editingSkill.value = skill.value ? { ...skill.value } : null
+  showEditModal.value = true
 }
 
-function cancelContentEdit() {
-  editing.value = false
-  editContent.value = ''
-}
-
-async function saveContentEdit() {
-  saving.value = true
-  try {
-    const updated = await updateSkillFromMd(route.params.slug, editContent.value)
-    if (updated) {
-      // Update local state from the saved skill
-      skill.value = updated
-      content.value = updated.content || ''
-      // Rebuild rawMd from saved data
-      rawMd.value = buildRawMd(updated)
-    }
-    editing.value = false
-  } finally {
-    saving.value = false
-  }
+function handleEditSave(updatedSkill) {
+  updateSkill(route.params.slug, updatedSkill)
+  showEditModal.value = false
+  loadSkill(route.params.slug)
 }
 </script>
 
@@ -349,17 +326,11 @@ async function saveContentEdit() {
 
         <!-- Action Buttons -->
         <div style="display: flex; gap: 12px; margin-top: 20px;">
-          <button v-if="!editing" @click="startContentEdit" class="action-btn action-btn--edit">
+          <button @click="openEditModal" class="action-btn action-btn--edit">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
             编辑
           </button>
-          <button v-if="editing" @click="saveContentEdit" class="action-btn action-btn--save" :disabled="saving">
-            {{ saving ? '保存中...' : '保存' }}
-          </button>
-          <button v-if="editing" @click="cancelContentEdit" class="action-btn action-btn--cancel">
-            取消
-          </button>
-          <button v-if="!editing" @click="showDeleteConfirm = true" class="action-btn action-btn--delete">
+          <button @click="showDeleteConfirm = true" class="action-btn action-btn--delete">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
             删除
           </button>
@@ -367,37 +338,15 @@ async function saveContentEdit() {
       </div>
     </section>
 
-    <!-- Content Section — white, narrow reading column -->
+    <!-- Content Section -->
     <section style="background: var(--color-bg-elevated);">
-      <div :class="editing ? 'max-w-[1200px]' : 'max-w-[720px]'" class="mx-auto px-[22px] py-16">
-        <!-- Preview mode -->
-        <MarkdownRenderer v-if="!editing" :source="content" />
-
-        <!-- Edit mode: split panes -->
-        <div v-if="editing" class="detail-edit-area">
-          <div class="detail-edit-panes">
-            <div class="detail-edit-pane">
-              <div class="detail-edit-pane-header">编辑</div>
-              <textarea
-                v-model="editContent"
-                class="detail-edit-textarea"
-                placeholder="编辑 Markdown 内容..."
-                spellcheck="false"
-              ></textarea>
-            </div>
-            <div class="detail-edit-pane">
-              <div class="detail-edit-pane-header">预览</div>
-              <div class="detail-edit-preview">
-                <MarkdownRenderer v-if="editContent" :source="editContent" />
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="max-w-[720px] mx-auto px-[22px] py-16">
+        <MarkdownRenderer :source="content" />
       </div>
     </section>
 
     <!-- Quick Start Section (collapsible) -->
-    <section v-if="!editing && quickStartContent" style="background: var(--color-bg-recessed);">
+    <section v-if="quickStartContent" style="background: var(--color-bg-recessed);">
       <div class="max-w-[720px] mx-auto px-[22px] py-8">
         <button @click="showQuickStart = !showQuickStart" class="quickstart-toggle">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -412,7 +361,7 @@ async function saveContentEdit() {
     </section>
 
     <!-- Command Cards Section -->
-    <section v-if="!editing && skill.commands?.length" style="background: var(--color-bg-elevated);">
+    <section v-if="skill.commands?.length" style="background: var(--color-bg-elevated);">
       <div class="max-w-[720px] mx-auto px-[22px] py-8">
         <h4 class="cmd-section-title">常用命令</h4>
         <div class="cmd-cards">
@@ -428,7 +377,7 @@ async function saveContentEdit() {
     </section>
 
     <!-- Related Skills -->
-    <section v-if="!editing && relatedSkills.length" style="background: var(--color-bg);">
+    <section v-if="relatedSkills.length" style="background: var(--color-bg);">
       <div class="max-w-[720px] mx-auto px-[22px] py-10">
         <h4 class="related-title">相关技能</h4>
         <div class="related-grid">
@@ -441,7 +390,7 @@ async function saveContentEdit() {
     </section>
 
     <!-- Skill Relationship Graph -->
-    <section v-if="!editing && graphData.nodes.length > 1" style="background: var(--color-bg);">
+    <section v-if="graphData.nodes.length > 1" style="background: var(--color-bg);">
       <div class="max-w-[720px] mx-auto px-[22px] py-10">
         <h4 style="font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-text-tertiary); margin: 0 0 12px;">关联图谱</h4>
         <SkillGraphView
@@ -454,7 +403,7 @@ async function saveContentEdit() {
     </section>
 
     <!-- My Notes -->
-    <section v-if="!editing" style="background: var(--color-bg-recessed);">
+    <section style="background: var(--color-bg-recessed);">
       <div class="max-w-[720px] mx-auto px-[22px] py-8">
         <button @click="toggleNotes" class="notes-toggle">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -487,71 +436,18 @@ async function saveContentEdit() {
       </div>
     </div>
 
+    <SkillFormModal
+      v-model="showEditModal"
+      :skill="editingSkill"
+      :categories="categories.filter(c => c !== '全部')"
+      @save="handleEditSave"
+    />
+
   </template>
   </div>
 </template>
 
 <style scoped>
-.detail-edit-area {
-  margin-top: var(--spacing-4);
-}
-
-.detail-edit-panes {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-4);
-  min-height: 500px;
-}
-
-.detail-edit-pane {
-  display: flex;
-  flex-direction: column;
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-}
-
-.detail-edit-pane-header {
-  padding: var(--spacing-2) var(--spacing-3);
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-text-secondary);
-  background: var(--color-surface-alt);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.detail-edit-textarea {
-  flex: 1;
-  width: 100%;
-  min-height: 480px;
-  padding: var(--spacing-4);
-  font-family: 'DM Mono', 'Fira Code', monospace;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  border: none;
-  background: var(--color-surface);
-  color: var(--color-text);
-  resize: none;
-  tab-size: 2;
-  outline: none;
-}
-
-.detail-edit-preview {
-  flex: 1;
-  padding: var(--spacing-4);
-  overflow-y: auto;
-  background: var(--color-surface);
-  min-height: 480px;
-}
-
-@media (max-width: 768px) {
-  .detail-edit-panes {
-    grid-template-columns: 1fr;
-  }
-}
-
 .back-btn {
   display: inline-flex;
   align-items: center;
@@ -623,22 +519,6 @@ async function saveContentEdit() {
 .action-btn--delete:hover {
   background: var(--color-bg-accent);
   border-color: var(--color-accent);
-}
-
-.action-btn--save {
-  background: var(--color-success, #dcfce7);
-  color: var(--color-success-text, #16a34a);
-  border-color: var(--color-success-border, #86efac);
-}
-
-.action-btn--save:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.action-btn--cancel {
-  background: var(--color-surface-alt);
-  color: var(--color-text-secondary);
 }
 
 .delete-confirm-overlay {
