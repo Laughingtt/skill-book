@@ -1,19 +1,5 @@
 [
   {
-    "name": "Agent Teams_Agency-Agents",
-    "slug": "agency-agents",
-    "category": "编码开发与工程规范",
-    "tags": [
-      "agent",
-      "team",
-      "role",
-      "collaboration",
-      "multi-agent"
-    ],
-    "description": "AI角色团队协同开发，一次配齐架构师、数据库优化师、前端、代码审查和测试等专家角色",
-    "scenarios": []
-  },
-  {
     "name": "Agent Browser MCP",
     "slug": "agent-browser-mcp",
     "category": "浏览器与文档处理",
@@ -324,6 +310,21 @@
     "source": "https://github.com/sickn33/antigravity-awesome-skills"
   },
   {
+    "name": "ECC",
+    "slug": "ecc",
+    "category": "编码开发与工程规范",
+    "tags": [
+      "AI编码助手",
+      "多编辑器配置",
+      "开发规范",
+      "自动化配置"
+    ],
+    "description": "ECC 是一个通用的 AI 编码助手配置管理中心，为 Claude、Cursor、VS Code、Gemini 等多种编辑器提供统一的 agents、commands、rules 与 skills 预设，帮助开发团队快速对齐编码规范和工程实践。",
+    "scenarios": [],
+    "install": "git clone https://github.com/affaan-m/ECC.git && cd ECC && bash install.sh  (Linux/Mac) 或  .\\install.ps1 (Windows)",
+    "source": "https://github.com/affaan-m/ECC"
+  },
+  {
     "name": "Floracat Diagram",
     "slug": "floracat-diagram",
     "category": "效率工具与自动化",
@@ -617,27 +618,9 @@
     "name": "Playwright MCP",
     "slug": "playwright-mcp",
     "category": "编码开发与工程规范",
-    "tags": [
-      "testing",
-      "browser",
-      "e2e",
-      "automation",
-      "mcp"
-    ],
-    "description": "通过MCP协议集成Playwright，让AI自动调用进行浏览器操作和端到端自动化测试",
-    "scenarios": [
-      "e2e-testing",
-      "browser-automation",
-      "ci-testing"
-    ],
-    "commands": [
-      {
-        "name": "启动浏览器测试",
-        "cmd": "claude /verify"
-      }
-    ],
-    "install": "claude mcp add playwright npx @playwright/mcp@latest",
-    "source": "https://github.com/microsoft/playwright-mcp"
+    "tags": [],
+    "description": "Test duplicate",
+    "scenarios": []
   },
   {
     "name": "React Bits",
