@@ -28,6 +28,10 @@ const form = ref({
   description: '',
   install: '',
   source: '',
+  scenarios: '',      // comma-separated string
+  commands: [],       // array of { name, cmd }
+  quickstart: '',     // string
+  related: '',        // comma-separated string
 })
 
 const errors = ref({})
@@ -44,6 +48,20 @@ const tagPills = computed(() => {
     .split(',')
     .map(t => t.trim())
     .filter(t => t.length > 0)
+})
+
+const scenarioPills = computed(() => {
+  return form.value.scenarios
+    .split(',')
+    .map(s => s.trim())
+    .filter(s => s.length > 0)
+})
+
+const relatedPills = computed(() => {
+  return form.value.related
+    .split(',')
+    .map(s => s.trim())
+    .filter(s => s.length > 0)
 })
 
 // Auto-generate slug from name
@@ -78,6 +96,10 @@ function resetForm() {
     description: '',
     install: '',
     source: '',
+    scenarios: '',
+    commands: [],
+    quickstart: '',
+    related: '',
   }
   errors.value = {}
   slugManuallyEdited.value = false
@@ -143,6 +165,10 @@ function populateForm(skill) {
     description: skill.description || '',
     install: skill.install || '',
     source: skill.source || '',
+    scenarios: Array.isArray(skill.scenarios) ? skill.scenarios.join(', ') : (skill.scenarios || ''),
+    commands: Array.isArray(skill.commands) ? [...skill.commands.map(c => ({...c}))] : [],
+    quickstart: skill.quickstart || '',
+    related: Array.isArray(skill.related) ? skill.related.join(', ') : (skill.related || ''),
   }
   slugManuallyEdited.value = !!skill.slug
   categoryInput.value = ''
@@ -184,6 +210,10 @@ function handleSave() {
     description: form.value.description.trim(),
     install: form.value.install.trim(),
     source: form.value.source.trim(),
+    scenarios: scenarioPills.value,
+    commands: form.value.commands.filter(c => c.name && c.cmd),
+    quickstart: form.value.quickstart.trim(),
+    related: relatedPills.value,
     ...(importContent.value && { content: importContent.value }),
   })
 }
@@ -423,6 +453,41 @@ function handleKeydown(e) {
               autocomplete="off"
             />
           </div>
+
+          <!-- Scenarios -->
+          <div class="field">
+            <label class="field-label" for="skill-scenarios">使用场景 <span class="field-optional">选填</span></label>
+            <input id="skill-scenarios" type="text" class="field-input" v-model="form.scenarios" placeholder="用逗号分隔，例如：debugging, testing, deployment" autocomplete="off" />
+            <div v-if="scenarioPills.length" class="tag-pills">
+              <span v-for="s in scenarioPills" :key="s" class="tag-pill">{{ s }}</span>
+            </div>
+          </div>
+
+          <!-- Commands -->
+          <div class="field">
+            <label class="field-label">常用命令 <span class="field-optional">选填</span></label>
+            <div v-for="(cmd, i) in form.commands" :key="i" class="command-row">
+              <input type="text" class="field-input field-input--sub" v-model="cmd.name" placeholder="命令名称" autocomplete="off" />
+              <input type="text" class="field-input field-input--sub field-input--cmd" v-model="cmd.cmd" placeholder="命令内容" autocomplete="off" />
+              <button type="button" class="btn-remove-cmd" @click="form.commands.splice(i, 1)">×</button>
+            </div>
+            <button type="button" class="btn-add-cmd" @click="form.commands.push({ name: '', cmd: '' })">+ 添加命令</button>
+          </div>
+
+          <!-- Quickstart -->
+          <div class="field">
+            <label class="field-label" for="skill-quickstart">快速开始 <span class="field-optional">选填</span></label>
+            <textarea id="skill-quickstart" class="field-textarea" v-model="form.quickstart" placeholder="快速上手的步骤说明，支持 Markdown..." rows="3"></textarea>
+          </div>
+
+          <!-- Related -->
+          <div class="field">
+            <label class="field-label" for="skill-related">相关技能 <span class="field-optional">选填</span></label>
+            <input id="skill-related" type="text" class="field-input" v-model="form.related" placeholder="用逗号分隔技能 slug，例如：git-smart-commit, code-review" autocomplete="off" />
+            <div v-if="relatedPills.length" class="tag-pills">
+              <span v-for="r in relatedPills" :key="r" class="tag-pill">{{ r }}</span>
+            </div>
+          </div>
         </form>
 
         <!-- Footer -->
@@ -593,6 +658,7 @@ function handleKeydown(e) {
   min-height: 100px;
   resize: vertical;
   line-height: 1.6;
+  box-sizing: border-box;
 }
 
 .field-select {
@@ -607,6 +673,53 @@ function handleKeydown(e) {
 
 .field-input--sub {
   margin-top: 8px;
+  flex: 1;
+}
+
+.field-input--cmd {
+  flex: 2;
+}
+
+.command-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.command-row .field-input--sub {
+  margin-top: 0;
+}
+
+.btn-remove-cmd {
+  font-size: 16px;
+  color: var(--color-text-tertiary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: color 0.15s ease;
+}
+
+.btn-remove-cmd:hover {
+  color: var(--color-accent);
+}
+
+.btn-add-cmd {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-accent);
+  background: none;
+  border: 1px dashed var(--color-border-accent, var(--color-accent));
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-add-cmd:hover {
+  background: var(--color-bg-accent, var(--color-accent-muted));
 }
 
 .field-error {
