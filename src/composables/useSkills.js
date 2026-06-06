@@ -21,6 +21,10 @@ async function saveSkillToApi(skill) {
           description: skill.description,
           install: skill.install,
           source: skill.source,
+          ...(skill.scenarios?.length && { scenarios: skill.scenarios }),
+          ...(skill.commands?.length && { commands: skill.commands }),
+          ...(skill.quickstart && { quickstart: skill.quickstart }),
+          ...(skill.related?.length && { related: skill.related }),
         },
         content: skill.content || '',
       }),
@@ -97,6 +101,10 @@ export function useSkills() {
       ...(skillData.install && { install: skillData.install }),
       ...(skillData.source && { source: skillData.source }),
       ...(skillData.content && { content: skillData.content }),
+      ...(skillData.scenarios?.length && { scenarios: skillData.scenarios }),
+      ...(skillData.commands?.length && { commands: skillData.commands }),
+      ...(skillData.quickstart && { quickstart: skillData.quickstart }),
+      ...(skillData.related?.length && { related: skillData.related }),
     }
     userSlugs.add(slug)
     skills.value.push(newSkill)
@@ -153,6 +161,10 @@ export function useSkills() {
       description: data.description || existing.description,
       ...(data.install && { install: data.install }),
       ...(data.source && { source: data.source }),
+      ...(data.scenarios && { scenarios: data.scenarios }),
+      ...(data.commands && { commands: data.commands }),
+      ...(data.quickstart && { quickstart: data.quickstart }),
+      ...(data.related && { related: data.related }),
       content: body,
     }
     skills.value[index] = updated
