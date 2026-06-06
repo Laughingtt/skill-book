@@ -29,6 +29,26 @@ const { trackView } = useUsageTracker()
 const { getNote, saveNote, hasNote } = useSkillNotes()
 const { computeRelations } = useSkillGraph()
 
+function buildRawMd(skillObj) {
+  const fmLines = [`slug: ${skillObj.slug}`, `name: ${skillObj.name}`]
+  if (skillObj.category) fmLines.push(`category: ${skillObj.category}`)
+  if (skillObj.tags?.length) fmLines.push(`tags: [${skillObj.tags.join(', ')}]`)
+  if (skillObj.description) fmLines.push(`description: ${skillObj.description}`)
+  if (skillObj.install) fmLines.push(`install: "${skillObj.install}"`)
+  if (skillObj.source) fmLines.push(`source: "${skillObj.source}"`)
+  if (skillObj.scenarios?.length) fmLines.push(`scenarios: [${skillObj.scenarios.join(', ')}]`)
+  if (skillObj.commands?.length) {
+    fmLines.push('commands:')
+    skillObj.commands.forEach(cmd => {
+      fmLines.push(`  - name: "${cmd.name}"`)
+      fmLines.push(`    cmd: "${cmd.cmd}"`)
+    })
+  }
+  if (skillObj.quickstart) fmLines.push(`quickstart: |\n  ${skillObj.quickstart.split('\n').join('\n  ')}`)
+  if (skillObj.related?.length) fmLines.push(`related: [${skillObj.related.join(', ')}]`)
+  return `---\n${fmLines.join('\n')}\n---\n\n${skillObj.content || ''}`
+}
+
 const editing = ref(false)
 const editContent = ref('')
 const saving = ref(false)
@@ -125,13 +145,7 @@ async function loadSkill(slug) {
         skill.value = found
         content.value = found.content || ''
         // Reconstruct rawMd from user skill data
-        const fmLines = [`slug: ${found.slug}`, `name: ${found.name}`]
-        if (found.category) fmLines.push(`category: ${found.category}`)
-        if (found.tags?.length) fmLines.push(`tags: [${found.tags.join(', ')}]`)
-        if (found.description) fmLines.push(`description: ${found.description}`)
-        if (found.install) fmLines.push(`install: "${found.install}"`)
-        if (found.source) fmLines.push(`source: "${found.source}"`)
-        rawMd.value = `---\n${fmLines.join('\n')}\n---\n\n${found.content || ''}`
+        rawMd.value = buildRawMd(found)
       } else {
         throw new Error(`Skill not found: ${slug}`)
       }
@@ -221,13 +235,7 @@ async function saveContentEdit() {
       skill.value = updated
       content.value = updated.content || ''
       // Rebuild rawMd from saved data
-      const fmLines = [`slug: ${updated.slug}`, `name: ${updated.name}`]
-      if (updated.category) fmLines.push(`category: ${updated.category}`)
-      if (updated.tags?.length) fmLines.push(`tags: [${updated.tags.join(', ')}]`)
-      if (updated.description) fmLines.push(`description: ${updated.description}`)
-      if (updated.install) fmLines.push(`install: "${updated.install}"`)
-      if (updated.source) fmLines.push(`source: "${updated.source}"`)
-      rawMd.value = `---\n${fmLines.join('\n')}\n---\n\n${updated.content || ''}`
+      rawMd.value = buildRawMd(updated)
     }
     editing.value = false
   } finally {
