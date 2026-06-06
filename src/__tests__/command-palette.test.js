@@ -20,7 +20,6 @@ vi.mock('../composables/useSkills.js', () => ({
     fetchSkills: vi.fn(),
     addSkill: vi.fn(),
     updateSkill: vi.fn(),
-    updateSkillContent: vi.fn(),
     updateSkillFromMd: vi.fn(),
     deleteSkill: vi.fn(),
     categories: { value: ['全部'] },

@@ -49,7 +49,7 @@ Hash-based routing (`createWebHashHistory`) — required for static file hosting
 
 All composables use **singleton module-level state** — the `ref`s are declared outside the function, so all components share the same instance.
 
-- **`useSkills.js`** — Holds `skills` ref (single source of truth). Exposes `addSkill`/`updateSkill`/`updateSkillContent`/`updateSkillFromMd`/`deleteSkill`/`getSkillBySlug`, which write through to both `localStorage` and the dev API. Derives `categories` and `allTags` computeds. Tracks user-owned slugs via `userSlugs` Set.
+- **`useSkills.js`** — Holds `skills` ref (single source of truth). Exposes `addSkill`/`updateSkill`/`updateSkillFromMd`/`deleteSkill`/`getSkillBySlug`, which write through to both `localStorage` and the dev API. Derives `categories` and `allTags` computeds. Tracks user-owned slugs via `userSlugs` Set.
 - **`useSearch.js`** — Wraps `fuse.js` with 300ms debounced search. **Must be initialized** by calling `setSearchSkills(skillsRef)` once (done in `HomeView`), which injects the skills ref into the module-level `_skills` variable. Search weights: name (2), description (1.5), tags (1), category (0.5).
 - **`useFilters.js`** — Category selection (single) + tag selection (multi, AND logic). Operates on already-searched results.
 - **`useBookmarks.js`** — Single favorites list. `bookmarks` ref (slug array), `isBookmarked(slug)`, `toggleBookmark(slug)`. localStorage key: `skill-book-bookmarks`.

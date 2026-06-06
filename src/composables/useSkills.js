@@ -92,6 +92,10 @@ export function useSkills() {
     if (!skillData.name) throw new Error('Skill name is required')
     const slug = skillData.slug || skillData.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
     if (!slug) throw new Error('Skill slug is required')
+    // Check for duplicate slug
+    if (skills.value.find(s => s.slug === slug)) {
+      throw new Error(`Skill with slug "${slug}" already exists`)
+    }
     const newSkill = {
       name: skillData.name,
       slug,
@@ -171,16 +175,6 @@ export function useSkills() {
     return true
   }
 
-  async function updateSkillContent(slug, newContent) {
-    const index = skills.value.findIndex(s => s.slug === slug)
-    if (index === -1) return null
-    skills.value[index] = { ...skills.value[index], content: newContent }
-    userSlugs.add(slug)
-    saveToStorage()
-    await saveSkillToApi(skills.value[index])
-    return skills.value[index]
-  }
-
   async function updateSkillFromMd(slug, rawMd) {
     const index = skills.value.findIndex(s => s.slug === slug)
     if (index === -1) return null
@@ -231,7 +225,6 @@ export function useSkills() {
     fetchSkills,
     addSkill,
     updateSkill,
-    updateSkillContent,
     updateSkillFromMd,
     deleteSkill,
     categories,

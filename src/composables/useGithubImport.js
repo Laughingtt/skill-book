@@ -64,16 +64,21 @@ export function useGithubImport() {
     return data.results[0].raw_content
   }
 
-  async function summarizeWithAI(readme, owner, repo) {
+  async function summarizeWithAI(readme, owner, repo, existingCategories = []) {
     const key = apiKey.value
     if (!key) throw new Error('请先配置 DeepSeek API Key')
+
+    const defaultCategories = '编码开发与工程规范、数据分析与可视化、文档与知识管理、UI/UX设计与前端美化、内容创作与自媒体、沟通与协作、效率工具与自动化、学习与研究、安全与测试、云服务与基础设施、代码维护与质量、营销与增长、浏览器与文档处理'
+    const categoryList = existingCategories.length > 0
+      ? existingCategories.join('、')
+      : defaultCategories
 
     const prompt = `你是一个技能文档分析专家。请根据以下 GitHub 仓库的 README 内容，提取这个技能的关键信息。
 
 仓库地址: https://github.com/${owner}/${repo}
 重要：name 字段必须使用仓库的原始英文名称 "${repo}"，不要翻译成中文。
 重要：category 字段必须从以下已有分类中选择最合适的（必须完全匹配其中一个）：
-编码开发与工程规范、数据分析与可视化、文档与知识管理、UI/UX设计与前端美化、内容创作与自媒体、沟通与协作、效率工具与自动化、学习与研究、安全与测试、云服务与基础设施、代码维护与质量、营销与增长、浏览器与文档处理
+${categoryList}
 
 请严格按以下 JSON 格式返回，不要包含任何其他文字：
 {
@@ -122,13 +127,13 @@ ${readme.slice(0, 12000)}`
     }
   }
 
-  async function importFromGithub(url) {
+  async function importFromGithub(url, existingCategories = []) {
     importError.value = null
     importing.value = true
     try {
       const { owner, repo } = parseGithubUrl(url)
       const readme = await fetchReadmeViaTavily(owner, repo)
-      const skillData = await summarizeWithAI(readme, owner, repo)
+      const skillData = await summarizeWithAI(readme, owner, repo, existingCategories)
 
       const slug = repo
         .toLowerCase()

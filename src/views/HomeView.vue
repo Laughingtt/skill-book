@@ -248,6 +248,7 @@ const recentCount = computed(() => (recentlyViewed.value || []).length)
   <SkillFormModal
     v-model="showCreateModal"
     :categories="categories.filter(c => c !== '全部')"
+    :existing-slugs="skills.map(s => s.slug)"
     @save="handleCreateSave"
   />
   </div>

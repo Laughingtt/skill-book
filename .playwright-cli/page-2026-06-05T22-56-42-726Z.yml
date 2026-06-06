@@ -1,0 +1,644 @@
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - link "SKILL BOOK" [ref=e5] [cursor=pointer]:
+      - /url: "#/"
+  - generic [ref=e2939]:
+    - generic [ref=e2940]:
+      - generic [ref=e2941] [cursor=pointer]: Skill Book
+      - generic [ref=e2943]:
+        - img
+        - textbox "搜索技能..." [ref=e2944]
+      - generic [ref=e2945]:
+        - generic [ref=e2946]:
+          - button "☀️" [ref=e2947] [cursor=pointer]
+          - button "💻" [ref=e2948] [cursor=pointer]
+          - button "🌙" [ref=e2949] [cursor=pointer]
+        - link "我的空间" [ref=e2950] [cursor=pointer]:
+          - /url: "#/my"
+          - img [ref=e2951]
+    - generic [ref=e2955]:
+      - button "返回列表" [ref=e2956] [cursor=pointer]:
+        - img [ref=e2957]
+        - text: 返回列表
+      - paragraph [ref=e2959]: UI/UX设计与前端美化
+      - heading "shadcn/ui Skill" [level=1] [ref=e2960]
+      - paragraph [ref=e2961]: shadcn/ui官方技能，管理组件的添加、搜索、修复、样式调整与组合，提供项目上下文与用法示例
+      - paragraph [ref=e2962]: shadcn · ui · component · design-system · tailwind · react
+      - generic [ref=e2963]:
+        - button "待尝试" [ref=e2964] [cursor=pointer]
+        - button "学习中" [ref=e2965] [cursor=pointer]
+        - button "已掌握" [ref=e2966] [cursor=pointer]
+      - button "收藏" [ref=e2967] [cursor=pointer]:
+        - img [ref=e2968]
+        - text: 收藏
+      - generic [ref=e2971]:
+        - button "编辑" [ref=e2972] [cursor=pointer]:
+          - img [ref=e2973]
+          - text: 编辑
+        - button "删除" [ref=e2976] [cursor=pointer]:
+          - img [ref=e2977]
+          - text: 删除
+    - generic [ref=e2981]:
+      - heading "简介" [level=2] [ref=e2982]
+      - paragraph [ref=e2983]:
+        - text: shadcn/ui 不是一个传统的组件库——它是构建你自己的组件库的方法。与传统组件库（如 MUI、Ant Design）不同，shadcn/ui 不会作为 NPM 包安装到
+        - code [ref=e2984]: node_modules
+        - text: 中，而是通过 CLI 将组件源码直接复制到你的项目中。你对代码拥有完全的控制权，可以自由修改、扩展和重构，无需担心破坏上游依赖。
+      - paragraph [ref=e2985]:
+        - strong [ref=e2986]: 传统组件库的痛点：
+      - list [ref=e2987]:
+        - listitem [ref=e2988]: 安装一个 NPM 包，导入组件，样式覆盖困难
+        - listitem [ref=e2989]: 需要自定义时，不得不写 wrapper 或 hack 样式
+        - listitem [ref=e2990]: 不同组件库的 API 风格不统一
+        - listitem [ref=e2991]: 升级时可能破坏你的自定义代码
+      - paragraph [ref=e2992]:
+        - strong [ref=e2993]: shadcn/ui 的解决方式：
+      - list [ref=e2994]:
+        - listitem [ref=e2995]: 组件源码直接复制到你的项目中，你就是代码的主人
+        - listitem [ref=e2996]:
+          - text: 需要修改按钮行为？直接编辑
+          - code [ref=e2997]: button.tsx
+        - listitem [ref=e2998]: 所有组件共享一致的、可组合的接口
+        - listitem [ref=e2999]: 基于 Radix UI / Base UI 的无头组件 + Tailwind CSS 样式
+      - heading "核心特性" [level=2] [ref=e3000]
+      - list [ref=e3001]:
+        - listitem [ref=e3002]:
+          - strong [ref=e3003]: 开放代码（Open Code）
+          - text: ：组件源码直接存在于你的项目中，不是黑盒依赖。你可以自由阅读、修改和扩展每一行代码
+        - listitem [ref=e3004]:
+          - strong [ref=e3005]: 可组合性（Composition）
+          - text: ：所有组件共享一致的 API 接口。
+          - code [ref=e3006]: <Dialog>
+          - text: 里有
+          - code [ref=e3007]: <DialogContent>
+          - text: ，
+          - code [ref=e3008]: <DropdownMenu>
+          - text: 里有
+          - code [ref=e3009]: <DropdownMenuItem>
+          - text: ，模式统一可预测
+        - listitem [ref=e3010]:
+          - strong [ref=e3011]: CSS 变量主题系统
+          - text: ：通过
+          - code [ref=e3012]: "--primary"
+          - text: 、
+          - code [ref=e3013]: "--background"
+          - text: 、
+          - code [ref=e3014]: "--radius"
+          - text: 等语义化 token 管理主题，修改一处即可全局生效
+        - listitem [ref=e3015]:
+          - strong [ref=e3016]: 代码分发平台
+          - text: ：shadcn/ui 不仅是组件集合，还定义了组件的 schema 和 CLI 分发机制，支持第三方 registry
+        - listitem [ref=e3017]:
+          - strong [ref=e3018]: AI 友好
+          - text: ：开放的代码和一致的 API 使得 AI 工具能够理解、生成和修改组件
+        - listitem [ref=e3019]:
+          - strong [ref=e3020]: 美观的默认样式
+          - text: ：精心设计的默认风格，包含多种视觉预设（Vega、Nova、Maia、Lyra、Mira 等）
+        - listitem [ref=e3021]:
+          - strong [ref=e3022]: 无障碍访问（Accessibility）
+          - text: ：底层基于 Radix UI / Base UI 的无头组件，内置键盘导航、焦点管理和 ARIA 属性
+      - heading "安装与配置" [level=2] [ref=e3023]
+      - heading "方式一：使用 shadcn/create（推荐新项目）" [level=3] [ref=e3024]
+      - paragraph [ref=e3025]:
+        - text: 访问
+        - link "ui.shadcn.com/create" [ref=e3026] [cursor=pointer]:
+          - /url: https://ui.shadcn.com/create
+        - text: ，在可视化界面中选择配置（组件库、视觉风格、基础颜色、主题、图标库、字体等），然后复制生成的命令执行。
+      - heading "方式二：使用 CLI 初始化新项目" [level=3] [ref=e3027]
+      - generic [ref=e3028]:
+        - code [ref=e3029]: "# 初始化 Next.js 项目 pnpm dlx shadcn@latest init -t next # 初始化 Vite 项目 pnpm dlx shadcn@latest init -t vite # 初始化其他框架 pnpm dlx shadcn@latest init -t react-router pnpm dlx shadcn@latest init -t astro pnpm dlx shadcn@latest init -t start # Laravel 项目需先创建 Laravel 项目 laravel new my-app npx shadcn@latest init"
+        - button "复制" [ref=e3030] [cursor=pointer]
+      - heading "方式三：在已有项目中添加" [level=3] [ref=e3031]
+      - generic [ref=e3032]:
+        - code [ref=e3033]: "# 在现有项目根目录运行 pnpm dlx shadcn@latest init"
+        - button "复制" [ref=e3034] [cursor=pointer]
+      - paragraph [ref=e3035]:
+        - code [ref=e3036]: init
+        - text: 命令会：
+      - list [ref=e3037]:
+        - listitem [ref=e3038]:
+          - text: 安装必要依赖（
+          - code [ref=e3039]: class-variance-authority
+          - text: 、
+          - code [ref=e3040]: clsx
+          - text: 、
+          - code [ref=e3041]: tailwind-merge
+          - text: 、
+          - code [ref=e3042]: lucide-react
+          - text: 等）
+        - listitem [ref=e3043]:
+          - text: 创建
+          - code [ref=e3044]: lib/utils.ts
+          - text: ，包含
+          - code [ref=e3045]: cn()
+          - text: 工具函数
+        - listitem [ref=e3046]:
+          - text: 配置 CSS 变量到
+          - code [ref=e3047]: globals.css
+        - listitem [ref=e3048]:
+          - text: 生成
+          - code [ref=e3049]: components.json
+          - text: 配置文件
+      - heading "init 常用选项" [level=3] [ref=e3050]
+      - generic [ref=e3051]:
+        - code [ref=e3052]: "# 指定底层组件库（Radix UI 或 Base UI） pnpm dlx shadcn@latest init --base radix pnpm dlx shadcn@latest init --base base # 使用预设配置 pnpm dlx shadcn@latest init --preset a1Dg5eFl # Monorepo 项目 pnpm dlx shadcn@latest init -t next --monorepo # 使用默认配置跳过确认 pnpm dlx shadcn@latest init --defaults # 强制覆盖已有配置 pnpm dlx shadcn@latest init --force # 不使用 CSS 变量 pnpm dlx shadcn@latest init --no-css-variables"
+        - button "复制" [ref=e3053] [cursor=pointer]
+      - heading "手动安装依赖" [level=3] [ref=e3054]
+      - paragraph [ref=e3055]: 如果不想用 CLI 初始化，可以手动添加：
+      - generic [ref=e3056]:
+        - code [ref=e3057]: pnpm add shadcn class-variance-authority clsx tailwind-merge lucide-react tw-animate-css
+        - button "复制" [ref=e3058] [cursor=pointer]
+      - paragraph [ref=e3059]:
+        - text: 创建
+        - code [ref=e3060]: lib/utils.ts
+        - text: ：
+      - generic [ref=e3061]:
+        - code [ref=e3062]: "import { clsx, type ClassValue } from \"clsx\" import { twMerge } from \"tailwind-merge\" export function cn(...inputs: ClassValue[]) { return twMerge(clsx(inputs)) }"
+        - button "复制" [ref=e3063] [cursor=pointer]
+      - paragraph [ref=e3064]:
+        - text: 在项目根目录创建
+        - code [ref=e3065]: components.json
+        - text: ：
+      - generic [ref=e3066]:
+        - code [ref=e3067]: "{ \"$schema\": \"https://ui.shadcn.com/schema.json\", \"style\": \"radix-nova\", \"rsc\": false, \"tsx\": true, \"tailwind\": { \"config\": \"\", \"css\": \"src/styles/globals.css\", \"baseColor\": \"neutral\", \"cssVariables\": true, \"prefix\": \"\" }, \"aliases\": { \"components\": \"@/components\", \"utils\": \"@/lib/utils\", \"ui\": \"@/components/ui\", \"lib\": \"@/lib\", \"hooks\": \"@/hooks\" }, \"iconLibrary\": \"lucide\" }"
+        - button "复制" [ref=e3068] [cursor=pointer]
+      - heading "常用命令与示例" [level=2] [ref=e3069]
+      - heading "添加组件" [level=3] [ref=e3070]
+      - generic [ref=e3071]:
+        - code [ref=e3072]: "# 添加单个组件 pnpm dlx shadcn@latest add button pnpm dlx shadcn@latest add dialog pnpm dlx shadcn@latest add table # 同时添加多个组件 pnpm dlx shadcn@latest add button dialog input label # 添加所有可用组件 pnpm dlx shadcn@latest add --all # 预览变更但不写入文件 pnpm dlx shadcn@latest add button --dry-run # 覆盖已有组件文件 pnpm dlx shadcn@latest add button --overwrite # 指定安装路径 pnpm dlx shadcn@latest add button --path ./src/components/ui # 在 monorepo 中指定工作目录 pnpm dlx shadcn@latest add button -c ./apps/web"
+        - button "复制" [ref=e3073] [cursor=pointer]
+      - heading "查看文档与信息" [level=3] [ref=e3074]
+      - generic [ref=e3075]:
+        - code [ref=e3076]: "# 查看项目信息（框架、版本、已安装组件、CSS 变量等） pnpm dlx shadcn@latest info # 在 CLI 中查看组件文档、示例和 API pnpm dlx shadcn@latest docs combobox pnpm dlx shadcn@latest docs dialog pnpm dlx shadcn@latest docs data-table"
+        - button "复制" [ref=e3077] [cursor=pointer]
+      - heading "diff 命令" [level=3] [ref=e3078]
+      - generic [ref=e3079]:
+        - code [ref=e3080]: "# 比较本地组件与 registry 版本的差异 pnpm dlx shadcn@latest diff # 比较特定组件 pnpm dlx shadcn@latest diff button # 在 add 时查看 diff pnpm dlx shadcn@latest add button --diff"
+        - button "复制" [ref=e3081] [cursor=pointer]
+      - heading "预设管理" [level=3] [ref=e3082]
+      - generic [ref=e3083]:
+        - code [ref=e3084]: "# 查看当前项目预设信息 pnpm dlx shadcn@latest preset info # 通过预设代码获取 create URL pnpm dlx shadcn@latest preset url a2r6bw # 在浏览器中打开预设 pnpm dlx shadcn@latest preset open a2r6bw"
+        - button "复制" [ref=e3085] [cursor=pointer]
+      - heading "组件使用示例" [level=3] [ref=e3086]
+      - generic [ref=e3087]:
+        - code [ref=e3088]: "// 基础按钮 import { Button } from \"@/components/ui/button\" export function Example() { return ( <div className=\"flex gap-4\"> <Button>默认按钮</Button> <Button variant=\"secondary\">次要按钮</Button> <Button variant=\"destructive\">危险按钮</Button> <Button variant=\"outline\">边框按钮</Button> <Button variant=\"ghost\">幽灵按钮</Button> <Button variant=\"link\">链接按钮</Button> <Button size=\"sm\">小按钮</Button> <Button size=\"lg\">大按钮</Button> <Button size=\"icon\">图标按钮</Button> </div> ) }"
+        - button "复制" [ref=e3089] [cursor=pointer]
+      - generic [ref=e3090]:
+        - code [ref=e3091]: "// 对话框 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, } from \"@/components/ui/dialog\" export function DialogExample() { return ( <Dialog> <DialogTrigger asChild> <Button variant=\"outline\">打开对话框</Button> </DialogTrigger> <DialogContent> <DialogHeader> <DialogTitle>确认操作</DialogTitle> <DialogDescription> 此操作不可撤销，确定要继续吗？ </DialogDescription> </DialogHeader> <div className=\"flex justify-end gap-2\"> <Button variant=\"outline\">取消</Button> <Button>确认</Button> </div> </DialogContent> </Dialog> ) }"
+        - button "复制" [ref=e3092] [cursor=pointer]
+      - heading "组件管理" [level=2] [ref=e3093]
+      - heading "添加组件" [level=3] [ref=e3094]
+      - paragraph [ref=e3095]:
+        - text: 组件通过
+        - code [ref=e3096]: add
+        - text: 命令安装，源码会被复制到
+        - code [ref=e3097]: components/ui/
+        - text: 目录下（路径由
+        - code [ref=e3098]: components.json
+        - text: 中的
+        - code [ref=e3099]: aliases.ui
+        - text: 决定）。
+      - generic [ref=e3100]:
+        - code [ref=e3101]: "# 常用组件列表 pnpm dlx shadcn@latest add button pnpm dlx shadcn@latest add input pnpm dlx shadcn@latest add card pnpm dlx shadcn@latest add dialog pnpm dlx shadcn@latest add dropdown-menu pnpm dlx shadcn@latest add select pnpm dlx shadcn@latest add table pnpm dlx shadcn@latest add tabs pnpm dlx shadcn@latest add form pnpm dlx shadcn@latest add sidebar pnpm dlx shadcn@latest add command pnpm dlx shadcn@latest add data-table pnpm dlx shadcn@latest add chart"
+        - button "复制" [ref=e3102] [cursor=pointer]
+      - heading "从第三方 Registry 添加" [level=3] [ref=e3103]
+      - generic [ref=e3104]:
+        - code [ref=e3105]: "# 添加第三方 registry 中的组件 pnpm dlx shadcn@latest add @clerk/nextjs-quickstart pnpm dlx shadcn@latest add https://example.com/r/my-component.json"
+        - button "复制" [ref=e3106] [cursor=pointer]
+      - heading "更新组件" [level=3] [ref=e3107]
+      - paragraph [ref=e3108]: shadcn/ui 没有自动更新机制。更新流程：
+      - list [ref=e3109]:
+        - listitem [ref=e3110]:
+          - text: 使用
+          - code [ref=e3111]: diff
+          - text: 命令查看本地组件与 registry 的差异
+        - listitem [ref=e3112]: 评估差异，决定是否更新
+        - listitem [ref=e3113]:
+          - text: 使用
+          - code [ref=e3114]: "--overwrite"
+          - text: 重新安装
+      - generic [ref=e3115]:
+        - code [ref=e3116]: "# 查看所有组件的差异 pnpm dlx shadcn@latest diff # 查看特定组件差异 pnpm dlx shadcn@latest diff button # 覆盖更新（注意：会覆盖你的自定义修改！） pnpm dlx shadcn@latest add button --overwrite"
+        - button "复制" [ref=e3117] [cursor=pointer]
+      - heading "删除组件" [level=3] [ref=e3118]
+      - paragraph [ref=e3119]: 直接删除对应的组件文件即可：
+      - generic [ref=e3120]:
+        - code [ref=e3121]: rm components/ui/button.tsx
+        - button "复制" [ref=e3122] [cursor=pointer]
+      - paragraph [ref=e3123]: 同时记得清理项目中对该组件的引用。
+      - heading "样式自定义" [level=2] [ref=e3124]
+      - heading "CSS 变量主题系统" [level=3] [ref=e3125]
+      - paragraph [ref=e3126]:
+        - text: shadcn/ui 使用 CSS 变量管理主题。所有颜色 token 都定义为
+        - code [ref=e3127]: "--变量名"
+        - text: 的语义化对：
+      - list [ref=e3128]:
+        - listitem [ref=e3129]:
+          - code [ref=e3130]: "--background"
+          - text: /
+          - code [ref=e3131]: "--foreground"
+          - text: ：页面背景与文字
+        - listitem [ref=e3132]:
+          - code [ref=e3133]: "--card"
+          - text: /
+          - code [ref=e3134]: "--card-foreground"
+          - text: ：卡片背景与文字
+        - listitem [ref=e3135]:
+          - code [ref=e3136]: "--popover"
+          - text: /
+          - code [ref=e3137]: "--popover-foreground"
+          - text: ：弹出层背景与文字
+        - listitem [ref=e3138]:
+          - code [ref=e3139]: "--primary"
+          - text: /
+          - code [ref=e3140]: "--primary-foreground"
+          - text: ：主色调与文字
+        - listitem [ref=e3141]:
+          - code [ref=e3142]: "--secondary"
+          - text: /
+          - code [ref=e3143]: "--secondary-foreground"
+          - text: ：次要色调与文字
+        - listitem [ref=e3144]:
+          - code [ref=e3145]: "--muted"
+          - text: /
+          - code [ref=e3146]: "--muted-foreground"
+          - text: ：弱化背景与文字
+        - listitem [ref=e3147]:
+          - code [ref=e3148]: "--accent"
+          - text: /
+          - code [ref=e3149]: "--accent-foreground"
+          - text: ：强调色与文字
+        - listitem [ref=e3150]:
+          - code [ref=e3151]: "--destructive"
+          - text: /
+          - code [ref=e3152]: "--destructive-foreground"
+          - text: ：危险色与文字
+        - listitem [ref=e3153]:
+          - code [ref=e3154]: "--border"
+          - text: ：边框颜色
+        - listitem [ref=e3155]:
+          - code [ref=e3156]: "--input"
+          - text: ：输入框边框颜色
+        - listitem [ref=e3157]:
+          - code [ref=e3158]: "--ring"
+          - text: ：焦点环颜色
+        - listitem [ref=e3159]:
+          - code [ref=e3160]: "--radius"
+          - text: ：全局圆角大小
+      - heading "修改主题颜色" [level=3] [ref=e3161]
+      - paragraph [ref=e3162]:
+        - text: 在
+        - code [ref=e3163]: globals.css
+        - text: 中修改
+        - code [ref=e3164]: :root
+        - text: 和
+        - code [ref=e3165]: .dark
+        - text: 下的 CSS 变量：
+      - generic [ref=e3166]:
+        - code [ref=e3167]: "@import \"tailwindcss\"; @import \"shadcn/tailwind.css\"; @custom-variant dark (&:is(.dark *)); @theme inline { --color-background: var(--background); --color-foreground: var(--foreground); --color-primary: var(--primary); --color-primary-foreground: var(--primary-foreground); /* ... */ } :root { --radius: 0.625rem; --background: oklch(1 0 0); --foreground: oklch(0.145 0 0); --primary: oklch(0.205 0 0); --primary-foreground: oklch(0.985 0 0); --secondary: oklch(0.97 0 0); --secondary-foreground: oklch(0.205 0 0); /* ... */ } .dark { --background: oklch(0.145 0 0); --foreground: oklch(0.985 0 0); --primary: oklch(0.985 0 0); --primary-foreground: oklch(0.205 0 0); /* ... */ }"
+        - button "复制" [ref=e3168] [cursor=pointer]
+      - heading "添加自定义颜色" [level=3] [ref=e3169]
+      - paragraph [ref=e3170]:
+        - text: 在
+        - code [ref=e3171]: "@theme inline"
+        - text: 和 CSS 变量中添加新的品牌色：
+      - generic [ref=e3172]:
+        - code [ref=e3173]: "@theme inline { --color-brand: var(--brand); --color-brand-foreground: var(--brand-foreground); } :root { --brand: oklch(0.7 0.15 250); --brand-foreground: oklch(1 0 0); } .dark { --brand: oklch(0.6 0.15 250); --brand-foreground: oklch(0.145 0 0); }"
+        - button "复制" [ref=e3174] [cursor=pointer]
+      - paragraph [ref=e3175]:
+        - text: 然后可以在组件中使用
+        - code [ref=e3176]: bg-brand text-brand-foreground
+        - text: 。
+      - heading "使用 Tailwind 类自定义" [level=3] [ref=e3177]
+      - paragraph [ref=e3178]:
+        - text: 组件接受
+        - code [ref=e3179]: className
+        - text: 属性，通过
+        - code [ref=e3180]: cn()
+        - text: 工具函数合并类名：
+      - generic [ref=e3181]:
+        - code [ref=e3182]: // 直接传 className 覆盖样式 <Button className="rounded-full font-semibold"> 圆角按钮 </Button> // cn() 函数会自动处理类名冲突 // cn("p-4", className) — 允许外部覆盖 // cn(className, "p-4") — 强制使用 p-4
+        - button "复制" [ref=e3183] [cursor=pointer]
+      - heading "创建包装组件（推荐做法）" [level=3] [ref=e3184]
+      - paragraph [ref=e3185]:
+        - text: 不直接修改
+        - code [ref=e3186]: components/ui/
+        - text: 下的组件，而是创建包装组件：
+      - generic [ref=e3187]:
+        - code [ref=e3188]: "// components/custom-button.tsx import { Button, type ButtonProps } from \"@/components/ui/button\" import { cn } from \"@/lib/utils\" interface CustomButtonProps extends ButtonProps { // 添加自定义属性 } export function CustomButton({ className, ...props }: CustomButtonProps) { return ( <Button className={cn(\"rounded-full font-semibold\", className)} {...props} /> ) }"
+        - button "复制" [ref=e3189] [cursor=pointer]
+      - paragraph [ref=e3190]:
+        - text: 这样做的好处是：
+        - code [ref=e3191]: components/ui/button.tsx
+        - text: 保持原样，你随时可以用
+        - code [ref=e3192]: shadcn diff
+        - text: 比较差异，也可以用
+        - code [ref=e3193]: "--overwrite"
+        - text: 安全更新。
+      - heading "使用 CVA 添加变体" [level=3] [ref=e3194]
+      - paragraph [ref=e3195]:
+        - text: shadcn/ui 内部使用
+        - code [ref=e3196]: class-variance-authority
+        - text: （CVA）管理变体。你可以直接在组件的
+        - code [ref=e3197]: cva()
+        - text: 调用中添加新变体：
+      - generic [ref=e3198]:
+        - code [ref=e3199]: "// components/ui/button.tsx 中已有的 cva 定义 const buttonVariants = cva(\"inline-flex items-center ...\", { variants: { variant: { default: \"bg-primary text-primary-foreground ...\", destructive: \"bg-destructive text-destructive-foreground ...\", outline: \"border border-input ...\", // 添加自定义变体 brand: \"bg-brand text-brand-foreground hover:bg-brand/90\", }, // ... }, })"
+        - button "复制" [ref=e3200] [cursor=pointer]
+      - heading "视觉预设（Presets）" [level=3] [ref=e3201]
+      - paragraph [ref=e3202]: shadcn/ui 提供多种视觉预设，每种有不同的间距和风格特征：
+      - table [ref=e3203]:
+        - rowgroup [ref=e3204]:
+          - row "预设 特点" [ref=e3205]:
+            - columnheader "预设" [ref=e3206]
+            - columnheader "特点" [ref=e3207]
+        - rowgroup [ref=e3208]:
+          - row "Vega 经典 shadcn/ui 风格，简洁、中性" [ref=e3209]:
+            - cell "Vega" [ref=e3210]:
+              - strong [ref=e3211]: Vega
+            - cell "经典 shadcn/ui 风格，简洁、中性" [ref=e3212]
+          - row "Nova 减少内边距，适合数据密集的紧凑布局" [ref=e3213]:
+            - cell "Nova" [ref=e3214]:
+              - strong [ref=e3215]: Nova
+            - cell "减少内边距，适合数据密集的紧凑布局" [ref=e3216]
+          - row "Maia 柔和圆润，大间距曲线设计" [ref=e3217]:
+            - cell "Maia" [ref=e3218]:
+              - strong [ref=e3219]: Maia
+            - cell "柔和圆润，大间距曲线设计" [ref=e3220]
+          - row "Lyra 棱角分明，与等宽字体搭配极佳" [ref=e3221]:
+            - cell "Lyra" [ref=e3222]:
+              - strong [ref=e3223]: Lyra
+            - cell "棱角分明，与等宽字体搭配极佳" [ref=e3224]
+          - row "Mira 超紧凑，为密集专业界面设计" [ref=e3225]:
+            - cell "Mira" [ref=e3226]:
+              - strong [ref=e3227]: Mira
+            - cell "超紧凑，为密集专业界面设计" [ref=e3228]
+      - generic [ref=e3229]:
+        - code [ref=e3230]: "# 使用预设初始化 pnpm dlx shadcn@latest init --preset <code> # 在 shadcn/create 上可视化选择预设"
+        - button "复制" [ref=e3231] [cursor=pointer]
+      - heading "基础颜色" [level=3] [ref=e3232]
+      - paragraph [ref=e3233]:
+        - text: 支持的基础颜色：
+        - code [ref=e3234]: neutral
+        - text: 、
+        - code [ref=e3235]: stone
+        - text: 、
+        - code [ref=e3236]: zinc
+        - text: 、
+        - code [ref=e3237]: mauve
+        - text: 、
+        - code [ref=e3238]: olive
+        - text: 、
+        - code [ref=e3239]: mist
+        - text: 、
+        - code [ref=e3240]: taupe
+        - text: 。在
+        - code [ref=e3241]: components.json
+        - text: 中通过
+        - code [ref=e3242]: tailwind.baseColor
+        - text: 配置，初始化后不可更改。
+      - heading "最佳实践" [level=2] [ref=e3243]
+      - list [ref=e3244]:
+        - listitem [ref=e3245]:
+          - paragraph [ref=e3246]:
+            - strong [ref=e3247]: 不要像使用 MUI/Chakra 那样使用 shadcn/ui
+            - text: 。你不是在安装一个黑盒库，你是把代码复制进项目。把组件源码当作你自己的代码来对待
+        - listitem [ref=e3248]:
+          - paragraph [ref=e3249]:
+            - strong [ref=e3250]: 创建包装组件而非直接修改 UI 组件
+            - text: 。将自定义逻辑放在包装组件中，保持
+            - code [ref=e3251]: components/ui/
+            - text: 下的组件尽量原样，便于用
+            - code [ref=e3252]: shadcn diff
+            - text: 跟踪上游更新
+        - listitem [ref=e3253]:
+          - paragraph [ref=e3254]:
+            - strong [ref=e3255]: 使用 CSS 变量而非硬编码颜色
+            - text: 。
+            - code [ref=e3256]: "--primary"
+            - text: 、
+            - code [ref=e3257]: "--background"
+            - text: 等 token 是主题系统的核心，用 Tailwind 的
+            - code [ref=e3258]: bg-primary
+            - text: 而不是
+            - code [ref=e3259]: bg-blue-500
+        - listitem [ref=e3260]:
+          - paragraph [ref=e3261]:
+            - strong [ref=e3262]:
+              - text: 利用
+              - code [ref=e3263]: cn()
+              - text: 函数合并类名
+            - text: 。
+            - code [ref=e3264]: cn("p-4", className)
+            - text: 允许外部覆盖，
+            - code [ref=e3265]: cn(className, "p-4")
+            - text: 强制使用默认值
+        - listitem [ref=e3266]:
+          - paragraph [ref=e3267]:
+            - strong [ref=e3268]:
+              - text: 定期运行
+              - code [ref=e3269]: shadcn diff
+              - text: 检查更新
+            - text: 。虽然组件代码在你项目中，但上游可能修复了 bug 或改进了无障碍支持
+        - listitem [ref=e3270]:
+          - paragraph [ref=e3271]:
+            - strong [ref=e3272]: 在修改前备份配置文件
+            - text: 。每次修改 Tailwind 配置或
+            - code [ref=e3273]: globals.css
+            - text: 前，先做备份
+        - listitem [ref=e3274]:
+          - paragraph [ref=e3275]:
+            - strong [ref=e3276]: 服务端/客户端边界要清晰
+            - text: 。在 Next.js App Router 中，注意
+            - code [ref=e3277]: "\"use client\""
+            - text: 指令，交互组件放在客户端，数据获取放在服务端
+        - listitem [ref=e3278]:
+          - paragraph [ref=e3279]:
+            - strong [ref=e3280]: 生产构建测试
+            - text: 。本地开发正常不代表生产也正常，部署前务必运行
+            - code [ref=e3281]: npm run build && npm run preview
+            - text: 验证
+        - listitem [ref=e3282]:
+          - paragraph [ref=e3283]:
+            - strong [ref=e3284]:
+              - text: 使用
+              - code [ref=e3285]: "--dry-run"
+              - text: 预览
+            - text: 。添加组件前先用
+            - code [ref=e3286]: "--dry-run"
+            - text: 查看将要写入的文件，避免意外覆盖
+        - listitem [ref=e3287]:
+          - paragraph [ref=e3288]:
+            - strong [ref=e3289]:
+              - text: 利用
+              - code [ref=e3290]: shadcn docs
+              - text: 命令
+            - text: 。在终端中直接查看组件文档、示例和 API，无需切换到浏览器
+      - heading "常见问题" [level=2] [ref=e3291]
+      - 'heading "Q: CLI 命令 shadcn-ui 找不到？" [level=3] [ref=e3292]':
+        - text: "Q: CLI 命令"
+        - code [ref=e3293]: shadcn-ui
+        - text: 找不到？
+      - paragraph [ref=e3294]:
+        - text: CLI 已从
+        - code [ref=e3295]: shadcn-ui
+        - text: 更名为
+        - code [ref=e3296]: shadcn
+        - text: 。使用新命令：
+      - generic [ref=e3297]:
+        - code [ref=e3298]: "# 错误 npx shadcn-ui@latest add button # 正确 npx shadcn@latest add button"
+        - button "复制" [ref=e3299] [cursor=pointer]
+      - 'heading "Q: 组件安装后样式不生效？" [level=3] [ref=e3300]'
+      - list [ref=e3301]:
+        - listitem [ref=e3302]:
+          - text: 检查
+          - code [ref=e3303]: globals.css
+          - text: 是否正确导入了 Tailwind CSS 和 shadcn 样式
+        - listitem [ref=e3304]:
+          - text: 确认
+          - code [ref=e3305]: components.json
+          - text: 中的
+          - code [ref=e3306]: tailwind.css
+          - text: 路径指向正确的 CSS 文件
+        - listitem [ref=e3307]:
+          - text: 检查 Tailwind CSS 的
+          - code [ref=e3308]: content
+          - text: 配置是否包含了组件目录
+        - listitem [ref=e3309]:
+          - text: 运行
+          - code [ref=e3310]: npm run build
+          - text: 确认生产构建是否正常
+      - 'heading "Q: Tailwind v4 中自定义主题不生效？" [level=3] [ref=e3311]'
+      - paragraph [ref=e3312]: Tailwind v4 的配置方式有变化：
+      - list [ref=e3313]:
+        - listitem [ref=e3314]:
+          - text: 将
+          - code [ref=e3315]: :root
+          - text: 和
+          - code [ref=e3316]: .dark
+          - text: 从
+          - code [ref=e3317]: "@layer base"
+          - text: 中移出
+        - listitem [ref=e3318]:
+          - text: 在
+          - code [ref=e3319]: "@theme"
+          - text: 中使用
+          - code [ref=e3320]: inline
+          - text: 选项：
+          - code [ref=e3321]: "@theme inline { ... }"
+        - listitem [ref=e3322]:
+          - text: 颜色值需要包裹在
+          - code [ref=e3323]: hsl()
+          - text: 或使用
+          - code [ref=e3324]: oklch()
+          - text: 格式
+        - listitem [ref=e3325]:
+          - text: 从
+          - code [ref=e3326]: "@theme"
+          - text: 中移除
+          - code [ref=e3327]: hsl()
+          - text: 包裹，只保留原始值
+      - 'heading "Q: 如何更新已有组件而不丢失自定义修改？" [level=3] [ref=e3328]'
+      - list [ref=e3329]:
+        - listitem [ref=e3330]:
+          - text: 先运行
+          - code [ref=e3331]: shadcn diff button
+          - text: 查看差异
+        - listitem [ref=e3332]: 手动合并上游更改到你的组件中
+        - listitem [ref=e3333]:
+          - text: 或者：将自定义逻辑放在包装组件中，
+          - code [ref=e3334]: components/ui/
+          - text: 下的原组件用
+          - code [ref=e3335]: "--overwrite"
+          - text: 更新
+      - 'heading "Q: 在 monorepo 中如何使用？" [level=3] [ref=e3336]'
+      - paragraph [ref=e3337]:
+        - text: 使用
+        - code [ref=e3338]: "-c"
+        - text: 选项指定工作目录：
+      - generic [ref=e3339]:
+        - code [ref=e3340]: pnpm dlx shadcn@latest init -t next --monorepo pnpm dlx shadcn@latest add button -c ./apps/web
+        - button "复制" [ref=e3341] [cursor=pointer]
+      - 'heading "Q: 如何切换 CSS 变量和内联 Tailwind 类？" [level=3] [ref=e3342]'
+      - paragraph [ref=e3343]: 这是初始化时的选项，初始化后无法直接切换。需要删除并重新安装组件：
+      - generic [ref=e3344]:
+        - code [ref=e3345]: "# 使用 CSS 变量（默认，推荐） pnpm dlx shadcn@latest init --css-variables # 不使用 CSS 变量，生成内联 Tailwind 颜色类 pnpm dlx shadcn@latest init --no-css-variables"
+        - button "复制" [ref=e3346] [cursor=pointer]
+      - 'heading "Q: 路径别名 @/ 不生效？" [level=3] [ref=e3347]':
+        - text: "Q: 路径别名"
+        - code [ref=e3348]: "@/"
+        - text: 不生效？
+      - paragraph [ref=e3349]:
+        - text: 确保
+        - code [ref=e3350]: tsconfig.json
+        - text: 中配置了路径映射：
+      - generic [ref=e3351]:
+        - code [ref=e3352]: "{ \"compilerOptions\": { \"baseUrl\": \".\", \"paths\": { \"@/*\": [\"./*\"] } } }"
+        - button "复制" [ref=e3353] [cursor=pointer]
+      - paragraph [ref=e3354]:
+        - text: 或者使用
+        - code [ref=e3355]: package.json#imports
+        - text: 的
+        - code [ref=e3356]: "#"
+        - text: 别名，并在
+        - code [ref=e3357]: components.json
+        - text: 中对应修改。
+      - 'heading "Q: 组件安装时权限错误？" [level=3] [ref=e3358]'
+      - generic [ref=e3359]:
+        - code [ref=e3360]: "# macOS/Linux：修复目录权限 sudo chown -R $USER:$USER components/ # 或者不要使用 sudo 运行 npx"
+        - button "复制" [ref=e3361] [cursor=pointer]
+      - 'heading "Q: 暗色模式如何实现？" [level=3] [ref=e3362]'
+      - paragraph [ref=e3363]:
+        - text: shadcn/ui 的暗色模式通过
+        - code [ref=e3364]: .dark
+        - text: 类名切换 CSS 变量实现。使用
+        - code [ref=e3365]: next-themes
+        - text: 等库来管理主题切换：
+      - generic [ref=e3366]:
+        - code [ref=e3367]: pnpm add next-themes
+        - button "复制" [ref=e3368] [cursor=pointer]
+      - generic [ref=e3369]:
+        - code [ref=e3370]: "// providers/theme-provider.tsx import { ThemeProvider } from \"next-themes\" export function ThemeProviderWrapper({ children }) { return ( <ThemeProvider attribute=\"class\" defaultTheme=\"system\" enableSystem> {children} </ThemeProvider> ) }"
+        - button "复制" [ref=e3371] [cursor=pointer]
+    - button "快速开始" [ref=e3374] [cursor=pointer]:
+      - img [ref=e3375]
+      - text: 快速开始
+    - generic [ref=e3378]:
+      - heading "相关技能" [level=4] [ref=e3379]
+      - generic [ref=e3380]:
+        - generic [ref=e3381] [cursor=pointer]:
+          - generic [ref=e3382]: UI/UX设计与前端美化
+          - generic [ref=e3383]: Frontend Design
+        - generic [ref=e3384] [cursor=pointer]:
+          - generic [ref=e3385]: UI/UX设计与前端美化
+          - generic [ref=e3386]: AionUI
+        - generic [ref=e3387] [cursor=pointer]:
+          - generic [ref=e3388]: UI/UX设计与前端美化
+          - generic [ref=e3389]: React Bits
+        - generic [ref=e3390] [cursor=pointer]:
+          - generic [ref=e3391]: UI/UX设计与前端美化
+          - generic [ref=e3392]: Awesome Design MD / Design MD Collection
+        - generic [ref=e3393] [cursor=pointer]:
+          - generic [ref=e3394]: UI/UX设计与前端美化
+          - generic [ref=e3395]: UI 设计系统
+    - generic [ref=e3397]:
+      - heading "关联图谱" [level=4] [ref=e3398]
+      - img [ref=e3400]:
+        - generic [ref=e3404] [cursor=pointer]:
+          - generic: shadcn/ui Skill
+        - generic [ref=e3406] [cursor=pointer]:
+          - generic: AionUI
+        - generic [ref=e3408] [cursor=pointer]:
+          - generic: Frontend Design
+        - generic [ref=e3410] [cursor=pointer]:
+          - generic: React Bits
+    - button "我的笔记" [ref=e3414] [cursor=pointer]:
+      - img [ref=e3415]
+      - text: 我的笔记
+  - contentinfo [ref=e809]:
+    - generic [ref=e810]:
+      - generic [ref=e811]: Skill Book
+      - generic [ref=e812]: 技能知识库
+      - button "数据管理" [ref=e814] [cursor=pointer]:
+        - img [ref=e815]
+        - text: 数据管理

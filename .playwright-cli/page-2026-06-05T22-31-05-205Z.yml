@@ -1,0 +1,638 @@
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - link "SKILL BOOK" [ref=e5] [cursor=pointer]:
+      - /url: "#/"
+  - generic [ref=e818]:
+    - generic [ref=e819]:
+      - generic [ref=e820] [cursor=pointer]: Skill Book
+      - generic [ref=e822]:
+        - img
+        - textbox "搜索技能..." [ref=e823]
+      - generic [ref=e824]:
+        - generic [ref=e825]:
+          - button "☀️" [ref=e826] [cursor=pointer]
+          - button "💻" [ref=e827] [cursor=pointer]
+          - button "🌙" [ref=e828] [cursor=pointer]
+        - link "我的空间" [ref=e829] [cursor=pointer]:
+          - /url: "#/my"
+          - img [ref=e830]
+    - generic [ref=e834]:
+      - button "返回列表" [ref=e835] [cursor=pointer]:
+        - img [ref=e836]
+        - text: 返回列表
+      - paragraph [ref=e838]: 代码维护与质量
+      - heading "Git Smart Commit" [level=1] [ref=e839]
+      - paragraph [ref=e840]: 规范化智能提交技能，按架构分层自动拆分为符合Conventional Commits规范的多个原子提交
+      - paragraph [ref=e841]: git · commit · conventional-commits · atomic · layer
+      - generic [ref=e842]:
+        - generic [ref=e843]: git-workflow
+        - generic [ref=e844]: code-review
+        - generic [ref=e845]: commit-hygiene
+      - generic [ref=e846]:
+        - button "待尝试" [ref=e847] [cursor=pointer]
+        - button "学习中" [ref=e848] [cursor=pointer]
+        - button "已掌握" [ref=e849] [cursor=pointer]
+      - button "收藏" [ref=e850] [cursor=pointer]:
+        - img [ref=e851]
+        - text: 收藏
+      - generic [ref=e854]:
+        - button "编辑" [ref=e855] [cursor=pointer]:
+          - img [ref=e856]
+          - text: 编辑
+        - button "删除" [ref=e859] [cursor=pointer]:
+          - img [ref=e860]
+          - text: 删除
+    - generic [ref=e864]:
+      - heading "Git Smart Commit – 规范化智能提交技能" [level=1] [ref=e865]
+      - heading "简介" [level=2] [ref=e866]
+      - paragraph [ref=e867]:
+        - text: Git Smart Commit 是一款面向 Claude Code 的 AI 辅助提交技能，源自
+        - link "claude-code-tresor" [ref=e868] [cursor=pointer]:
+          - /url: https://github.com/alirezarezvani/claude-code-tresor
+        - text: 项目的
+        - code [ref=e869]: git-commit-helper
+        - text: 技能。它能够自动分析你的
+        - code [ref=e870]: git diff
+        - text: ，按照架构分层将多文件修改拆分为多个符合 Conventional Commits 规范的原子提交，让提交历史清晰、语义化、机器可读。
+      - paragraph [ref=e871]: 传统手动提交常常面临以下问题：
+      - list [ref=e872]:
+        - listitem [ref=e873]:
+          - text: 提交信息模糊（如
+          - code [ref=e874]: fix stuff
+          - text: 、
+          - code [ref=e875]: update
+          - text: ）
+        - listitem [ref=e876]: 多个不相关改动混合在一次提交中
+        - listitem [ref=e877]: 缺乏统一格式，难以自动生成 Changelog
+        - listitem [ref=e878]: 无法与语义化版本（SemVer）自动关联
+      - paragraph [ref=e879]: Git Smart Commit 通过 AI 分析代码变更的语义，自动生成结构化提交消息，并按架构层（Config、API、UI、Database 等）将变更拆分为独立原子提交，彻底解决上述痛点。
+      - heading "核心功能" [level=2] [ref=e880]
+      - heading "1. 语义化提交消息生成" [level=3] [ref=e881]
+      - paragraph [ref=e882]:
+        - text: 自动分析
+        - code [ref=e883]: git diff --staged
+        - text: 的内容，识别变更类型并生成符合 Conventional Commits 规范的提交消息：
+      - list [ref=e884]:
+        - listitem [ref=e885]:
+          - strong [ref=e886]: 类型自动识别
+          - text: ：根据文件变更内容判断是
+          - code [ref=e887]: feat
+          - text: 、
+          - code [ref=e888]: fix
+          - text: 、
+          - code [ref=e889]: refactor
+          - text: 、
+          - code [ref=e890]: docs
+          - text: 等
+        - listitem [ref=e891]:
+          - strong [ref=e892]: Scope 自动推断
+          - text: ：根据文件路径和模块归属推断 scope（如
+          - code [ref=e893]: auth
+          - text: 、
+          - code [ref=e894]: api
+          - text: 、
+          - code [ref=e895]: ui
+          - text: ）
+        - listitem [ref=e896]:
+          - strong [ref=e897]: 描述语义化
+          - text: ：生成祈使语气的简洁描述，而非模糊的"fix bug"
+      - heading "2. 按架构分层原子提交" [level=3] [ref=e898]
+      - paragraph [ref=e899]: 当多个文件同时修改时，自动按架构层拆分为多个独立提交：
+      - generic [ref=e900]:
+        - code [ref=e901]: "同时修改了配置、数据库和前端代码 → /smart-commit commit 1: feat(config): add database connection pool settings commit 2: feat(api): add user authentication endpoints commit 3: feat(ui): add login form component"
+        - button "复制" [ref=e902] [cursor=pointer]
+      - paragraph [ref=e903]: 每个提交只包含同一架构层的变更，确保提交历史的原子性和可追溯性。
+      - heading "3. 自动暂存（Auto-Staging）" [level=3] [ref=e904]
+      - paragraph [ref=e905]:
+        - text: 技能会自动执行
+        - code [ref=e906]: git add
+        - text: 将对应文件暂存到正确的提交中，无需手动
+        - code [ref=e907]: git add
+        - text: 每个文件。
+      - heading "4. 安全控制" [level=3] [ref=e908]
+      - paragraph [ref=e909]: 通过 Claude Code 的权限系统，严格限制可执行的 Git 操作：
+      - table [ref=e910]:
+        - rowgroup [ref=e911]:
+          - row "允许的操作 禁止的操作" [ref=e912]:
+            - columnheader "允许的操作" [ref=e913]
+            - columnheader "禁止的操作" [ref=e914]
+        - rowgroup [ref=e915]:
+          - row "git status git push" [ref=e916]:
+            - cell "git status" [ref=e917]:
+              - code [ref=e918]: git status
+            - cell "git push" [ref=e919]:
+              - code [ref=e920]: git push
+          - row "git diff git reset" [ref=e921]:
+            - cell "git diff" [ref=e922]:
+              - code [ref=e923]: git diff
+            - cell "git reset" [ref=e924]:
+              - code [ref=e925]: git reset
+          - row "git add git revert" [ref=e926]:
+            - cell "git add" [ref=e927]:
+              - code [ref=e928]: git add
+            - cell "git revert" [ref=e929]:
+              - code [ref=e930]: git revert
+          - row "git commit git clean" [ref=e931]:
+            - cell "git commit" [ref=e932]:
+              - code [ref=e933]: git commit
+            - cell "git clean" [ref=e934]:
+              - code [ref=e935]: git clean
+          - row "Read（读取文件） git rebase" [ref=e936]:
+            - cell "Read（读取文件）" [ref=e937]:
+              - code [ref=e938]: Read
+              - text: （读取文件）
+            - cell "git rebase" [ref=e939]:
+              - code [ref=e940]: git rebase
+          - row "git merge" [ref=e941]:
+            - cell [ref=e942]
+            - cell "git merge" [ref=e943]:
+              - code [ref=e944]: git merge
+          - row "git checkout" [ref=e945]:
+            - cell [ref=e946]
+            - cell "git checkout" [ref=e947]:
+              - code [ref=e948]: git checkout
+      - paragraph [ref=e949]:
+        - text: 禁止
+        - code [ref=e950]: push
+        - text: 、
+        - code [ref=e951]: reset
+        - text: 、
+        - code [ref=e952]: rebase
+        - text: 等危险操作，确保不会意外破坏代码仓库。
+      - heading "安装与使用" [level=2] [ref=e953]
+      - heading "安装方式" [level=3] [ref=e954]
+      - paragraph [ref=e955]:
+        - strong [ref=e956]: 方式一：通过 openskills 安装
+      - generic [ref=e957]:
+        - code [ref=e958]: openskills install alirezarezvani/claude-code-tresor
+        - button "复制" [ref=e959] [cursor=pointer]
+      - paragraph [ref=e960]:
+        - strong [ref=e961]: 方式二：手动复制
+      - generic [ref=e962]:
+        - code [ref=e963]: "# 创建技能目录 mkdir -p .claude/skills/git-smart-commit # 从仓库复制 SKILL.md cp skills/development/git-commit-helper/SKILL.md .claude/skills/git-smart-commit/"
+        - button "复制" [ref=e964] [cursor=pointer]
+      - paragraph [ref=e965]:
+        - strong [ref=e966]: 方式三：通过 zsh 函数（HelgeSverre 方案）
+      - paragraph [ref=e967]:
+        - text: 将以下函数添加到
+        - code [ref=e968]: ~/.zshrc
+        - text: ：
+      - generic [ref=e969]:
+        - code [ref=e970]: "smart-commit() { local context=\"${1:-}\" local prompt=\"Analyze git changes and create logical, atomic commits using conventional commits format.\" if [ -n \"$context\" ]; then prompt=\"$prompt Context: $context\" fi claude \"$prompt\" \\ --allowedTools \"Bash(git status)\" \\ \"Bash(git diff:)\" \"Bash(git add:)\" \\ \"Bash(git commit:)\" \"Read\" \\ --disallowedTools \"Bash(git push:)\" \\ \"Bash(git reset:)\" \"Bash(git revert:)\" \\ \"Bash(git clean:)\" \"Bash(git rebase:)\" \\ \"Bash(git merge:)\" \"Bash(git checkout:)\" }"
+        - button "复制" [ref=e971] [cursor=pointer]
+      - paragraph [ref=e972]:
+        - text: 然后在终端执行
+        - code [ref=e973]: source ~/.zshrc
+        - text: 使其生效。
+      - heading "使用方式" [level=3] [ref=e974]
+      - paragraph [ref=e975]: 在 Claude Code 中：
+      - list [ref=e976]:
+        - listitem [ref=e977]:
+          - code [ref=e978]: /smart-commit
+          - text: – 触发智能提交
+        - listitem [ref=e979]:
+          - code [ref=e980]: commit by layer
+          - text: – 按架构分层提交
+        - listitem [ref=e981]:
+          - text: 直接输入
+          - code [ref=e982]: git commit
+          - text: 且未提供消息时，技能自动激活
+        - listitem [ref=e983]: 询问"我的提交消息应该写什么？"时，技能自动激活
+      - paragraph [ref=e984]: 在终端中使用 zsh 函数：
+      - generic [ref=e985]:
+        - code [ref=e986]: "# 基本用法 smart-commit # 带上下文提示 smart-commit \"完成用户认证功能\""
+        - button "复制" [ref=e987] [cursor=pointer]
+      - heading "提交消息格式" [level=2] [ref=e988]
+      - heading "Conventional Commits 规范" [level=3] [ref=e989]
+      - paragraph [ref=e990]:
+        - text: 提交消息遵循
+        - link "Conventional Commits v1.0.0" [ref=e991] [cursor=pointer]:
+          - /url: https://www.conventionalcommits.org/
+        - text: 规范：
+      - generic [ref=e992]:
+        - code [ref=e993]: "<type>(<scope>): <subject> ← 空行 <body> ← 空行 <footer>"
+        - button "复制" [ref=e994] [cursor=pointer]
+      - paragraph [ref=e995]: 各部分说明：
+      - table [ref=e996]:
+        - rowgroup [ref=e997]:
+          - row "部分 必填 说明" [ref=e998]:
+            - columnheader "部分" [ref=e999]
+            - columnheader "必填" [ref=e1000]
+            - columnheader "说明" [ref=e1001]
+        - rowgroup [ref=e1002]:
+          - row "type 是 变更类型" [ref=e1003]:
+            - cell "type" [ref=e1004]:
+              - code [ref=e1005]: type
+            - cell "是" [ref=e1006]
+            - cell "变更类型" [ref=e1007]
+          - row "scope 否 影响范围，如模块名、包名" [ref=e1008]:
+            - cell "scope" [ref=e1009]:
+              - code [ref=e1010]: scope
+            - cell "否" [ref=e1011]
+            - cell "影响范围，如模块名、包名" [ref=e1012]
+          - row "subject 是 简短描述，不超过 50 字符" [ref=e1013]:
+            - cell "subject" [ref=e1014]:
+              - code [ref=e1015]: subject
+            - cell "是" [ref=e1016]
+            - cell "简短描述，不超过 50 字符" [ref=e1017]
+          - row "body 否 详细说明变更的\"是什么\"和\"为什么\"" [ref=e1018]:
+            - cell "body" [ref=e1019]:
+              - code [ref=e1020]: body
+            - cell "否" [ref=e1021]
+            - cell "详细说明变更的\"是什么\"和\"为什么\"" [ref=e1022]
+          - row "footer 否 破坏性变更说明、Issue 关联等" [ref=e1023]:
+            - cell "footer" [ref=e1024]:
+              - code [ref=e1025]: footer
+            - cell "否" [ref=e1026]
+            - cell "破坏性变更说明、Issue 关联等" [ref=e1027]
+      - heading "提交类型（Type）" [level=3] [ref=e1028]
+      - table [ref=e1029]:
+        - rowgroup [ref=e1030]:
+          - row "类型 说明 SemVer 影响" [ref=e1031]:
+            - columnheader "类型" [ref=e1032]
+            - columnheader "说明" [ref=e1033]
+            - columnheader "SemVer 影响" [ref=e1034]
+        - rowgroup [ref=e1035]:
+          - row "feat 新功能 MINOR（次版本号）" [ref=e1036]:
+            - cell "feat" [ref=e1037]:
+              - code [ref=e1038]: feat
+            - cell "新功能" [ref=e1039]
+            - cell "MINOR（次版本号）" [ref=e1040]
+          - row "fix 修复 Bug PATCH（修订号）" [ref=e1041]:
+            - cell "fix" [ref=e1042]:
+              - code [ref=e1043]: fix
+            - cell "修复 Bug" [ref=e1044]
+            - cell "PATCH（修订号）" [ref=e1045]
+          - row "docs 文档变更 无" [ref=e1046]:
+            - cell "docs" [ref=e1047]:
+              - code [ref=e1048]: docs
+            - cell "文档变更" [ref=e1049]
+            - cell "无" [ref=e1050]
+          - row "style 代码格式（不影响逻辑） 无" [ref=e1051]:
+            - cell "style" [ref=e1052]:
+              - code [ref=e1053]: style
+            - cell "代码格式（不影响逻辑）" [ref=e1054]
+            - cell "无" [ref=e1055]
+          - row "refactor 代码重构（不修复 Bug 也不新增功能） 无" [ref=e1056]:
+            - cell "refactor" [ref=e1057]:
+              - code [ref=e1058]: refactor
+            - cell "代码重构（不修复 Bug 也不新增功能）" [ref=e1059]
+            - cell "无" [ref=e1060]
+          - row "perf 性能优化 无" [ref=e1061]:
+            - cell "perf" [ref=e1062]:
+              - code [ref=e1063]: perf
+            - cell "性能优化" [ref=e1064]
+            - cell "无" [ref=e1065]
+          - row "test 测试新增或修复 无" [ref=e1066]:
+            - cell "test" [ref=e1067]:
+              - code [ref=e1068]: test
+            - cell "测试新增或修复" [ref=e1069]
+            - cell "无" [ref=e1070]
+          - row "build 构建系统或外部依赖变更 无" [ref=e1071]:
+            - cell "build" [ref=e1072]:
+              - code [ref=e1073]: build
+            - cell "构建系统或外部依赖变更" [ref=e1074]
+            - cell "无" [ref=e1075]
+          - row "ci CI/CD 配置变更 无" [ref=e1076]:
+            - cell "ci" [ref=e1077]:
+              - code [ref=e1078]: ci
+            - cell "CI/CD 配置变更" [ref=e1079]
+            - cell "无" [ref=e1080]
+          - row "chore 其他不涉及源码的变更 无" [ref=e1081]:
+            - cell "chore" [ref=e1082]:
+              - code [ref=e1083]: chore
+            - cell "其他不涉及源码的变更" [ref=e1084]
+            - cell "无" [ref=e1085]
+          - row "revert 回退之前的提交 无" [ref=e1086]:
+            - cell "revert" [ref=e1087]:
+              - code [ref=e1088]: revert
+            - cell "回退之前的提交" [ref=e1089]
+            - cell "无" [ref=e1090]
+      - paragraph [ref=e1091]:
+        - text: 包含
+        - code [ref=e1092]: BREAKING CHANGE
+        - text: 或
+        - code [ref=e1093]: "!"
+        - text: 标记的提交对应 MAJOR（主版本号）。
+      - heading "Scope（范围）" [level=3] [ref=e1094]
+      - paragraph [ref=e1095]: Scope 用于指定提交影响的模块或区域：
+      - generic [ref=e1096]:
+        - code [ref=e1097]: "# 组件名 feat(UserCard): add avatar display # 模块名 fix(auth): resolve token expiration issue # 包名 chore(api): update dependencies # 区域 docs(readme): update installation guide"
+        - button "复制" [ref=e1098] [cursor=pointer]
+      - paragraph [ref=e1099]:
+        - text: 常见 scope 示例：
+        - code [ref=e1100]: auth
+        - text: 、
+        - code [ref=e1101]: api
+        - text: 、
+        - code [ref=e1102]: ui
+        - text: 、
+        - code [ref=e1103]: database
+        - text: 、
+        - code [ref=e1104]: config
+        - text: 、
+        - code [ref=e1105]: deps
+        - text: 、
+        - code [ref=e1106]: admin
+        - text: 、
+        - code [ref=e1107]: mobile
+      - heading "Subject（描述）规则" [level=3] [ref=e1108]
+      - list [ref=e1109]:
+        - listitem [ref=e1110]: 使用祈使语气：“add” 而非 “added” 或 “adds”
+        - listitem [ref=e1111]: 首字母小写（type 之后）
+        - listitem [ref=e1112]: 不以句号结尾
+        - listitem [ref=e1113]: 不超过 50 个字符
+      - generic [ref=e1114]:
+        - code [ref=e1115]: "# 好的示例 add user authentication fix memory leak in component update API documentation # 不好的示例 added user authentication ← 过去时 fixes bug ← 太模糊 Update API docs. ← 大写开头 + 句号"
+        - button "复制" [ref=e1116] [cursor=pointer]
+      - heading "Body（正文）规则" [level=3] [ref=e1117]
+      - list [ref=e1118]:
+        - listitem [ref=e1119]: 解释"做了什么"和"为什么这样做"，而非"怎么做的"
+        - listitem [ref=e1120]: 每行不超过 72 个字符
+        - listitem [ref=e1121]: 多项变更使用列表形式
+      - heading "Footer（页脚）规则" [level=3] [ref=e1122]
+      - list [ref=e1123]:
+        - listitem [ref=e1124]:
+          - text: 破坏性变更：
+          - code [ref=e1125]: "BREAKING CHANGE: <描述>"
+        - listitem [ref=e1126]:
+          - text: Issue 关联：
+          - code [ref=e1127]: "Closes #123"
+          - text: 、
+          - code [ref=e1128]: "Fixes #456"
+        - listitem [ref=e1129]:
+          - text: 协作者：
+          - code [ref=e1130]: "Co-authored-by: name <email>"
+      - heading "完整示例" [level=3] [ref=e1131]
+      - paragraph [ref=e1132]:
+        - strong [ref=e1133]: 功能新增：
+      - generic [ref=e1134]:
+        - code [ref=e1135]: "feat(auth): add JWT-based user authentication - Implement login/logout functionality - Add token management service - Include auth guards for protected routes - Add unit tests for auth service Closes #42"
+        - button "复制" [ref=e1136] [cursor=pointer]
+      - paragraph [ref=e1137]:
+        - strong [ref=e1138]: Bug 修复：
+      - generic [ref=e1139]:
+        - code [ref=e1140]: "fix(components): resolve memory leak in UserList Fixed subscription not being cleaned up in useEffect, causing memory leak when component unmounts. Closes #156"
+        - button "复制" [ref=e1141] [cursor=pointer]
+      - paragraph [ref=e1142]:
+        - strong [ref=e1143]: 破坏性变更：
+      - generic [ref=e1144]:
+        - code [ref=e1145]: "feat(api)!: update user API response format Changed response structure to include metadata for better pagination and filtering support. BREAKING CHANGE: User API now returns { data, metadata } instead of direct array. Update client code accordingly."
+        - button "复制" [ref=e1146] [cursor=pointer]
+      - paragraph [ref=e1147]:
+        - strong [ref=e1148]: 代码重构：
+      - generic [ref=e1149]:
+        - code [ref=e1150]: "refactor(api): extract database logic into repository pattern Moved database queries from controllers to repository classes for better separation of concerns and testability. No functional changes or API modifications."
+        - button "复制" [ref=e1151] [cursor=pointer]
+      - paragraph [ref=e1152]:
+        - strong [ref=e1153]: 性能优化：
+      - generic [ref=e1154]:
+        - code [ref=e1155]: "perf(queries): optimize user data fetching - Implement query batching to eliminate N+1 queries - Add database indices on frequently queried columns - Cache user profile data with 5-minute TTL Performance improvement: 80ms -> 12ms average response time"
+        - button "复制" [ref=e1156] [cursor=pointer]
+      - heading "工作流集成" [level=2] [ref=e1157]
+      - heading "与 Husky + Commitlint 集成" [level=3] [ref=e1158]
+      - paragraph [ref=e1159]: Husky 提供 Git Hooks，Commitlint 校验提交消息格式，两者配合可以在本地强制执行 Conventional Commits 规范：
+      - generic [ref=e1160]:
+        - code [ref=e1161]: "# 安装依赖 npm install -D @commitlint/cli @commitlint/config-conventional husky # 初始化 Husky npx husky init # 添加 commit-msg 钩子 echo \"npx --no -- commitlint --edit \\$1\" > .husky/commit-msg"
+        - button "复制" [ref=e1162] [cursor=pointer]
+      - paragraph [ref=e1163]:
+        - text: 创建
+        - code [ref=e1164]: commitlint.config.js
+        - text: ：
+      - generic [ref=e1165]:
+        - code [ref=e1166]: "module.exports = { extends: ['@commitlint/config-conventional'], rules: { 'header-max-length': [2, 'always', 50], 'type-enum': [2, 'always', [ 'feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'build', 'ci', 'chore' ]] } }"
+        - button "复制" [ref=e1167] [cursor=pointer]
+      - heading "与 Semantic Release 集成" [level=3] [ref=e1168]
+      - paragraph [ref=e1169]: Semantic Release 根据 Conventional Commits 自动决定版本号、生成 Changelog 并发布：
+      - generic [ref=e1170]:
+        - code [ref=e1171]: npm install -D semantic-release @semantic-release/changelog @semantic-release/git
+        - button "复制" [ref=e1172] [cursor=pointer]
+      - paragraph [ref=e1173]: 版本号自动推导规则：
+      - table [ref=e1174]:
+        - rowgroup [ref=e1175]:
+          - row "提交类型 版本变更" [ref=e1176]:
+            - columnheader "提交类型" [ref=e1177]
+            - columnheader "版本变更" [ref=e1178]
+        - rowgroup [ref=e1179]:
+          - 'row "feat: MINOR（1.1.0 -> 1.2.0）" [ref=e1180]':
+            - cell "feat:" [ref=e1181]:
+              - code [ref=e1182]: "feat:"
+            - cell "MINOR（1.1.0 -> 1.2.0）" [ref=e1183]
+          - 'row "fix: PATCH（1.1.0 -> 1.1.1）" [ref=e1184]':
+            - cell "fix:" [ref=e1185]:
+              - code [ref=e1186]: "fix:"
+            - cell "PATCH（1.1.0 -> 1.1.1）" [ref=e1187]
+          - 'row "feat!: 或 BREAKING CHANGE MAJOR（1.1.0 -> 2.0.0）" [ref=e1188]':
+            - 'cell "feat!: 或 BREAKING CHANGE" [ref=e1189]':
+              - code [ref=e1190]: "feat!:"
+              - text: 或
+              - code [ref=e1191]: BREAKING CHANGE
+            - cell "MAJOR（1.1.0 -> 2.0.0）" [ref=e1192]
+      - heading "与 CI/CD 集成" [level=3] [ref=e1193]
+      - paragraph [ref=e1194]: 在 GitHub Actions 中校验提交消息：
+      - generic [ref=e1195]:
+        - code [ref=e1196]: "name: CI on: [push, pull_request] jobs: commitlint: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 with: fetch-depth: 0 - uses: actions/setup-node@v4 with: node-version: lts/* - run: npm install -D @commitlint/cli @commitlint/config-conventional - run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.sha }}"
+        - button "复制" [ref=e1197] [cursor=pointer]
+      - heading "与 Pre-commit Hook 集成" [level=3] [ref=e1198]
+      - paragraph [ref=e1199]:
+        - text: Git Smart Commit 可以与
+        - code [ref=e1200]: prepare-commit-msg
+        - text: 钩子配合：
+      - generic [ref=e1201]:
+        - code [ref=e1202]: "#!/bin/sh # .git/hooks/prepare-commit-msg # 如果没有提供提交消息，让技能自动建议 if [ -z \"$2\" ]; then echo \"# Suggested commit message (edit as needed)\" > \"$1\" fi"
+        - button "复制" [ref=e1203] [cursor=pointer]
+      - heading "与代码审查集成" [level=3] [ref=e1204]
+      - paragraph [ref=e1205]:
+        - text: Git Smart Commit 可与 Tresor 中的
+        - code [ref=e1206]: code-reviewer
+        - text: 技能和
+        - code [ref=e1207]: /review
+        - text: 命令联动：
+      - generic [ref=e1208]:
+        - code [ref=e1209]: "# 1. 编写代码 # 2. code-reviewer 标记问题 # 3. 修复问题 # 4. 暂存变更 # 5. git-commit-helper 生成提交消息 git commit # 使用建议的消息"
+        - button "复制" [ref=e1210] [cursor=pointer]
+      - heading "配置选项" [level=2] [ref=e1211]
+      - heading "自定义提交类型" [level=3] [ref=e1212]
+      - paragraph [ref=e1213]:
+        - text: 编辑
+        - link "SKILL.md" [ref=e1214] [cursor=pointer]:
+          - /url: http://SKILL.md
+        - text: 添加团队特定类型：
+      - generic [ref=e1215]:
+        - code [ref=e1216]: "deploy: 部署相关 migrate: 数据库迁移 hotfix: 生产环境热修复 wip: 开发中（Work In Progress）"
+        - button "复制" [ref=e1217] [cursor=pointer]
+      - heading "自定义 Scope" [level=3] [ref=e1218]
+      - paragraph [ref=e1219]: 配置技能识别你的项目结构：
+      - generic [ref=e1220]:
+        - code [ref=e1221]: "Common scopes: auth, api, ui, database, admin, mobile, payment, notification"
+        - button "复制" [ref=e1222] [cursor=pointer]
+      - heading "自定义消息模板" [level=3] [ref=e1223]
+      - paragraph [ref=e1224]: 定制团队的消息格式：
+      - generic [ref=e1225]:
+        - code [ref=e1226]: "# 标准格式 feat(scope): subject # 自定义格式（含 JIRA 编号） [JIRA-123] feat(scope): subject"
+        - button "复制" [ref=e1227] [cursor=pointer]
+      - heading "沙箱配置" [level=3] [ref=e1228]
+      - paragraph [ref=e1229]: 如需网络访问（如获取 GitHub Issue 详情）：
+      - generic [ref=e1230]:
+        - code [ref=e1231]: "{ \"network\": { \"allowedDomains\": [ \"api.github.com\" ] } }"
+        - button "复制" [ref=e1232] [cursor=pointer]
+      - heading "最佳实践" [level=2] [ref=e1233]
+      - heading "1. 保持原子性提交" [level=3] [ref=e1234]
+      - paragraph [ref=e1235]:
+        - text: 每次提交只包含一个逻辑变更。如果修改了多个不相关的文件，使用
+        - code [ref=e1236]: /smart-commit
+        - text: 按架构层拆分：
+      - generic [ref=e1237]:
+        - code [ref=e1238]: "# 不好的做法：所有变更混在一起 git add . git commit -m \"update stuff\" # 好的做法：按层拆分 /smart-commit → feat(config): add database connection pool settings → feat(api): add user authentication endpoints → feat(ui): add login form component"
+        - button "复制" [ref=e1239] [cursor=pointer]
+      - heading "2. 使用祈使语气" [level=3] [ref=e1240]
+      - paragraph [ref=e1241]: 提交描述应当以祈使语气书写，想象它在完成这句话：“This commit will…”
+      - generic [ref=e1242]:
+        - code [ref=e1243]: "# 好的做法 add user authentication fix memory leak in component # 不好的做法 added user authentication ← 过去时 fixes bug ← 第三人称"
+        - button "复制" [ref=e1244] [cursor=pointer]
+      - heading "3. 描述\"是什么\"和\"为什么\"" [level=3] [ref=e1245]
+      - paragraph [ref=e1246]: Body 应该解释变更的动机和影响，而非实现细节：
+      - generic [ref=e1247]:
+        - code [ref=e1248]: "# 好的做法 feat(auth): implement rate limiting on login endpoint Prevent brute force attacks by limiting login attempts to 5 per minute per IP address. # 不好的做法 feat(auth): implement rate limiting on login endpoint Added a HashMap to store IP addresses and timestamps, then check if count exceeds threshold."
+        - button "复制" [ref=e1249] [cursor=pointer]
+      - heading "4. 始终关联 Issue" [level=3] [ref=e1250]
+      - paragraph [ref=e1251]: 在 Footer 中引用相关 Issue，保持可追溯性：
+      - generic [ref=e1252]:
+        - code [ref=e1253]: "Closes #42 Fixes #156 Refs JIRA-789"
+        - button "复制" [ref=e1254] [cursor=pointer]
+      - heading "5. 标记破坏性变更" [level=3] [ref=e1255]
+      - paragraph [ref=e1256]: 任何不向后兼容的变更必须标记：
+      - generic [ref=e1257]:
+        - code [ref=e1258]: "# 使用 ! 标记 feat(api)!: change user endpoint response format # 或在 Footer 中说明 BREAKING CHANGE: User API now returns { data, metadata } instead of direct array."
+        - button "复制" [ref=e1259] [cursor=pointer]
+      - heading "6. 提交前审查" [level=3] [ref=e1260]
+      - paragraph [ref=e1261]: 在让技能生成提交消息之前，先检查暂存内容：
+      - generic [ref=e1262]:
+        - code [ref=e1263]: "git diff --staged --name-only # 查看变更文件列表 git diff --staged # 查看详细变更"
+        - button "复制" [ref=e1264] [cursor=pointer]
+      - heading "7. 修正不当提交消息" [level=3] [ref=e1265]
+      - paragraph [ref=e1266]:
+        - text: 如果提交消息不够好，可以使用
+        - code [ref=e1267]: "--amend"
+        - text: 修正：
+      - generic [ref=e1268]:
+        - code [ref=e1269]: "# 提交了不好的消息 git commit -m \"fix stuff\" # 让技能重新生成 git commit --amend"
+        - button "复制" [ref=e1270] [cursor=pointer]
+      - heading "常见模式速查" [level=3] [ref=e1271]
+      - paragraph [ref=e1272]:
+        - strong [ref=e1273]: 前端变更：
+      - generic [ref=e1274]:
+        - code [ref=e1275]: "feat(ui): add responsive navigation menu fix(components): resolve prop validation warning style(css): update button hover effects"
+        - button "复制" [ref=e1276] [cursor=pointer]
+      - paragraph [ref=e1277]:
+        - strong [ref=e1278]: 后端变更：
+      - generic [ref=e1279]:
+        - code [ref=e1280]: "feat(api): add user pagination endpoint fix(database): resolve connection pool exhaustion perf(queries): add database indices for user lookups"
+        - button "复制" [ref=e1281] [cursor=pointer]
+      - paragraph [ref=e1282]:
+        - strong [ref=e1283]: 基础设施变更：
+      - generic [ref=e1284]:
+        - code [ref=e1285]: "ci: add automated deployment pipeline build: update dependencies to latest versions chore(docker): optimize container image size"
+        - button "复制" [ref=e1286] [cursor=pointer]
+      - heading "常见问题" [level=2] [ref=e1287]
+      - 'heading "Q: 技能没有被自动触发怎么办？" [level=3] [ref=e1288]'
+      - paragraph [ref=e1289]:
+        - text: 在
+        - code [ref=e1290]: CLAUDE.md
+        - text: 中添加指令，确保技能在提交时被加载：
+      - generic [ref=e1291]:
+        - code [ref=e1292]: "## 提交规范 执行 git commit 时，加载 git-smart-commit 技能生成 Conventional Commits 格式的提交消息。"
+        - button "复制" [ref=e1293] [cursor=pointer]
+      - paragraph [ref=e1294]: 或者使用 Claude Code 的 Hook 机制，在检测到 git commit 命令时自动注入提示。
+      - 'heading "Q: 多文件修改时如何确保正确拆分？" [level=3] [ref=e1295]'
+      - paragraph [ref=e1296]: 技能会按以下规则分析变更：
+      - list [ref=e1297]:
+        - listitem [ref=e1298]:
+          - text: 执行
+          - code [ref=e1299]: git diff --staged --name-only
+          - text: 查看变更文件列表
+        - listitem [ref=e1300]:
+          - text: 执行
+          - code [ref=e1301]: git diff --staged
+          - text: 查看详细变更内容
+        - listitem [ref=e1302]: 按文件路径和变更语义分类（新文件 -> feat，修改文件 -> fix/refactor/feat，删除文件 -> chore/refactor，测试文件 -> test，文档 -> docs）
+        - listitem [ref=e1303]: 分析变更内容：改了什么、为什么改、影响范围、是否有破坏性变更
+        - listitem [ref=e1304]: 按架构层分组，生成多个原子提交
+      - 'heading "Q: 如何与现有 commitlint 配置兼容？" [level=3] [ref=e1305]'
+      - paragraph [ref=e1306]:
+        - text: Git Smart Commit 生成的消息天然符合
+        - code [ref=e1307]: "@commitlint/config-conventional"
+        - text: 规则。如果你有自定义规则，可以在
+        - link "SKILL.md" [ref=e1308] [cursor=pointer]:
+          - /url: http://SKILL.md
+        - text: 中配置对应的类型和格式，确保生成消息通过校验。
+      - 'heading "Q: 技能会执行 git push 吗？" [level=3] [ref=e1309]'
+      - paragraph [ref=e1310]:
+        - text: 不会。技能的权限被严格限制，禁止执行
+        - code [ref=e1311]: push
+        - text: 、
+        - code [ref=e1312]: reset
+        - text: 、
+        - code [ref=e1313]: revert
+        - text: 、
+        - code [ref=e1314]: clean
+        - text: 、
+        - code [ref=e1315]: rebase
+        - text: 、
+        - code [ref=e1316]: merge
+        - text: 、
+        - code [ref=e1317]: checkout
+        - text: 等危险操作。所有提交仅在本地创建，需要你手动 push。
+      - 'heading "Q: 如何处理已经提交但消息不规范的历史记录？" [level=3] [ref=e1318]'
+      - paragraph [ref=e1319]:
+        - text: 可以使用
+        - code [ref=e1320]: git rebase -i
+        - text: 配合
+        - code [ref=e1321]: reword
+        - text: 命令修改历史提交消息，然后再让技能重新生成。但请注意，rebase 会改写历史，不要在已推送的分支上操作。
+      - 'heading "Q: 支持非 JavaScript 项目吗？" [level=3] [ref=e1322]'
+      - paragraph [ref=e1323]: 支持。Git Smart Commit 基于 Git 操作，与编程语言无关。无论是 Python、Go、Rust 还是 Java 项目，只要使用 Git 进行版本控制，都可以使用此技能。
+      - 'heading "Q: 如何在 monorepo 中使用？" [level=3] [ref=e1324]'
+      - paragraph [ref=e1325]: 在 monorepo 中，scope 可以用来标识包名或模块名：
+      - generic [ref=e1326]:
+        - code [ref=e1327]: "feat(auth-service): add OAuth2 support fix(payment-gateway): resolve timeout issue docs(api-gateway): update endpoint documentation"
+        - button "复制" [ref=e1328] [cursor=pointer]
+      - paragraph [ref=e1329]:
+        - text: 建议在
+        - link "SKILL.md" [ref=e1330] [cursor=pointer]:
+          - /url: http://SKILL.md
+        - text: 中配置你的 monorepo 包结构，以便技能更准确地推断 scope。
+    - button "快速开始" [ref=e1333] [cursor=pointer]:
+      - img [ref=e1334]
+      - text: 快速开始
+    - generic [ref=e1337]:
+      - heading "常用命令" [level=4] [ref=e1338]
+      - generic [ref=e1340]:
+        - generic [ref=e1341]: 智能提交
+        - code [ref=e1342]: git add -A && claude /commit
+        - button "复制" [ref=e1343] [cursor=pointer]
+    - generic [ref=e1345]:
+      - heading "相关技能" [level=4] [ref=e1346]
+      - generic [ref=e1347]:
+        - generic [ref=e1348] [cursor=pointer]:
+          - generic [ref=e1349]: 代码维护与质量
+          - generic [ref=e1350]: API Docs Generator
+        - generic [ref=e1351] [cursor=pointer]:
+          - generic [ref=e1352]: 代码维护与质量
+          - generic [ref=e1353]: Caveman Review
+        - generic [ref=e1354] [cursor=pointer]:
+          - generic [ref=e1355]: 代码维护与质量
+          - generic [ref=e1356]: Code Refactor
+        - generic [ref=e1357] [cursor=pointer]:
+          - generic [ref=e1358]: 代码维护与质量
+          - generic [ref=e1359]: Dependency Audit
+    - button "我的笔记" [ref=e1362] [cursor=pointer]:
+      - img [ref=e1363]
+      - text: 我的笔记
+  - contentinfo [ref=e809]:
+    - generic [ref=e810]:
+      - generic [ref=e811]: Skill Book
+      - generic [ref=e812]: 技能知识库
+      - button "数据管理" [ref=e814] [cursor=pointer]:
+        - img [ref=e815]
+        - text: 数据管理

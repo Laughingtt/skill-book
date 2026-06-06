@@ -6,6 +6,7 @@ const props = defineProps({
   modelValue: { type: Boolean, default: false },
   skill: { type: Object, default: null },
   categories: { type: Array, default: () => [] },
+  existingSlugs: { type: Array, default: () => [] },
 })
 
 const emit = defineEmits(['update:modelValue', 'save'])
@@ -113,7 +114,7 @@ function resetForm() {
 async function handleGithubImport() {
   if (!githubUrl.value.trim()) return
   try {
-    const skillData = await importFromGithub(githubUrl.value)
+    const skillData = await importFromGithub(githubUrl.value, props.categories)
     form.value.name = skillData.name
     form.value.slug = skillData.slug
     form.value.description = skillData.description
@@ -194,6 +195,9 @@ function validate() {
   const errs = {}
   if (!form.value.name.trim()) errs.name = '请输入技能名称'
   if (!form.value.slug.trim()) errs.slug = '请输入技能标识'
+  if (!isEditMode.value && props.existingSlugs.includes(form.value.slug.trim())) {
+    errs.slug = '该标识已存在，请使用其他名称'
+  }
   if (!resolvedCategory.value) errs.category = '请选择或输入分类'
   if (!form.value.description.trim()) errs.description = '请输入技能描述'
   errors.value = errs

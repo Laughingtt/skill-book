@@ -440,6 +440,7 @@ function handleEditSave(updatedSkill) {
       v-model="showEditModal"
       :skill="editingSkill"
       :categories="categories.filter(c => c !== '全部')"
+      :existing-slugs="skills.filter(s => s.slug !== route.params.slug).map(s => s.slug)"
       @save="handleEditSave"
     />
 

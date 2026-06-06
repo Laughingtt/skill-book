@@ -1,0 +1,84 @@
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - link "SKILL BOOK" [ref=e5] [cursor=pointer]:
+      - /url: "#/"
+  - generic [ref=e1951]:
+    - generic [ref=e1952]:
+      - generic [ref=e1953] [cursor=pointer]: Skill Book
+      - generic [ref=e1955]:
+        - img
+        - textbox "搜索技能..." [ref=e1956]
+      - generic [ref=e1957]:
+        - generic [ref=e1958]:
+          - button "☀️" [ref=e1959] [cursor=pointer]
+          - button "💻" [ref=e1960] [cursor=pointer]
+          - button "🌙" [ref=e1961] [cursor=pointer]
+        - link "我的空间" [ref=e1962] [cursor=pointer]:
+          - /url: "#/my"
+          - img [ref=e1963]
+    - generic [ref=e1966]:
+      - generic [ref=e1967]:
+        - button "返回首页" [ref=e1968] [cursor=pointer]:
+          - img [ref=e1969]
+          - text: 返回首页
+        - heading "我的空间" [level=1] [ref=e1971]
+        - paragraph [ref=e1972]: 学习进度、收藏与浏览记录
+      - generic [ref=e1974]:
+        - generic [ref=e1975]:
+          - heading "学习进度" [level=2] [ref=e1976]
+          - generic [ref=e1977]: 1 项
+        - generic [ref=e1978]:
+          - generic [ref=e1979]:
+            - img [ref=e1980]
+            - generic [ref=e1985]:
+              - generic [ref=e1986]: "0"
+              - generic [ref=e1987]: 已掌握
+          - generic [ref=e1988]:
+            - generic [ref=e1989]:
+              - generic [ref=e1991]: 已掌握
+              - strong [ref=e1992]: "0"
+            - generic [ref=e1993]:
+              - generic [ref=e1995]: 学习中
+              - strong [ref=e1996]: "1"
+            - generic [ref=e1997]:
+              - generic [ref=e1999]: 待尝试
+              - strong [ref=e2000]: "0"
+        - generic [ref=e2001]:
+          - heading "学习中" [level=3] [ref=e2002]: 学习中
+          - generic [ref=e2005] [cursor=pointer]:
+            - generic [ref=e2006]: 代码维护与质量
+            - generic [ref=e2007]: Git Smart Commit
+            - generic [ref=e2008]: 规范化智能提交技能，按架构分层自动拆分为符合Conventional Commits规范的多个原子提交
+            - button "×" [ref=e2009]
+      - generic [ref=e2010]:
+        - heading "今日复习" [level=2] [ref=e2012]
+        - paragraph [ref=e2013]: 🎉 今日无需复习
+      - generic [ref=e2014]:
+        - generic [ref=e2015]:
+          - heading "我的收藏" [level=2] [ref=e2016]
+          - generic [ref=e2017]: 0 项
+        - paragraph [ref=e2018]: 点击技能卡片上的 ❤️ 收藏感兴趣的技能
+      - generic [ref=e2019]:
+        - heading "最近查看" [level=2] [ref=e2021]
+        - generic [ref=e2025] [cursor=pointer]:
+          - generic [ref=e2026]: Git Smart Commit
+          - generic [ref=e2027]: 代码维护与质量 · · 次
+      - generic [ref=e2028]:
+        - generic [ref=e2029]:
+          - heading "活动热力图" [level=2] [ref=e2030]
+          - generic [ref=e2031]: 近 90 天
+        - generic [ref=e2033]:
+          - img [ref=e2034]:
+            - generic [ref=e2035]: 3月
+            - generic [ref=e2036]: 4月
+            - generic [ref=e2037]: 5月
+          - generic [ref=e2130]:
+            - generic [ref=e2131]: 少
+            - generic [ref=e2137]: 多
+  - contentinfo [ref=e809]:
+    - generic [ref=e810]:
+      - generic [ref=e811]: Skill Book
+      - generic [ref=e812]: 技能知识库
+      - button "数据管理" [ref=e814] [cursor=pointer]:
+        - img [ref=e815]
+        - text: 数据管理

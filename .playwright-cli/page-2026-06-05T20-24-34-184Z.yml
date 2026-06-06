@@ -1,0 +1,21 @@
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - link "SKILL BOOK" [ref=e5] [cursor=pointer]:
+      - /url: "#/"
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - generic [ref=e11] [cursor=pointer]: Skill Book
+      - generic [ref=e13]:
+        - img
+        - textbox "搜索技能..." [ref=e14]
+      - link "我的空间" [ref=e16] [cursor=pointer]:
+        - /url: "#/my"
+        - img [ref=e17]
+    - generic [ref=e546]: 加载中...
+  - contentinfo [ref=e536]:
+    - generic [ref=e537]:
+      - generic [ref=e538]: Skill Book
+      - generic [ref=e539]: 技能知识库
+      - button "数据管理" [ref=e541] [cursor=pointer]:
+        - img [ref=e542]
+        - text: 数据管理

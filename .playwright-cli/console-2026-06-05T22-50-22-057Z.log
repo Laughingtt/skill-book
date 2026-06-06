@@ -1,0 +1,5 @@
+[   26736ms] [WARNING] [Vue Router warn]: history.state seems to have been manually replaced without preserving the necessary values. Make sure to preserve existing history state if you are manually calling history.replaceState:
+
+history.replaceState(history.state, '', url)
+
+You can find more information at https://router.vuejs.org/guide/migration/#Usage-of-history-state @ http://localhost:5173/node_modules/.vite/deps/vue-router.js?v=0d43bc19:206

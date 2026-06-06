@@ -1,0 +1,466 @@
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - link "SKILL BOOK" [ref=e5] [cursor=pointer]:
+      - /url: "#/"
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - generic [ref=e11] [cursor=pointer]: Skill Book
+      - generic [ref=e13]:
+        - img
+        - textbox "搜索技能..." [ref=e14]: git
+        - button "清除搜索" [ref=e819] [cursor=pointer]:
+          - img [ref=e820]
+      - generic [ref=e15]:
+        - generic [ref=e16]:
+          - button "☀️" [ref=e17] [cursor=pointer]
+          - button "💻" [ref=e18] [cursor=pointer]
+          - button "🌙" [ref=e19] [cursor=pointer]
+        - link "我的空间" [ref=e20] [cursor=pointer]:
+          - /url: "#/my"
+          - img [ref=e21]
+    - generic [ref=e24]:
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - heading "Skill Book" [level=1] [ref=e28]
+          - paragraph [ref=e29]: 探索和管理你的技能知识库
+          - button "添加技能" [ref=e31] [cursor=pointer]:
+            - img [ref=e32]
+            - text: 添加技能
+        - generic [ref=e33] [cursor=pointer]:
+          - generic [ref=e34]:
+            - generic [ref=e35]:
+              - img [ref=e36]
+              - generic [ref=e40]: "0"
+            - generic [ref=e41]:
+              - generic [ref=e42]: 已掌握 0
+              - generic [ref=e44]: 学习中 0
+              - generic [ref=e46]: 待尝试 0
+          - generic [ref=e48]:
+            - generic [ref=e49]:
+              - img [ref=e50]
+              - text: "0"
+            - generic [ref=e52]:
+              - img [ref=e53]
+              - text: "0"
+          - text: 查看详情 →
+      - generic [ref=e56]:
+        - complementary [ref=e57]:
+          - complementary [ref=e58]:
+            - generic [ref=e59]: 分类
+            - list [ref=e61]:
+              - listitem [ref=e62] [cursor=pointer]: 全部
+              - listitem [ref=e63] [cursor=pointer]: UI/UX设计与前端美化
+              - listitem [ref=e64] [cursor=pointer]: 云服务与基础设施
+              - listitem [ref=e65] [cursor=pointer]: 代码维护与质量
+              - listitem [ref=e66] [cursor=pointer]: 内容创作与自媒体
+              - listitem [ref=e67] [cursor=pointer]: 安全与测试
+              - listitem [ref=e68] [cursor=pointer]: 效率工具与自动化
+              - listitem [ref=e69] [cursor=pointer]: 浏览器与文档处理
+              - listitem [ref=e70] [cursor=pointer]: 编码开发与工程规范
+              - listitem [ref=e71] [cursor=pointer]: 营销与增长
+          - generic [ref=e72]:
+            - generic [ref=e73]: 标签
+            - generic [ref=e75]:
+              - generic [ref=e76] [cursor=pointer]: "#AI Agent"
+              - generic [ref=e77] [cursor=pointer]: "#AI代理"
+              - generic [ref=e78] [cursor=pointer]: "#HTML"
+              - generic [ref=e79] [cursor=pointer]: "#HTML转视频"
+              - generic [ref=e80] [cursor=pointer]: "#PPT"
+              - generic [ref=e81] [cursor=pointer]: "#accessibility"
+              - generic [ref=e82] [cursor=pointer]: "#adapt"
+              - generic [ref=e83] [cursor=pointer]: "#agent"
+              - generic [ref=e84] [cursor=pointer]: "#ai"
+              - generic [ref=e85] [cursor=pointer]: "#ai-workflow"
+              - generic [ref=e86] [cursor=pointer]: "#analysis"
+              - generic [ref=e87] [cursor=pointer]: "#animate"
+              - generic [ref=e88] [cursor=pointer]: "#animation"
+              - generic [ref=e89] [cursor=pointer]: "#anthropic"
+              - generic [ref=e90] [cursor=pointer]: "#api"
+              - generic [ref=e91] [cursor=pointer]: "#app"
+              - generic [ref=e92] [cursor=pointer]: "#apple"
+              - generic [ref=e93] [cursor=pointer]: "#architecture"
+              - generic [ref=e94] [cursor=pointer]: "#art"
+              - generic [ref=e95] [cursor=pointer]: "#asset"
+              - generic [ref=e96] [cursor=pointer]: "#atomic"
+              - generic [ref=e97] [cursor=pointer]: "#audit"
+              - generic [ref=e98] [cursor=pointer]: "#automation"
+              - generic [ref=e99] [cursor=pointer]: "#banner"
+              - generic [ref=e100] [cursor=pointer]: "#best-practices"
+              - generic [ref=e101] [cursor=pointer]: "#brand"
+              - generic [ref=e102] [cursor=pointer]: "#browser"
+              - generic [ref=e103] [cursor=pointer]: "#build"
+              - generic [ref=e104] [cursor=pointer]: "#caveman"
+              - generic [ref=e105] [cursor=pointer]: "#ceo"
+              - generic [ref=e106] [cursor=pointer]: "#chart"
+              - generic [ref=e107] [cursor=pointer]: "#chartjs"
+              - generic [ref=e108] [cursor=pointer]: "#chinese"
+              - generic [ref=e109] [cursor=pointer]: "#ci"
+              - generic [ref=e110] [cursor=pointer]: "#claude"
+              - generic [ref=e111] [cursor=pointer]: "#cli"
+              - generic [ref=e112] [cursor=pointer]: "#cli-tool"
+              - generic [ref=e113] [cursor=pointer]: "#click"
+              - generic [ref=e114] [cursor=pointer]: "#cloud"
+              - generic [ref=e115] [cursor=pointer]: "#code-smell"
+              - generic [ref=e116] [cursor=pointer]: "#codebase"
+              - generic [ref=e117] [cursor=pointer]: "#coding"
+              - generic [ref=e118] [cursor=pointer]: "#collaboration"
+              - generic [ref=e119] [cursor=pointer]: "#commit"
+              - generic [ref=e120] [cursor=pointer]: "#communication"
+              - generic [ref=e121] [cursor=pointer]: "#component"
+              - generic [ref=e122] [cursor=pointer]: "#composition"
+              - generic [ref=e123] [cursor=pointer]: "#compound-components"
+              - generic [ref=e124] [cursor=pointer]: "#compress"
+              - generic [ref=e125] [cursor=pointer]: "#concept"
+              - generic [ref=e126] [cursor=pointer]: "#connector"
+              - generic [ref=e127] [cursor=pointer]: "#content-strategy"
+              - generic [ref=e128] [cursor=pointer]: "#conventional-commits"
+              - generic [ref=e129] [cursor=pointer]: "#conversion"
+              - generic [ref=e130] [cursor=pointer]: "#copyright"
+              - generic [ref=e131] [cursor=pointer]: "#copywriting"
+              - generic [ref=e132] [cursor=pointer]: "#creator"
+              - generic [ref=e133] [cursor=pointer]: "#cro"
+              - generic [ref=e134] [cursor=pointer]: "#css"
+              - generic [ref=e135] [cursor=pointer]: "#dall-e"
+              - generic [ref=e136] [cursor=pointer]: "#ddd"
+              - generic [ref=e137] [cursor=pointer]: "#debugging"
+              - generic [ref=e138] [cursor=pointer]: "#demo"
+              - generic [ref=e139] [cursor=pointer]: "#dependency"
+              - generic [ref=e140] [cursor=pointer]: "#deploy"
+              - generic [ref=e141] [cursor=pointer]: "#design"
+              - generic [ref=e142] [cursor=pointer]: "#design-system"
+              - generic [ref=e143] [cursor=pointer]: "#detail"
+              - generic [ref=e144] [cursor=pointer]: "#diagram"
+              - generic [ref=e145] [cursor=pointer]: "#discipline"
+              - generic [ref=e146] [cursor=pointer]: "#disclosure"
+              - generic [ref=e147] [cursor=pointer]: "#document"
+              - generic [ref=e148] [cursor=pointer]: "#documentation"
+              - generic [ref=e149] [cursor=pointer]: "#e2e"
+              - generic [ref=e150] [cursor=pointer]: "#email"
+              - generic [ref=e151] [cursor=pointer]: "#endpoint"
+              - generic [ref=e152] [cursor=pointer]: "#engineering"
+              - generic [ref=e153] [cursor=pointer]: "#eval"
+              - generic [ref=e154] [cursor=pointer]: "#extract-method"
+              - generic [ref=e155] [cursor=pointer]: "#extraction"
+              - generic [ref=e156] [cursor=pointer]: "#flowchart"
+              - generic [ref=e157] [cursor=pointer]: "#forms"
+              - generic [ref=e158] [cursor=pointer]: "#frontend"
+              - generic [ref=e159] [cursor=pointer]: "#fullstack"
+              - generic [ref=e160] [cursor=pointer]: "#generation"
+              - generic [ref=e161] [cursor=pointer]: "#git"
+              - generic [ref=e162] [cursor=pointer]: "#goal-driven"
+              - generic [ref=e163] [cursor=pointer]: "#guidelines"
+              - generic [ref=e164] [cursor=pointer]: "#handoff"
+              - generic [ref=e165] [cursor=pointer]: "#hosting"
+              - generic [ref=e166] [cursor=pointer]: "#html"
+              - generic [ref=e167] [cursor=pointer]: "#humanize"
+              - generic [ref=e168] [cursor=pointer]: "#illustration"
+              - generic [ref=e169] [cursor=pointer]: "#image"
+              - generic [ref=e170] [cursor=pointer]: "#impeccable"
+              - generic [ref=e171] [cursor=pointer]: "#improvement"
+              - generic [ref=e172] [cursor=pointer]: "#inspiration"
+              - generic [ref=e173] [cursor=pointer]: "#integration"
+              - generic [ref=e174] [cursor=pointer]: "#interaction"
+              - generic [ref=e175] [cursor=pointer]: "#karpathy"
+              - generic [ref=e176] [cursor=pointer]: "#layer"
+              - generic [ref=e177] [cursor=pointer]: "#legacy"
+              - generic [ref=e178] [cursor=pointer]: "#legal"
+              - generic [ref=e179] [cursor=pointer]: "#llms-txt"
+              - generic [ref=e180] [cursor=pointer]: "#lottie"
+              - generic [ref=e181] [cursor=pointer]: "#management"
+              - generic [ref=e182] [cursor=pointer]: "#markdown"
+              - generic [ref=e183] [cursor=pointer]: "#marketing"
+              - generic [ref=e184] [cursor=pointer]: "#marketplace"
+              - generic [ref=e185] [cursor=pointer]: "#mcp"
+              - generic [ref=e186] [cursor=pointer]: "#mermaid"
+              - generic [ref=e187] [cursor=pointer]: "#micro-interaction"
+              - generic [ref=e188] [cursor=pointer]: "#mobile"
+              - generic [ref=e189] [cursor=pointer]: "#model"
+              - generic [ref=e190] [cursor=pointer]: "#monitoring"
+              - generic [ref=e191] [cursor=pointer]: "#motion"
+              - generic [ref=e192] [cursor=pointer]: "#multi-agent"
+              - generic [ref=e193] [cursor=pointer]: "#naturalize"
+              - generic [ref=e194] [cursor=pointer]: "#navigate"
+              - generic [ref=e195] [cursor=pointer]: "#navigation"
+              - generic [ref=e196] [cursor=pointer]: "#nextjs"
+              - generic [ref=e197] [cursor=pointer]: "#notebooklm"
+              - generic [ref=e198] [cursor=pointer]: "#npm-audit"
+              - generic [ref=e199] [cursor=pointer]: "#official"
+              - generic [ref=e200] [cursor=pointer]: "#openapi"
+              - generic [ref=e201] [cursor=pointer]: "#opensource"
+              - generic [ref=e202] [cursor=pointer]: "#optimization"
+              - generic [ref=e203] [cursor=pointer]: "#optimize"
+              - generic [ref=e204] [cursor=pointer]: "#output"
+              - generic [ref=e205] [cursor=pointer]: "#owasp"
+              - generic [ref=e206] [cursor=pointer]: "#page-generation"
+              - generic [ref=e207] [cursor=pointer]: "#palette"
+              - generic [ref=e208] [cursor=pointer]: "#patent"
+              - generic [ref=e209] [cursor=pointer]: "#patterns"
+              - generic [ref=e210] [cursor=pointer]: "#performance"
+              - generic [ref=e211] [cursor=pointer]: "#pip-audit"
+              - generic [ref=e212] [cursor=pointer]: "#pipeline"
+              - generic [ref=e213] [cursor=pointer]: "#plantuml"
+              - generic [ref=e214] [cursor=pointer]: "#platform"
+              - generic [ref=e215] [cursor=pointer]: "#playwright"
+              - generic [ref=e216] [cursor=pointer]: "#polish"
+              - generic [ref=e217] [cursor=pointer]: "#ppt"
+              - generic [ref=e218] [cursor=pointer]: "#presentation"
+              - generic [ref=e219] [cursor=pointer]: "#pricing"
+              - generic [ref=e220] [cursor=pointer]: "#process"
+              - generic [ref=e221] [cursor=pointer]: "#production"
+              - generic [ref=e222] [cursor=pointer]: "#programmatic"
+              - generic [ref=e223] [cursor=pointer]: "#project-management"
+              - generic [ref=e224] [cursor=pointer]: "#prompt"
+              - generic [ref=e225] [cursor=pointer]: "#quality"
+              - generic [ref=e226] [cursor=pointer]: "#react"
+              - generic [ref=e227] [cursor=pointer]: "#reading"
+              - generic [ref=e228] [cursor=pointer]: "#refactor"
+              - generic [ref=e229] [cursor=pointer]: "#remotion"
+              - generic [ref=e230] [cursor=pointer]: "#rendering"
+              - generic [ref=e231] [cursor=pointer]: "#requirements"
+              - generic [ref=e232] [cursor=pointer]: "#review"
+              - generic [ref=e233] [cursor=pointer]: "#role"
+              - generic [ref=e234] [cursor=pointer]: "#router"
+              - generic [ref=e235] [cursor=pointer]: "#rust"
+              - generic [ref=e236] [cursor=pointer]: "#safe-transform"
+              - generic [ref=e237] [cursor=pointer]: "#scraping"
+              - generic [ref=e238] [cursor=pointer]: "#screens"
+              - generic [ref=e239] [cursor=pointer]: "#screenshot"
+              - generic [ref=e240] [cursor=pointer]: "#sdk"
+              - generic [ref=e241] [cursor=pointer]: "#search"
+              - generic [ref=e242] [cursor=pointer]: "#security"
+              - generic [ref=e243] [cursor=pointer]: "#seo"
+              - generic [ref=e244] [cursor=pointer]: "#service"
+              - generic [ref=e245] [cursor=pointer]: "#shadcn"
+              - generic [ref=e246] [cursor=pointer]: "#ship"
+              - generic [ref=e247] [cursor=pointer]: "#simplicity"
+              - generic [ref=e248] [cursor=pointer]: "#skill"
+              - generic [ref=e249] [cursor=pointer]: "#sleek"
+              - generic [ref=e250] [cursor=pointer]: "#slide"
+              - generic [ref=e251] [cursor=pointer]: "#software-registration"
+              - generic [ref=e252] [cursor=pointer]: "#spec-driven-development"
+              - generic [ref=e253] [cursor=pointer]: "#stripe"
+              - generic [ref=e254] [cursor=pointer]: "#style"
+              - generic [ref=e255] [cursor=pointer]: "#style-guide"
+              - generic [ref=e256] [cursor=pointer]: "#styling"
+              - generic [ref=e257] [cursor=pointer]: "#surgical"
+              - generic [ref=e258] [cursor=pointer]: "#swagger"
+              - generic [ref=e259] [cursor=pointer]: "#system"
+              - generic [ref=e260] [cursor=pointer]: "#tailwind"
+              - generic [ref=e261] [cursor=pointer]: "#tdd"
+              - generic [ref=e262] [cursor=pointer]: "#team"
+              - generic [ref=e263] [cursor=pointer]: "#terminal"
+              - generic [ref=e264] [cursor=pointer]: "#test"
+              - generic [ref=e265] [cursor=pointer]: "#testing"
+              - generic [ref=e266] [cursor=pointer]: "#text"
+              - generic [ref=e267] [cursor=pointer]: "#token-optimization"
+              - generic [ref=e268] [cursor=pointer]: "#typescript"
+              - generic [ref=e269] [cursor=pointer]: "#ui"
+              - generic [ref=e270] [cursor=pointer]: "#ux"
+              - generic [ref=e271] [cursor=pointer]: "#vercel"
+              - generic [ref=e272] [cursor=pointer]: "#video"
+              - generic [ref=e273] [cursor=pointer]: "#visual"
+              - generic [ref=e274] [cursor=pointer]: "#visualization"
+              - generic [ref=e275] [cursor=pointer]: "#vue"
+              - generic [ref=e276] [cursor=pointer]: "#vulnerability"
+              - generic [ref=e277] [cursor=pointer]: "#webapp"
+              - generic [ref=e278] [cursor=pointer]: "#workflow"
+              - generic [ref=e279] [cursor=pointer]: "#封面生成"
+              - generic [ref=e280] [cursor=pointer]: "#演示文稿"
+              - generic [ref=e281] [cursor=pointer]: "#视频生成"
+          - generic [ref=e282]:
+            - heading "使用场景" [level=3] [ref=e283]
+            - generic [ref=e284]:
+              - generic [ref=e285] [cursor=pointer]: browser-automation
+              - generic [ref=e286] [cursor=pointer]: ci-cd
+              - generic [ref=e287] [cursor=pointer]: ci-testing
+              - generic [ref=e288] [cursor=pointer]: code-maintenance
+              - generic [ref=e289] [cursor=pointer]: code-review
+              - generic [ref=e290] [cursor=pointer]: code-smell-fix
+              - generic [ref=e291] [cursor=pointer]: commit-hygiene
+              - generic [ref=e292] [cursor=pointer]: component-design
+              - generic [ref=e293] [cursor=pointer]: dependency-management
+              - generic [ref=e294] [cursor=pointer]: deployment
+              - generic [ref=e295] [cursor=pointer]: e2e-testing
+              - generic [ref=e296] [cursor=pointer]: frontend-development
+              - generic [ref=e297] [cursor=pointer]: git-workflow
+              - generic [ref=e298] [cursor=pointer]: legacy-migration
+              - generic [ref=e299] [cursor=pointer]: production-release
+              - generic [ref=e300] [cursor=pointer]: security-audit
+              - generic [ref=e301] [cursor=pointer]: spa-building
+              - generic [ref=e302] [cursor=pointer]: vulnerability-scan
+        - main [ref=e303]:
+          - generic [ref=e304]:
+            - paragraph [ref=e305]: 22 个技能
+            - generic [ref=e306]:
+              - combobox [ref=e307] [cursor=pointer]:
+                - option "默认排序" [selected]
+                - option "名称 A-Z"
+                - option "名称 Z-A"
+                - option "查看频率 高→低"
+                - option "查看频率 低→高"
+                - option "最近查看"
+                - option "最近查看 旧→新"
+                - option "学习状态"
+              - button "清除筛选" [ref=e818] [cursor=pointer]
+          - generic [ref=e308]:
+            - generic [ref=e824] [cursor=pointer]:
+              - button "收藏" [ref=e825]:
+                - img [ref=e826]
+              - generic [ref=e829]: 代码维护与质量
+              - heading "Git Smart Commit" [level=3] [ref=e830]
+              - paragraph [ref=e831]: 规范化智能提交技能，按架构分层自动拆分为符合Conventional Commits规范的多个原子提交
+              - generic [ref=e832]: git · commit · conventional-commits · atomic · layer
+            - generic [ref=e834] [cursor=pointer]:
+              - button "收藏" [ref=e835]:
+                - img [ref=e836]
+              - generic [ref=e839]: 效率工具与自动化
+              - heading "NotebookLM Skill / Zread" [level=3] [ref=e840]
+              - paragraph [ref=e841]: 在终端批量分析文档或深入理解GitHub仓库的CLI工具
+              - generic [ref=e842]: reading · analysis · document · notebooklm · codebase · llms-txt
+            - generic [ref=e844] [cursor=pointer]:
+              - button "收藏" [ref=e845]:
+                - img [ref=e846]
+              - generic [ref=e849]: 代码维护与质量
+              - heading "Dependency Audit" [level=3] [ref=e850]
+              - paragraph [ref=e851]: 依赖安全检测技能，扫描漏洞、未使用包、过时版本和供应链风险
+              - generic [ref=e852]: dependency · security · vulnerability · audit · npm-audit · pip-audit
+            - generic [ref=e854] [cursor=pointer]:
+              - button "收藏" [ref=e855]:
+                - img [ref=e856]
+              - generic [ref=e859]: 编码开发与工程规范
+              - heading "GStack" [level=3] [ref=e860]
+              - paragraph [ref=e861]: 基于23项专业技能串联从设计到部署的完整研发链路，内置CEO战略审查、架构评审、OWASP安全扫描
+              - generic [ref=e862]: fullstack · pipeline · audit · ceo · architecture · security · owasp
+            - generic [ref=e864] [cursor=pointer]:
+              - button "收藏" [ref=e865]:
+                - img [ref=e866]
+              - generic [ref=e869]: 安全与测试
+              - heading "Webapp Testing" [level=3] [ref=e870]
+              - paragraph [ref=e871]: Anthropic官方Web应用测试技能，通过Playwright在真实浏览器中测试本地应用
+              - generic [ref=e872]: testing · browser · playwright · e2e · accessibility · visual · webapp
+            - generic [ref=e874] [cursor=pointer]:
+              - button "收藏" [ref=e875]:
+                - img [ref=e876]
+              - generic [ref=e879]: 编码开发与工程规范
+              - heading "Playwright MCP" [level=3] [ref=e880]
+              - paragraph [ref=e881]: 通过MCP协议集成Playwright，让AI自动调用进行浏览器操作和端到端自动化测试
+              - generic [ref=e882]: testing · browser · e2e · automation · mcp
+            - generic [ref=e884] [cursor=pointer]:
+              - button "收藏" [ref=e885]:
+                - img [ref=e886]
+              - generic [ref=e889]: 编码开发与工程规范
+              - heading "Software Copyright / Patent Disclosure Skill" [level=3] [ref=e890]
+              - paragraph [ref=e891]: 软件著作权申请与专利信息披露辅助技能
+              - generic [ref=e892]: copyright · patent · legal · software-registration · disclosure
+            - generic [ref=e894] [cursor=pointer]:
+              - button "收藏" [ref=e895]:
+                - img [ref=e896]
+              - generic [ref=e899]: 编码开发与工程规范
+              - heading "Vercel Composition Patterns" [level=3] [ref=e900]
+              - paragraph [ref=e901]: Vercel官方React组合模式技能，用复合组件替代boolean prop泛滥的架构方案
+              - generic [ref=e902]: react · composition · compound-components · patterns · vercel
+            - generic [ref=e904] [cursor=pointer]:
+              - button "收藏" [ref=e905]:
+                - img [ref=e906]
+              - generic [ref=e909]: 编码开发与工程规范
+              - heading "Agent Skills（谷歌工程纪律包）" [level=3] [ref=e910]
+              - paragraph [ref=e911]: 轻量灵活约束AI行为的工程纪律技能包，覆盖开发全流程
+              - generic [ref=e912]: engineering · discipline · review · test · security · ship
+            - generic [ref=e914] [cursor=pointer]:
+              - button "收藏" [ref=e915]:
+                - img [ref=e916]
+              - generic [ref=e919]: 编码开发与工程规范
+              - heading "Karpathy's Guidelines" [level=3] [ref=e920]
+              - paragraph [ref=e921]: Andrej Karpathy的4条AI编程行为规则：先思考、简洁优先、手术式改动、目标驱动执行
+              - generic [ref=e922]: guidelines · coding · simplicity · surgical · goal-driven · karpathy
+            - generic [ref=e924] [cursor=pointer]:
+              - button "收藏" [ref=e925]:
+                - img [ref=e926]
+              - generic [ref=e929]: 编码开发与工程规范
+              - heading "Superpowers" [level=3] [ref=e930]
+              - paragraph [ref=e931]: 通过流程化引导规范AI编程，提升代码交付质量的技能包
+              - generic [ref=e932]: quality · process · workflow · tdd · debugging · review
+            - generic [ref=e934] [cursor=pointer]:
+              - button "收藏" [ref=e935]:
+                - img [ref=e936]
+              - generic [ref=e939]: 内容创作与自媒体
+              - heading "GPT Imager" [level=3] [ref=e940]
+              - paragraph [ref=e941]: 为文章、视频或报告生成配图和图片素材
+              - generic [ref=e942]: image · generation · dall-e · illustration · asset
+            - generic [ref=e680] [cursor=pointer]:
+              - button "收藏" [ref=e681]:
+                - img [ref=e682]
+              - generic [ref=e685]: UI/UX设计与前端美化
+              - heading "React Bits" [level=3] [ref=e686]
+              - paragraph [ref=e687]: 开源React动画组件库，提供70+种动画组件，npm install后直接复制代码使用
+              - generic [ref=e688]: react · animation · component · interaction · opensource
+            - generic [ref=e944] [cursor=pointer]:
+              - button "收藏" [ref=e945]:
+                - img [ref=e946]
+              - generic [ref=e949]: 浏览器与文档处理
+              - heading "Agent Browser MCP" [level=3] [ref=e950]
+              - paragraph [ref=e951]: MCP服务器提供浏览器自动化能力，使用语义元素定位器而非CSS选择器
+              - generic [ref=e952]: browser · mcp · automation · navigate · click · screenshot · rust
+            - generic [ref=e954] [cursor=pointer]:
+              - button "收藏" [ref=e955]:
+                - img [ref=e956]
+              - generic [ref=e959]: 浏览器与文档处理
+              - heading "Agent Browser" [level=3] [ref=e960]
+              - paragraph [ref=e961]: AI Agent浏览器自动化CLI，支持网页导航、表单填写、按钮点击、截图和数据提取
+              - generic [ref=e962]: browser · automation · navigation · forms · screenshot · extraction · testing
+            - generic [ref=e964] [cursor=pointer]:
+              - button "收藏" [ref=e965]:
+                - img [ref=e966]
+              - generic [ref=e969]: 效率工具与自动化
+              - heading "AI Prompt Optimizer" [level=3] [ref=e970]
+              - paragraph [ref=e971]: 写不好Prompt时让AI帮你优化的提示词优化工具
+              - generic [ref=e972]: prompt · optimization · ai · quality · improvement
+            - generic [ref=e974] [cursor=pointer]:
+              - button "收藏" [ref=e975]:
+                - img [ref=e976]
+              - generic [ref=e979]: 内容创作与自媒体
+              - heading "Humanizer-ZH" [level=3] [ref=e980]
+              - paragraph [ref=e981]: 让AI写的文案更像人话，减少机器翻译感的中文文案自然化处理工具
+              - generic [ref=e982]: chinese · text · naturalize · copywriting · humanize
+            - generic [ref=e590] [cursor=pointer]:
+              - button "收藏" [ref=e591]:
+                - img [ref=e592]
+              - generic [ref=e595]: UI/UX设计与前端美化
+              - heading "Impeccable" [level=3] [ref=e596]
+              - paragraph [ref=e597]: 前端视觉品质全方位技能包，覆盖打磨、审计、动画、适配、优化、色彩化等20+子技能
+              - generic [ref=e598]: design · polish · audit · animate · adapt · frontend · impeccable · visual
+            - generic [ref=e984] [cursor=pointer]:
+              - button "收藏" [ref=e985]:
+                - img [ref=e986]
+              - generic [ref=e989]: 营销与增长
+              - heading "Marketing Skills" [level=3] [ref=e990]
+              - paragraph [ref=e991]: Corey Haines营销技能包，18个子技能覆盖SEO审计、文案写作、内容策略、邮件序列、CRO优化等
+              - generic [ref=e992]: marketing · seo · copywriting · content-strategy · email · cro · pricing
+            - generic [ref=e994] [cursor=pointer]:
+              - button "收藏" [ref=e995]:
+                - img [ref=e996]
+              - generic [ref=e999]: 编码开发与工程规范
+              - heading "MattPocock Skills" [level=3] [ref=e1000]
+              - paragraph [ref=e1001]: 前端大神Matt Pocock的28个实战Skills，专治"氛围编程"四大通病，遵循TDD/DDD等工程原则
+              - generic [ref=e1002]: typescript · tdd · ddd · requirements · debugging · caveman · handoff
+            - generic [ref=e1004] [cursor=pointer]:
+              - button "收藏" [ref=e1005]:
+                - img [ref=e1006]
+              - generic [ref=e1009]: 效率工具与自动化
+              - heading "BB Browser / OpenClaw" [level=3] [ref=e1010]
+              - paragraph [ref=e1011]: 提供独立浏览器实例，支持托管浏览器和扩展中继两种模式的浏览器自动化工具
+              - generic [ref=e1012]: browser · automation · mcp · monitoring · scraping · screenshot
+            - generic [ref=e1014] [cursor=pointer]:
+              - button "收藏" [ref=e1015]:
+                - img [ref=e1016]
+              - generic [ref=e1019]: 编码开发与工程规范
+              - heading "Vue3 组件开发" [level=3] [ref=e1020]
+              - paragraph [ref=e1021]: 使用 Vue3 Composition API 构建可复用组件的完整技能指南
+              - generic [ref=e1022]: vue · frontend · component
+  - contentinfo [ref=e809]:
+    - generic [ref=e810]:
+      - generic [ref=e811]: Skill Book
+      - generic [ref=e812]: 技能知识库
+      - button "数据管理" [ref=e814] [cursor=pointer]:
+        - img [ref=e815]
+        - text: 数据管理
