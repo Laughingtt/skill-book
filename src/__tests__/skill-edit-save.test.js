@@ -122,4 +122,44 @@ Body text`
     expect(result.install).toBe('npm i foo')
     expect(result.source).toBe('https://foo.com')
   })
+
+  it('should preserve scenarios/commands/related/quickstart when updating from markdown', async () => {
+    // Setup: a skill with extended fields
+    skillsModule.skills.value = [
+      {
+        slug: 'test-skill',
+        name: 'Test Skill',
+        category: 'Test',
+        tags: ['tag1'],
+        description: 'Original',
+        scenarios: ['debugging', 'testing'],
+        commands: [{ name: 'Run', cmd: 'npm test' }],
+        quickstart: 'Step 1: Install',
+        related: ['other-skill'],
+      },
+    ]
+
+    // Update with new markdown that only has basic fields
+    mockFetch.mockResolvedValueOnce({ ok: true, json: () => Promise.resolve({ ok: true, slug: 'test-skill' }) })
+
+    const rawMd = `---
+slug: test-skill
+name: Updated Name
+category: Test
+tags: [tag1, tag2]
+description: New description
+---
+New body content here.`
+
+    const result = await skillsModule.updateSkillFromMd('test-skill', rawMd)
+
+    // Extended fields should be preserved from existing skill (not in new frontmatter)
+    expect(result.scenarios).toEqual(['debugging', 'testing'])
+    expect(result.commands).toEqual([{ name: 'Run', cmd: 'npm test' }])
+    expect(result.quickstart).toBe('Step 1: Install')
+    expect(result.related).toEqual(['other-skill'])
+    // Basic fields should be updated
+    expect(result.name).toBe('Updated Name')
+    expect(result.description).toBe('New description')
+  })
 })
