@@ -36,9 +36,15 @@ export function useBookmarks() {
     saveToStorage()
   }
 
+  const clearBookmark = (slug) => {
+    bookmarks.value = bookmarks.value.filter(s => s !== slug)
+    saveToStorage()
+  }
+
   return {
     bookmarks,
     isBookmarked,
-    toggleBookmark
+    toggleBookmark,
+    clearBookmark
   }
 }

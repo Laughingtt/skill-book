@@ -72,12 +72,20 @@ export function useUsageTracker() {
     return stale
   }
 
+  const clearStats = (slug) => {
+    const updated = { ...stats.value }
+    delete updated[slug]
+    stats.value = updated
+    saveToStorage()
+  }
+
   return {
     stats,
     trackView,
     getViewCount,
     getLastViewed,
     recentlyViewed,
-    getStaleLearning
+    getStaleLearning,
+    clearStats
   }
 }

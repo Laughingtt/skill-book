@@ -42,10 +42,18 @@ export function useSkillNotes() {
     return !!(notes.value[slug] && notes.value[slug].trim())
   }
 
+  const deleteNote = (slug) => {
+    const updated = { ...notes.value }
+    delete updated[slug]
+    notes.value = updated
+    saveToStorage()
+  }
+
   return {
     notes,
     getNote,
     saveNote,
-    hasNote
+    hasNote,
+    deleteNote
   }
 }

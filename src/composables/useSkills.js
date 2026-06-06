@@ -128,9 +128,42 @@ export function useSkills() {
     return updated
   }
 
+  function cleanupSkillData(slug) {
+    // bookmarks
+    try {
+      const bm = JSON.parse(localStorage.getItem('skill-book-bookmarks') || '[]')
+      localStorage.setItem('skill-book-bookmarks', JSON.stringify(bm.filter(s => s !== slug)))
+    } catch {}
+    // skill status
+    try {
+      const st = JSON.parse(localStorage.getItem('skill-book-skill-status') || '{}')
+      delete st[slug]
+      localStorage.setItem('skill-book-skill-status', JSON.stringify(st))
+    } catch {}
+    // skill notes
+    try {
+      const nt = JSON.parse(localStorage.getItem('skill-book-skill-notes') || '{}')
+      delete nt[slug]
+      localStorage.setItem('skill-book-skill-notes', JSON.stringify(nt))
+    } catch {}
+    // usage stats
+    try {
+      const us = JSON.parse(localStorage.getItem('skill-book-usage-stats') || '{}')
+      delete us[slug]
+      localStorage.setItem('skill-book-usage-stats', JSON.stringify(us))
+    } catch {}
+    // review schedule
+    try {
+      const rs = JSON.parse(localStorage.getItem('skill-book-review-schedule') || '{}')
+      delete rs[slug]
+      localStorage.setItem('skill-book-review-schedule', JSON.stringify(rs))
+    } catch {}
+  }
+
   async function deleteSkill(slug) {
     const index = skills.value.findIndex(s => s.slug === slug)
     if (index === -1) return false
+    cleanupSkillData(slug)
     skills.value.splice(index, 1)
     userSlugs.delete(slug)
     saveToStorage()
