@@ -16,6 +16,7 @@ import TagCloud from '../components/TagCloud.vue'
 import SkillCard from '../components/SkillCard.vue'
 import SkillFormModal from '../components/SkillFormModal.vue'
 import SyncPanel from '../components/SyncPanel.vue'
+import RecommendationBar from '../components/RecommendationBar.vue'
 
 const router = useRouter()
 const { skills, loading, error, categories, allTags, fetchSkills, addSkill } = useSkills()
@@ -166,6 +167,8 @@ const recentCount = computed(() => (recentlyViewed.value || []).length)
         </div>
       </div>
     </section>
+
+    <RecommendationBar />
 
     <!-- Main Layout -->
     <div class="max-w-[1200px] mx-auto px-[22px] py-10 flex gap-10">

@@ -9,6 +9,7 @@ import { useSpacedRepetition } from '../composables/useSpacedRepetition'
 import { useStats } from '../composables/useStats'
 import SubNav from '../components/SubNav.vue'
 import UsageHeatmap from '../components/UsageHeatmap.vue'
+import LearningPathView from '../components/LearningPathView.vue'
 
 const router = useRouter()
 const { skills, getSkillBySlug, fetchSkills } = useSkills()
@@ -218,6 +219,8 @@ const statusIcon = {
         还没有标记任何学习状态，浏览技能时点击状态按钮开始记录
       </p>
     </section>
+
+    <LearningPathView />
 
     <!-- ── Section: Today's Review ── -->
     <section class="my-section">
