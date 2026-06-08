@@ -1,9 +1,10 @@
 <script setup>
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useBookmarks } from '../composables/useBookmarks'
 import { useSkillStatus } from '../composables/useSkillStatus'
 
-defineProps({
+const props = defineProps({
   skill: { type: Object, required: true },
 })
 
@@ -21,6 +22,14 @@ function onBookmarkClick(e, slug) {
 }
 
 const statusLabel = { todo: '待尝试', learning: '学习中', mastered: '已掌握' }
+
+const qualityClass = computed(() => {
+  const score = props.skill.quality?.score
+  if (!score) return ''
+  if (score >= 8) return 'skill-card__quality--high'
+  if (score >= 5) return 'skill-card__quality--mid'
+  return 'skill-card__quality--low'
+})
 </script>
 
 <template>
@@ -39,6 +48,9 @@ const statusLabel = { todo: '待尝试', learning: '学习中', mastered: '已�
       <span class="skill-card__category">{{ skill.category }}</span>
       <span v-if="getStatus(skill.slug)" class="skill-card__status" :class="`skill-card__status--${getStatus(skill.slug)}`">
         {{ statusLabel[getStatus(skill.slug)] }}
+      </span>
+      <span v-if="skill.quality?.score" class="skill-card__quality" :class="qualityClass">
+        {{ skill.quality.score.toFixed(1) }}
       </span>
     </div>
     <h3 class="skill-card__name">{{ skill.name }}</h3>
@@ -171,4 +183,12 @@ const statusLabel = { todo: '待尝试', learning: '学习中', mastered: '已�
 .skill-card__status--mastered {
   background: var(--color-success, #4caf7d);
 }
+
+.skill-card__quality {
+  font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 600;
+  padding: 1px 6px; border-radius: 4px; margin-left: auto;
+}
+.skill-card__quality--high { background: var(--color-success, #4caf7d); color: white; }
+.skill-card__quality--mid { background: var(--color-warning, #e5a84b); color: white; }
+.skill-card__quality--low { background: var(--color-accent); color: white; }
 </style>

@@ -1,4 +1,15 @@
 <script setup>
+import { computed } from 'vue'
+import { useSkillSync } from '../composables/useSkillSync'
+
+const { lastSyncAt } = useSkillSync()
+
+const syncLabel = computed(() => {
+  if (!lastSyncAt.value) return ''
+  const daysAgo = (Date.now() - new Date(lastSyncAt.value).getTime()) / (24 * 60 * 60 * 1000)
+  if (daysAgo > 7) return 'sync-stale'
+  return 'sync-fresh'
+})
 </script>
 
 <template>
@@ -8,6 +19,7 @@
     </router-link>
     <div class="nav-accent">
       <span class="accent-dot" />
+      <span v-if="syncLabel" class="sync-dot" :class="syncLabel" :title="syncLabel === 'sync-fresh' ? '数据已同步' : '同步数据已过期'"></span>
     </div>
   </nav>
 </template>
@@ -51,4 +63,10 @@
   background: var(--color-accent);
   opacity: 0.6;
 }
+
+.sync-dot {
+  display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+}
+.sync-fresh { background: var(--color-success, #4caf7d); }
+.sync-stale { background: var(--color-warning, #e5a84b); }
 </style>

@@ -279,6 +279,26 @@ function handleEditSave(updatedSkill) {
           {{ skill.description }}
         </p>
 
+        <!-- Quality Detail (V2) -->
+        <div v-if="skill.quality" class="quality-detail">
+          <div class="quality-item">
+            <span class="quality-label">综合评分</span>
+            <span class="quality-value">{{ skill.quality.score?.toFixed(1) || '—' }}</span>
+          </div>
+          <div class="quality-item">
+            <span class="quality-label">完整度</span>
+            <span class="quality-value">{{ skill.quality.completeness || '—' }}/10</span>
+          </div>
+          <div class="quality-item">
+            <span class="quality-label">可用性</span>
+            <span class="quality-value">{{ skill.quality.usability || '—' }}/10</span>
+          </div>
+          <div v-if="skill.version" class="quality-item">
+            <span class="quality-label">版本</span>
+            <span class="quality-value">{{ skill.version }}</span>
+          </div>
+        </div>
+
         <!-- Tags -->
         <p v-if="skill.tags?.length" style="font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--color-text-secondary); margin-top: 16px;">
           <template v-for="(tag, i) in skill.tags" :key="tag">
@@ -493,6 +513,21 @@ function handleEditSave(updatedSkill) {
 
 .back-link:hover {
   text-decoration: underline;
+}
+
+.quality-detail {
+  display: flex; gap: 16px; margin-top: 16px;
+  background: var(--color-bg-accent); border-radius: 8px;
+  padding: 10px 16px; width: fit-content;
+}
+.quality-item { display: flex; flex-direction: column; gap: 2px; }
+.quality-label {
+  font-family: 'DM Sans', sans-serif; font-size: 9px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-tertiary);
+}
+.quality-value {
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
+  color: var(--color-text-primary);
 }
 
 .action-btn {
