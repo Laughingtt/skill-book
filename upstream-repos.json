@@ -7,7 +7,8 @@
       "skillsPath": "skills",
       "category": "编码开发与工程规范",
       "tags": ["anthropic", "official"],
-      "enabled": true
+      "enabled": true,
+      "note": "Each skill is in skills/<name>/SKILL.md. Only SKILL.md files with valid frontmatter are imported."
     },
     {
       "owner": "obra",
@@ -16,7 +17,8 @@
       "skillsPath": ".claude/skills",
       "category": "编码开发与工程规范",
       "tags": ["workflow", "quality"],
-      "enabled": true
+      "enabled": true,
+      "note": "Skills are individual .md files in .claude/skills/. Each file IS a skill."
     },
     {
       "owner": "vercel-labs",
@@ -25,7 +27,8 @@
       "skillsPath": "skills",
       "category": "编码开发与工程规范",
       "tags": ["vercel", "official"],
-      "enabled": true
+      "enabled": true,
+      "note": "Skills are in skills/<name>/SKILL.md. Repo also contains docs/, patterns/ etc which are excluded."
     }
   ]
 }
