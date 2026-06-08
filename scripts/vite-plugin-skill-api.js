@@ -134,6 +134,59 @@ export default function skillApiPlugin() {
           return
         }
 
+        // POST /api/skills/sync — trigger upstream sync (fetch skill files)
+        if (req.method === 'POST' && pathname === '/sync') {
+          try {
+            res.setHeader('Content-Type', 'application/json')
+            // Run sync-upstream.js --fetch programmatically
+            const { execSync } = await import('child_process')
+            const scriptPath = path.join(__dirname, 'sync-upstream.js')
+            try {
+              const stdout = execSync(`node "${scriptPath}" --fetch`, {
+                cwd: path.join(__dirname, '..'),
+                encoding: 'utf-8',
+                timeout: 60000,
+              })
+              console.log(`[skill-api] Sync completed:\n${stdout}`)
+              const count = rebuildIndex()
+              res.end(JSON.stringify({ ok: true, output: stdout, indexCount: count }))
+            } catch (execErr) {
+              res.statusCode = 500
+              res.end(JSON.stringify({ error: 'Sync failed', detail: execErr.message, stderr: execErr.stderr }))
+            }
+          } catch (e) {
+            res.statusCode = 500
+            res.setHeader('Content-Type', 'application/json')
+            res.end(JSON.stringify({ error: e.message }))
+          }
+          return
+        }
+
+        // POST /api/skills/sync/check — check upstream status only (no download)
+        if (req.method === 'POST' && pathname === '/sync/check') {
+          try {
+            res.setHeader('Content-Type', 'application/json')
+            const { execSync } = await import('child_process')
+            const scriptPath = path.join(__dirname, 'sync-upstream.js')
+            try {
+              const stdout = execSync(`node "${scriptPath}"`, {
+                cwd: path.join(__dirname, '..'),
+                encoding: 'utf-8',
+                timeout: 30000,
+              })
+              res.end(JSON.stringify({ ok: true, output: stdout }))
+            } catch (execErr) {
+              res.statusCode = 500
+              res.end(JSON.stringify({ error: 'Check failed', detail: execErr.message }))
+            }
+          } catch (e) {
+            res.statusCode = 500
+            res.setHeader('Content-Type', 'application/json')
+            res.end(JSON.stringify({ error: e.message }))
+          }
+          return
+        }
+
         next()
       })
     },
