@@ -32,6 +32,12 @@ for (const file of files) {
     ...(data.install && { install: data.install }),
     ...(data.source && { source: data.source }),
     ...(data.related && { related: data.related }),
+    // ── V2 新增字段 ──
+    ...(data.version && { version: data.version }),
+    ...(data.prerequisites && { prerequisites: data.prerequisites }),
+    ...(data.quality && { quality: data.quality }),
+    ...(data.lastVerified && { lastVerified: data.lastVerified }),
+    ...(data.deprecated && { deprecated: data.deprecated }),
   })
 }
 
