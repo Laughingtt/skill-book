@@ -1,0 +1,31 @@
+{
+  "repos": [
+    {
+      "owner": "anthropics",
+      "repo": "skills",
+      "branch": "main",
+      "skillsPath": "skills",
+      "category": "编码开发与工程规范",
+      "tags": ["anthropic", "official"],
+      "enabled": true
+    },
+    {
+      "owner": "obra",
+      "repo": "superpowers",
+      "branch": "main",
+      "skillsPath": ".claude/skills",
+      "category": "编码开发与工程规范",
+      "tags": ["workflow", "quality"],
+      "enabled": true
+    },
+    {
+      "owner": "vercel-labs",
+      "repo": "agent-skills",
+      "branch": "main",
+      "skillsPath": "skills",
+      "category": "编码开发与工程规范",
+      "tags": ["vercel", "official"],
+      "enabled": true
+    }
+  ]
+}
