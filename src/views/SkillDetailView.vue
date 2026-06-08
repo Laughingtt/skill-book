@@ -13,6 +13,7 @@ import { useSkillNotes } from '../composables/useSkillNotes'
 import { useSkillGraph } from '../composables/useSkillGraph'
 import SkillGraphView from '../components/SkillGraphView.vue'
 import SkillFormModal from '../components/SkillFormModal.vue'
+import { useSkillUpdate } from '../composables/useSkillUpdate'
 
 const route = useRoute()
 const router = useRouter()
@@ -31,6 +32,9 @@ const { getStatus, setStatus, clearStatus } = useSkillStatus()
 const { trackUsage } = useUsageTracker()
 const { getNote, saveNote, hasNote } = useSkillNotes()
 const { computeRelations } = useSkillGraph()
+const { updating, updateError, updateDiff, checkForUpdate, clearDiff } = useSkillUpdate()
+const showUpdateDiff = ref(false)
+const updateResult = ref(null)
 
 function buildRawMd(skillObj) {
   const fmLines = [`slug: ${skillObj.slug}`, `name: ${skillObj.name}`]
@@ -224,6 +228,20 @@ function handleEditSave(updatedSkill) {
   showEditModal.value = false
   loadSkill(route.params.slug)
 }
+
+async function handleCheckUpdate() {
+  updateResult.value = null
+  try {
+    const result = await checkForUpdate(skill.value)
+    if (result.upToDate) {
+      updateResult.value = { type: 'info', message: '已是最新版本' }
+    } else {
+      showUpdateDiff.value = true
+    }
+  } catch (e) {
+    updateResult.value = { type: 'error', message: e.message }
+  }
+}
 </script>
 
 <template>
@@ -355,11 +373,21 @@ function handleEditSave(updatedSkill) {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
             编辑
           </button>
+          <button
+            v-if="skill.source"
+            @click="handleCheckUpdate"
+            :disabled="updating"
+            class="action-btn action-btn--update"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            {{ updating ? '检查中...' : '检查更新' }}
+          </button>
           <button @click="showDeleteConfirm = true" class="action-btn action-btn--delete">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
             删除
           </button>
         </div>
+        <p v-if="updateResult" class="update-msg" :class="`update-msg--${updateResult.type}`">{{ updateResult.message }}</p>
       </div>
     </section>
 
@@ -457,6 +485,26 @@ function handleEditSave(updatedSkill) {
         <div class="delete-confirm-actions">
           <button class="btn btn-ghost" @click="showDeleteConfirm = false">取消</button>
           <button class="btn btn-accent" @click="handleDelete">确认删除</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update Diff Modal -->
+    <div v-if="showUpdateDiff && updateDiff" class="update-diff-overlay" @click.self="showUpdateDiff = false; clearDiff()">
+      <div class="update-diff-box">
+        <div class="update-diff-header">
+          <h3>发现更新</h3>
+          <button @click="showUpdateDiff = false; clearDiff()">&times;</button>
+        </div>
+        <p class="update-diff-meta">
+          仓库: {{ updateDiff.source }}<br/>
+          最新提交: {{ updateDiff.sha.slice(0, 7) }} ({{ new Date(updateDiff.date).toLocaleString('zh-CN') }})
+        </p>
+        <div class="update-diff-content">
+          <MarkdownRenderer :source="updateDiff.aiSummary" />
+        </div>
+        <div class="update-diff-actions">
+          <button class="btn btn-ghost" @click="showUpdateDiff = false; clearDiff()">关闭</button>
         </div>
       </div>
     </div>
@@ -561,6 +609,52 @@ function handleEditSave(updatedSkill) {
   background: var(--color-bg-accent);
   border-color: var(--color-accent);
 }
+
+.action-btn--update {
+  color: var(--color-info, #5b8dd9);
+  border-color: rgba(91, 141, 217, 0.35);
+}
+.action-btn--update:hover {
+  background: rgba(91, 141, 217, 0.08);
+  border-color: var(--color-info, #5b8dd9);
+}
+
+.update-msg {
+  font-family: 'DM Sans', sans-serif; font-size: 12px; margin-top: 8px;
+}
+.update-msg--info { color: var(--color-success, #4caf7d); }
+.update-msg--error { color: var(--color-accent); }
+
+.update-diff-overlay {
+  position: fixed; inset: 0; z-index: var(--z-modal, 1000);
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.4); backdrop-filter: blur(4px);
+}
+.update-diff-box {
+  background: var(--color-bg-elevated); border-radius: 14px;
+  padding: 24px 28px; max-width: 640px; width: 90%; max-height: 80vh;
+  overflow-y: auto; box-shadow: var(--shadow-xl);
+}
+.update-diff-header {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;
+}
+.update-diff-header h3 {
+  font-family: 'Crimson Pro', serif; font-size: 20px; font-weight: 600;
+  color: var(--color-text-primary); margin: 0;
+}
+.update-diff-header button {
+  background: none; border: none; font-size: 24px;
+  color: var(--color-text-tertiary); cursor: pointer;
+}
+.update-diff-meta {
+  font-family: 'DM Sans', sans-serif; font-size: 12px;
+  color: var(--color-text-secondary); margin: 0 0 16px; line-height: 1.6;
+}
+.update-diff-content {
+  background: var(--color-bg-recessed); border-radius: 8px;
+  padding: 16px 20px; margin-bottom: 16px;
+}
+.update-diff-actions { display: flex; gap: 8px; justify-content: flex-end; }
 
 .delete-confirm-overlay {
   position: fixed;
