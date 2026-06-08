@@ -19,6 +19,11 @@ const router = createRouter({
       name: 'my-space',
       component: () => import('../views/MySpaceView.vue'),
     },
+    {
+      path: '/leaderboard',
+      name: 'leaderboard',
+      component: () => import('../views/LeaderboardView.vue'),
+    },
   ],
 })
 

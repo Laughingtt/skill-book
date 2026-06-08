@@ -17,6 +17,9 @@ const syncLabel = computed(() => {
     <router-link to="/" class="nav-title">
       SKILL BOOK
     </router-link>
+    <div class="nav-links">
+      <router-link to="/leaderboard" class="nav-link">排行榜</router-link>
+    </div>
     <div class="nav-accent">
       <span class="accent-dot" />
       <span v-if="syncLabel" class="sync-dot" :class="syncLabel" :title="syncLabel === 'sync-fresh' ? '数据已同步' : '同步数据已过期'"></span>
@@ -63,6 +66,14 @@ const syncLabel = computed(() => {
   background: var(--color-accent);
   opacity: 0.6;
 }
+
+.nav-links { display: flex; align-items: center; gap: 12px; }
+.nav-link {
+  font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; color: var(--color-text-inverse); opacity: 0.5;
+  text-decoration: none; transition: opacity 0.2s;
+}
+.nav-link:hover, .nav-link.router-link-active { opacity: 1; }
 
 .sync-dot {
   display: inline-block; width: 6px; height: 6px; border-radius: 50%;

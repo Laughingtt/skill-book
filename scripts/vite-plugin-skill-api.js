@@ -134,6 +134,61 @@ export default function skillApiPlugin() {
           return
         }
 
+        // GET /api/skills/leaderboard — proxy npx skills find for popular queries
+        if (req.method === 'GET' && pathname === '/leaderboard') {
+          try {
+            res.setHeader('Content-Type', 'application/json')
+            const { execSync } = await import('child_process')
+
+            const queries = ['react', 'next', 'design', 'testing', 'python', 'cli', 'deploy']
+            const allSkills = new Map()
+
+            for (const q of queries) {
+              try {
+                const stdout = execSync(`npx skills find "${q}"`, {
+                  encoding: 'utf-8',
+                  timeout: 20000,
+                  env: { ...process.env, CI: 'true' },
+                })
+                const lines = stdout.split('\n')
+                for (const line of lines) {
+                  const match = line.match(/^(.+?@.+?)\s+([\d.]+[KMB]?)\s+installs/)
+                  if (match) {
+                    const name = match[1]
+                    const installs = match[2]
+                    const urlMatch = line.match(/https:\/\/skills\.sh\/[^\s]+/)
+                    const url = urlMatch ? urlMatch[0] : ''
+                    if (!allSkills.has(name)) {
+                      allSkills.set(name, { name, installs, url })
+                    }
+                  }
+                }
+              } catch {}
+            }
+
+            const skills = [...allSkills.values()]
+            skills.sort((a, b) => {
+              const parseVal = (v) => {
+                if (!v || typeof v !== 'string') return 0
+                const num = parseFloat(v)
+                if (isNaN(num)) return 0
+                if (v.endsWith('B')) return num * 1e9
+                if (v.endsWith('M')) return num * 1e6
+                if (v.endsWith('K')) return num * 1e3
+                return num
+              }
+              return parseVal(b.installs) - parseVal(a.installs)
+            })
+
+            res.end(JSON.stringify({ skills: skills.slice(0, 50), updatedAt: new Date().toISOString() }))
+          } catch (e) {
+            res.statusCode = 500
+            res.setHeader('Content-Type', 'application/json')
+            res.end(JSON.stringify({ error: e.message }))
+          }
+          return
+        }
+
         next()
       })
     },
