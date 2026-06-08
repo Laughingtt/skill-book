@@ -28,7 +28,7 @@ const { skills, fetchSkills, updateSkill, deleteSkill, categories } = useSkills(
 const { query, clearSearch } = useSearch()
 const { isBookmarked, toggleBookmark } = useBookmarks()
 const { getStatus, setStatus, clearStatus } = useSkillStatus()
-const { trackView } = useUsageTracker()
+const { trackUsage } = useUsageTracker()
 const { getNote, saveNote, hasNote } = useSkillNotes()
 const { computeRelations } = useSkillGraph()
 
@@ -153,8 +153,13 @@ async function loadSkill(slug) {
       }
     }
 
-    // Track this view
-    trackView(slug)
+    // Track this view with context
+    trackUsage(slug, {
+      scenario: skill.value?.scenarios?.[0] || '',
+      project: '',
+      duration: 0,
+      outcome: 'viewed',
+    })
   } catch (e) {
     error.value = e.message
   } finally {

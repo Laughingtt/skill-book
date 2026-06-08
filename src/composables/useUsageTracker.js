@@ -34,6 +34,50 @@ export function useUsageTracker() {
     saveToStorage()
   }
 
+  // ── V2: 丰富上下文的使用追踪 ──
+  const trackUsage = (slug, context = {}) => {
+    const current = stats.value[slug] || { views: 0, lastViewedAt: null, usageLog: [] }
+    const usageEntry = {
+      at: new Date().toISOString(),
+      scenario: context.scenario || '',
+      project: context.project || '',
+      duration: context.duration || 0,
+      outcome: context.outcome || '',
+      notes: context.notes || '',
+    }
+    const usageLog = [...(current.usageLog || []), usageEntry].slice(-50)
+    stats.value = {
+      ...stats.value,
+      [slug]: {
+        ...current,
+        views: current.views + 1,
+        lastViewedAt: new Date().toISOString(),
+        usageLog,
+        lastScenario: context.scenario || current.lastScenario || '',
+        lastProject: context.project || current.lastProject || '',
+        totalDuration: (current.totalDuration || 0) + (context.duration || 0),
+      }
+    }
+    saveToStorage()
+  }
+
+  const getUsageFrequency = (slug) => {
+    const s = stats.value[slug]
+    if (!s || !s.usageLog) return 0
+    const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000
+    return s.usageLog.filter(e => new Date(e.at).getTime() > thirtyDaysAgo).length
+  }
+
+  const getTopScenarios = (slug) => {
+    const s = stats.value[slug]
+    if (!s || !s.usageLog) return []
+    const counts = {}
+    s.usageLog.forEach(e => {
+      if (e.scenario) counts[e.scenario] = (counts[e.scenario] || 0) + 1
+    })
+    return Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([s]) => s)
+  }
+
   const getViewCount = (slug) => {
     return stats.value[slug]?.views || 0
   }
@@ -82,6 +126,9 @@ export function useUsageTracker() {
   return {
     stats,
     trackView,
+    trackUsage,
+    getUsageFrequency,
+    getTopScenarios,
     getViewCount,
     getLastViewed,
     recentlyViewed,
