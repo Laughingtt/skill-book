@@ -3,17 +3,11 @@ import { ref } from 'vue'
 import { useSkillSync } from '../composables/useSkillSync'
 
 const emit = defineEmits(['close'])
-const { syncing, lastSyncAt, syncError, exportData, importData, checkUpstreamUpdates, pullFromUpstream } = useSkillSync()
+const { syncing, lastSyncAt, syncError, exportData, importData } = useSkillSync()
 const activeTab = ref('export')
 const importText = ref('')
 const importResult = ref(null)
 const copyDone = ref(false)
-
-// ── 上游同步状态 ──
-const upstreamStatus = ref(null)
-const upstreamResult = ref(null)
-const checkingUpstream = ref(false)
-const pullingUpstream = ref(false)
 
 function handleExport() {
   const blob = exportData()
@@ -37,22 +31,6 @@ async function handleCopy() {
 function handleImport() {
   importResult.value = importData(importText.value)
 }
-
-async function handleCheckUpstream() {
-  checkingUpstream.value = true
-  upstreamStatus.value = null
-  const result = await checkUpstreamUpdates()
-  upstreamStatus.value = result
-  checkingUpstream.value = false
-}
-
-async function handlePullUpstream() {
-  pullingUpstream.value = true
-  upstreamResult.value = null
-  const result = await pullFromUpstream()
-  upstreamResult.value = result
-  pullingUpstream.value = false
-}
 </script>
 
 <template>
@@ -64,35 +42,8 @@ async function handlePullUpstream() {
       </div>
 
       <div class="sync-panel__tabs">
-        <button :class="['sync-tab', activeTab === 'upstream' && 'sync-tab--active']" @click="activeTab = 'upstream'">上游更新</button>
         <button :class="['sync-tab', activeTab === 'export' && 'sync-tab--active']" @click="activeTab = 'export'">导出</button>
         <button :class="['sync-tab', activeTab === 'import' && 'sync-tab--active']" @click="activeTab = 'import'">导入</button>
-      </div>
-
-      <!-- ── Tab: 上游更新 ── -->
-      <div v-if="activeTab === 'upstream'" class="sync-panel__body">
-        <p class="sync-desc">从上游仓库（Anthropic、Vercel、Superpowers 等）拉取最新 Skill 文件到本地。</p>
-        <p class="sync-desc" style="font-size:11px;color:var(--color-text-tertiary);">仅开发模式可用。生产环境请运行 <code>node scripts/sync-upstream.js --fetch</code></p>
-
-        <div class="sync-actions">
-          <button class="btn btn-ghost" @click="handleCheckUpstream" :disabled="checkingUpstream">
-            {{ checkingUpstream ? '检查中...' : '检查更新' }}
-          </button>
-          <button class="btn btn-accent" @click="handlePullUpstream" :disabled="pullingUpstream">
-            {{ pullingUpstream ? '拉取中...' : '拉取最新 Skill' }}
-          </button>
-        </div>
-
-        <div v-if="upstreamStatus && !checkingUpstream" class="upstream-log">
-          <pre>{{ upstreamStatus.output || JSON.stringify(upstreamStatus, null, 2) }}</pre>
-        </div>
-
-        <div v-if="upstreamResult && !pullingUpstream" class="sync-result">
-          {{ upstreamResult.ok ? `✓ 同步完成，索引包含 ${upstreamResult.indexCount} 个 Skill。请刷新页面。` : `✗ ${upstreamResult.error || '同步失败'}` }}
-        </div>
-
-        <p v-if="syncError" class="sync-error">{{ syncError }}</p>
-        <p v-if="lastSyncAt" class="sync-meta">上次同步: {{ new Date(lastSyncAt).toLocaleString('zh-CN') }}</p>
       </div>
 
       <div v-if="activeTab === 'export'" class="sync-panel__body">
@@ -100,7 +51,7 @@ async function handlePullUpstream() {
         <div class="sync-actions">
           <button class="btn btn-accent" @click="handleExport">下载 JSON</button>
           <button class="btn btn-ghost" @click="handleCopy">
-            {{ copyDone ? '✓ 已复制' : '复制到剪贴板' }}
+            {{ copyDone ? '已复制' : '复制到剪贴板' }}
           </button>
         </div>
         <p v-if="lastSyncAt" class="sync-meta">上次同步: {{ new Date(lastSyncAt).toLocaleString('zh-CN') }}</p>
@@ -170,12 +121,4 @@ async function handlePullUpstream() {
 .sync-textarea:focus { border-color: var(--color-accent); }
 .sync-result { font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--color-success, #4caf7d); }
 .sync-error { font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--color-accent); }
-.upstream-log {
-  max-height: 200px; overflow-y: auto;
-  background: var(--color-bg-recessed); border-radius: 8px; padding: 10px 12px;
-}
-.upstream-log pre {
-  font-family: 'DM Mono', Menlo, monospace; font-size: 11px;
-  color: var(--color-text-secondary); margin: 0; white-space: pre-wrap; word-break: break-all;
-}
 </style>

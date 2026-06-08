@@ -96,56 +96,11 @@ export function useSkillSync() {
     return { added, skipped }
   }
 
-  // ── V2: 上游远程同步 ──
-
-  async function checkUpstreamUpdates() {
-    syncing.value = true
-    syncError.value = null
-    try {
-      const res = await fetch('/api/skills/sync/check', { method: 'POST' })
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}))
-        throw new Error(err.detail || err.error || `HTTP ${res.status}`)
-      }
-      const data = await res.json()
-      lastSyncAt.value = new Date().toISOString()
-      return data
-    } catch (e) {
-      syncError.value = e.message
-      // API not available (production) — return graceful fallback
-      return { ok: false, output: 'Sync API 仅在开发模式下可用。生产环境请运行: node scripts/sync-upstream.js --fetch' }
-    } finally {
-      syncing.value = false
-    }
-  }
-
-  async function pullFromUpstream() {
-    syncing.value = true
-    syncError.value = null
-    try {
-      const res = await fetch('/api/skills/sync', { method: 'POST' })
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}))
-        throw new Error(err.detail || err.error || `HTTP ${res.status}`)
-      }
-      const data = await res.json()
-      lastSyncAt.value = new Date().toISOString()
-      return data
-    } catch (e) {
-      syncError.value = e.message
-      return { ok: false, error: e.message }
-    } finally {
-      syncing.value = false
-    }
-  }
-
   return {
     syncing,
     lastSyncAt,
     syncError,
     exportData,
     importData,
-    checkUpstreamUpdates,
-    pullFromUpstream,
   }
 }
