@@ -15,12 +15,14 @@ import CategorySidebar from '../components/CategorySidebar.vue'
 import TagCloud from '../components/TagCloud.vue'
 import SkillCard from '../components/SkillCard.vue'
 import SkillFormModal from '../components/SkillFormModal.vue'
+import SyncPanel from '../components/SyncPanel.vue'
 
 const router = useRouter()
 const { skills, loading, error, categories, allTags, fetchSkills, addSkill } = useSkills()
 setSearchSkills(skills)
 
 const showCreateModal = ref(false)
+const showSyncPanel = ref(false)
 
 function handleCreateSave(skillData) {
   addSkill(skillData)
@@ -123,6 +125,10 @@ const recentCount = computed(() => (recentlyViewed.value || []).length)
           <button @click="showCreateModal = true" class="new-skill-btn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             添加技能
+          </button>
+          <button @click="showSyncPanel = true" class="sync-entry-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            同步
           </button>
         </div>
         <!-- Right: Personal summary panel -->
@@ -251,6 +257,7 @@ const recentCount = computed(() => (recentlyViewed.value || []).length)
     :existing-slugs="skills.map(s => s.slug)"
     @save="handleCreateSave"
   />
+  <SyncPanel v-if="showSyncPanel" @close="showSyncPanel = false" />
   </div>
 </template>
 
@@ -454,6 +461,28 @@ const recentCount = computed(() => (recentlyViewed.value || []).length)
   background: var(--color-accent-hover);
   transform: translateY(-1px);
   box-shadow: var(--shadow-accent);
+}
+
+.sync-entry-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 8px;
+  padding: 6px 14px;
+  cursor: pointer;
+  margin-top: 12px;
+  margin-left: 8px;
+  transition: all 0.2s ease;
+}
+.sync-entry-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .clear-filter-btn {
